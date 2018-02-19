@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<!-- saved from url=(0069)http://localhost:4567/viewTopic?tid=lesson_2_damit_pagkain_at_tirahan -->
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+        <title>Capstone: Create a new Quiz</title>
+
+        <link href="css/bootstrap.min.css" rel="stylesheet">
+        <link rel="stylesheet" href="css/font-awesome.min.css">
+        <link rel="stylesheet" href="css/studentTopicDetails/topics.css">
+            <link rel="stylesheet" href="css/font-awesome.css">
+            <link rel="stylesheet" href="css/studentTopicDetails/new.css">
+
+        <style>
+
+            body{
+                /* background-image: url("inner.jpg"); */
+                background-size: 102% 102%;
+                background-repeat: no-repeat;
+
+            }
+            input[type='radio'], input[type='checkbox'] {
+                margin-right: 10px;
+            }
+        </style>
+    </head>
+    <body class="bkg">
+    <!-- Navigation -->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top nav-header headfoot">
+        <div class="container">
+
+                <a class="navbar-brand" style="text-transform: capitalize" href="studentHomepage.php">Welcome <?= $_SESSION["firstname"] . " " . $_SESSION["lastname"] ?></a>
+
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarResponsive">
+                <ul class="navbar-nav ml-auto">
+                            <li class="nav-item">
+                                <a class="nav-link nav-linkN" href="studentSearchClasses.php"> <i class="fa fa-search" aria-hidden="true"></i> Course Search </a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link nav-linkN" href="logout.php"> <i class="fa fa-sign-out" aria-hidden="true"></i> Logout </a>
+                            </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+        <div class="container cont1">
+            <div class="sm-flex-center top-space">
+            <form id="submitStudentAnswerForm" action="submitStudentAnswerMDA.php" method="post">
+                <input type="hidden" name="topicId" value="<?= $topicId ?>">
+                <div class="col-sm-12 ">
+                        <div class="panel panel-info">
+                            <h4 style="text-align: center;">Questions</h4>
+                            <div class="panel-body underlined" style="border-right: 1px solid #eee;">
+                                <ol id="lstQuestions" class="list-group" type="1.">
+                                           
+                                        <?php
+                                            if (mysqli_num_rows($result) > 0) {
+                                                while($row = mysqli_fetch_array($result)){
+                                                    $isBoolean = isset($row['boolean_answer']);
+                                                    $isSingle = isset($row['single_answer']);
+                                                    $isMulti =  isset($row['multi_answer_1']) || 
+                                                                isset($row['multi_answer_2']) ||
+                                                                isset($row['multi_answer_3']) ||
+                                                                isset($row['multi_answer_4']) ||
+                                                                isset($row['multi_answer_5']) ||
+                                                                isset($row['multi_answer_6']);
+
+                                        ?>
+                                        <li>
+                                            <span><?= $row['question'] ?></span>
+                                                <section>
+                                                    <input type="hidden" name="options[<?= $row['id'] ?>][topicItemId]" value="<?= $row['id'] ?>">
+                                                        <p></p>
+                                                            <?php
+                                                                if ($isBoolean) {
+                                                            ?>
+                                                            <ul style="list-style: none;">
+                                                                <li><input class="bAnswer" type="radio" name="options[<?= $row['id'] ?>][bAnswer]" value="true"><label>True</label></li>
+                                                                <li><input class="bAnswer" type="radio" name="options[<?= $row['id'] ?>][bAnswer]" value="false"><label>False</label></li>
+                                                            </ul>
+                                                            <?php } else if ($isSingle) { ?>
+                                                            <ul style="list-style: none;">
+                                                                <?php if (isset($row['single_choice_1']) && $row['single_choice_1'] != "") { ?>
+                                                                    <li><input class="sAnswer" type="radio" name="options[<?= $row['id'] ?>][sAnswer]" value="<?= $row['single_choice_1'] ?>"><label><?= $row['single_choice_1'] ?></label></li>
+                                                                <?php } ?>
+                                                                <?php if (isset($row['single_choice_2']) && $row['single_choice_2'] != "") { ?>
+                                                                    <li><input class="sAnswer" type="radio" name="options[<?= $row['id'] ?>][sAnswer]" value="<?= $row['single_choice_2'] ?>"><label><?= $row['single_choice_2'] ?></label></li>
+                                                                <?php } ?>
+                                                                <?php if (isset($row['single_choice_3']) && $row['single_choice_3'] != "") { ?>
+                                                                    <li><input class="sAnswer" type="radio" name="options[<?= $row['id'] ?>][sAnswer]" value="<?= $row['single_choice_3'] ?>"><label><?= $row['single_choice_3'] ?></label></li>
+                                                                <?php } ?>
+                                                                <?php if (isset($row['single_choice_4']) && $row['single_choice_4'] != "") { ?>
+                                                                    <li><input class="sAnswer" type="radio" name="options[<?= $row['id'] ?>][sAnswer]" value="<?= $row['single_choice_4'] ?>"><label><?= $row['single_choice_4'] ?></label></li>
+                                                                <?php } ?>
+                                                                <?php if (isset($row['single_choice_5']) && $row['single_choice_5'] != "") { ?>
+                                                                    <li><input class="sAnswer" type="radio" name="options[<?= $row['id'] ?>][sAnswer]" value="<?= $row['single_choice_5'] ?>"><label><?= $row['single_choice_5'] ?></label></li>
+                                                                <?php } ?>
+                                                                <?php if (isset($row['single_choice_6']) && $row['single_choice_6'] != "") { ?>
+                                                                    <li><input class="sAnswer" type="radio" name="options[<?= $row['id'] ?>][sAnswer]" value="<?= $row['single_choice_6'] ?>"><label><?= $row['single_choice_6'] ?></label></li>
+                                                                <?php } ?>
+                                                            </ul>
+                                                            <?php } else if ($isMulti) { ?>
+                                                            <ul style="list-style: none;">
+                                                                <?php if (isset($row['multi_choice_1']) && $row['multi_choice_1'] != "") { ?>
+                                                                    <li><input class="mAnswer" type="checkbox" name="options[<?= $row['id'] ?>][mAnswer][]" value="<?= $row['multi_choice_1'] ?>"><label><?= $row['multi_choice_1'] ?></label></li>
+                                                                <?php } ?>
+                                                                <?php if (isset($row['multi_choice_2']) && $row['multi_choice_2'] != "") { ?>
+                                                                    <li><input class="mAnswer" type="checkbox" name="options[<?= $row['id'] ?>][mAnswer][]" value="<?= $row['multi_choice_2'] ?>"><label><?= $row['multi_choice_2'] ?></label></li>
+                                                                <?php } ?>
+                                                                <?php if (isset($row['multi_choice_3']) && $row['multi_choice_3'] != "") { ?>
+                                                                    <li><input class="mAnswer" type="checkbox" name="options[<?= $row['id'] ?>][mAnswer][]" value="<?= $row['multi_choice_3'] ?>"><label><?= $row['multi_choice_3'] ?></label></li>
+                                                                <?php } ?>
+                                                                <?php if (isset($row['multi_choice_4']) && $row['multi_choice_4'] != "") { ?>
+                                                                    <li><input class="mAnswer" type="checkbox" name="options[<?= $row['id'] ?>][mAnswer][]" value="<?= $row['multi_choice_4'] ?>"><label><?= $row['multi_choice_4'] ?></label></li>
+                                                                <?php } ?>
+                                                                <?php if (isset($row['multi_choice_5']) && $row['multi_choice_5'] != "") { ?>
+                                                                    <li><input class="mAnswer" type="checkbox" name="options[<?= $row['id'] ?>][mAnswer][]" value="<?= $row['multi_choice_5'] ?>"><label><?= $row['multi_choice_5'] ?></label></li>
+                                                                <?php } ?>
+                                                                <?php if (isset($row['multi_choice_6']) && $row['multi_choice_6'] != "") { ?>
+                                                                    <li><input class="mAnswer" type="checkbox" name="options[<?= $row['id'] ?>][mAnswer][]" value="<?= $row['multi_choice_6'] ?>"><label><?= $row['multi_choice_6'] ?></label></li>
+                                                                <?php } ?>
+                                                            </ul>
+                                                            <?php } ?>
+                                                        <p></p>
+                                                </section>
+                                            </li>
+                                        <?php
+                                                }
+                                            }
+                                        ?>
+                                </ol>
+                            </div>
+                        </div>
+
+                   <div class="row top-space col-md-12" style="text-align: center;">
+                        <div class="form-group">
+                            <!-- Button -->
+                            <div class=" button">
+                                <button type="button" class="btn btn-primary btn-lg" onclick="confirmQuizAnswerSubmission()">Submit Answers</button>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+
+                 </form>
+
+            </div>
+
+        </div>
+
+<div class="footer" id="footer">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-4  col-md-2 col-sm-4 col-xs-6">
+                    <h3> Developers </h3>
+                    <ul>
+                        <li> <a href="#"> Alfonso Louie Alfonso </a> </li>
+                        <li> <a href="#"> John Patrick Agduma </a> </li>
+                        <li> <a href="#"> Jon Kirk Donio </a> </li>
+                        <li> <a href="#"> Niko Jay Mateo </a> </li>
+                    </ul>
+                </div>
+                <div class="col-lg-4  col-md-2 col-sm-4 col-xs-6">
+                    <h3> Company </h3>
+                    <ul>
+                        <li> <a href="#"> About Us </a> </li>
+                        <li> <a href="#"> Contact Us </a> </li>
+                        <li> <a href="#"> FAQs </a> </li>
+                        <li> <a href="#"> Policy </a> </li>
+                    </ul>
+                </div>
+                        <div class="col-lg-4  col-md-3 col-sm-6 col-xs-12 ">
+                    <h3> Social media </h3>
+              
+                    <ul class="social">
+                        <li> <a href="#"> <i class=" fa fa-facebook">   </i> </a> </li>
+                        <li> <a href="#"> <i class="fa fa-twitter">   </i> </a> </li>
+                        <li> <a href="#"> <i class="fa fa-google-plus">   </i> </a> </li>
+                        <li> <a href="#"> <i class="fa fa-pinterest">   </i> </a> </li>
+                        <li> <a href="#"> <i class="fa fa-youtube">   </i> </a> </li>
+                    </ul>
+                </div>
+ 
+        
+            </div>
+            <!--/.row--> 
+        </div>
+        <!--/.container--> 
+    </div>
+    <!--/.footer-->
+    
+    <div class="footer-bottom">
+        <div class="container">
+            <p class="centers" > Copyright © Culturama 2018. All right reserved. </p>
+
+        </div>
+    </div>
+    <!-- Bootstrap core JavaScript -->
+    <script src="js/jquery.min.js"></script>
+    <script src="js/popper.min.js"></script>
+    <script src="js/bootbox.min.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+    
+   <script>
+
+            function confirmQuizAnswerSubmission() {
+                bootbox.confirm({
+                    message: "Are you sure you want to submit now?",
+                    buttons: {
+                        confirm: {
+                            label: '<i class="fa fa-check" aria-hidden="true"></i> Submit'
+                        },
+                        cancel: {
+                            label: '<i class="fa fa-times-circle" aria-hidden="true"></i> Cancel'
+                        }
+                    },
+                    callback: function (result) {
+                        if (result) {
+                            $('#submitStudentAnswerForm').submit();
+                        }
+                    }
+                });
+            }
+           
+    </script>
+  
+
+</body></html>

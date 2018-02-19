@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+        <title>Capstone: Register a Class (Course)</title>
+
+        <!-- Bootstrap core CSS -->
+        <link href="css/course/bootstrap.min.css" rel="stylesheet">
+        <link href="css/course/course_template.css" rel="stylesheet">
+        <link rel="stylesheet" href="css/course/font-awesome.css">
+        <link rel="stylesheet" href="css/course/new.css">
+
+        <style type="text/css">
+
+            @media (min-width: 992px) {
+
+            }
+
+            h4 { padding: 20px 0; }
+
+            .top-space { margin-top: 30px; }
+
+            .column-separator { border-right: 1px solid #eee; }
+            input[type='text'] { width: 91.5%; }
+            textarea { width: 91.5%; }
+
+            span.status {
+                font-family: "Courier New", Georgia, Serif;
+                font-style: italic;
+                font-size: 0.65em;
+                padding: 5px;
+                border: 1px solid #ddd;
+                background-color: #eee;
+            }
+
+            span.details, p.details { margin-left: 10px; }
+        </style>
+    </head>
+    <body class="bkg">
+    <!-- Navigation -->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top nav-header headfoot">
+        <div class="container">
+
+            <a class="navbar-brand nav-linkN" style="text-transform: capitalize" href="teacherHomepage.php">Welcome <?= $_SESSION["firstname"] . " " . $_SESSION["lastname"] ?></a>
+
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarResponsive">
+                <ul class="navbar-nav ml-auto">
+                    <li class="nav-item">
+                        <a class="nav-link nav-linkN" href="course.php"><i class="fa fa-cog" aria-hidden="true"></i> Course</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link nav-linkN" href="teacherRegistration.php"> <i class="fa fa-check-square-o" aria-hidden="true"></i> Registrations</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link nav-linkN" href="Teacher_Topic.php"> <i class="fa fa-book" aria-hidden="true"></i> Topics </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link nav-linkN" href="logout.php"> <i class="fa fa-sign-out" aria-hidden="true"></i> Logout </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+                <div class="container cont1">
+            <div class="row sm-flex-center top-space">
+                <div class="col-sm-12 col-md-12" style="padding: 1rem 1rem;">
+                    <div class="panel panel-info">
+                        <h2 style="text-align: center;">Course Details</h2>
+                        <div class="panel-body">
+                            <div class="form-group has-error has-feedback">
+                                <label class="control-label"><b>Class Code:</b><span class="details"></span></label>
+                            </div>
+
+                            <div class="form-group">
+                                <label class="control-label"><b>Class Name:</b><span class="details"></span></label>
+                            </div>
+
+                            <div class="form-group">
+                                <label class="control-label"><b>Class Description:</b><p class="details"></p></label>
+                            </div>
+                            <div class="form-group">
+                                <label class="control-label"><b>Class Grading System:</b><p class="details"></p></label>
+                            </div>
+
+                            <div class="form-group col-sm-12" style="text-align: center;">
+                                <div>
+                                    <button class="btn btn-info" data-toggle="modal" data-target="#myModal"><i class="fa fa-info-circle" aria-hidden="true"></i>&nbsp;Course Details</button>
+                                
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+      
+            </div>
+
+
+
+
+
+        </div>
+
+        <!-- Modal for Add Question -->
+        <div class="modal fade" id="myModal" role="dialog">
+            <div class="modal-dialog">
+
+                <!-- Modal content-->
+                <div class="modal-content">
+                <form id="signupform" class="form-horizontal" action="addCourse.php" onsubmit="return validateForm();" method="post">
+                    <div class="modal-header">
+                        <h4 class="modal-title">Course Details</h4>
+                        <button type="button" class="close" data-dismiss="modal">×</button>
+                    </div>
+                    <div class="modal-body">
+                        <div class="form-group has-error has-feedback">
+                            <label for="txtClassCode" class="control-label">Class Code</label>
+                            <div>
+                                <input type="text" id="txtClassCode" class="form-control" name="classCode" value="" placeholder="Class or Course Code" title="Enter Class or Course Code">
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="txtClassName" class="control-label">Class Name</label>
+                            <div>
+                                <input type="text" class="form-control" id="txtClassName" name="className" value="" placeholder="Class or Course Name" title="Enter Class or Course Name">
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="txtClassDescription" class="control-label">Class Description</label>
+                            <div>
+                                <textarea class="form-control" id="txtClassDescription" name="classDescription" placeholder="Class or Course Description" title="Enter Class or Course Description" cols="30" rows="3" style="width: 91.5%"></textarea>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="txtClassGrade" class="control-label">Class Grading System</label>
+                            <div>
+                                <input type="text" class="form-control" id="txtClassGrade" name="classGrade" value="" placeholder="Grading System" title="Enter Grading System">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button class="btn btn-info">Save</button>
+                        <button class="btn btn-default" data-dismiss="modal">Close</button>
+                    </div>
+                </form> 
+                </div>
+
+            </div>
+
+        </div>
+        <!-- End: Modal For Add Question -->
+
+    <?php include('footer.html'); ?>
+
+    <!-- Bootstrap core JavaScript -->
+    <script src="js/course/jquery.min.js"></script>
+    <script src="js/course/popper.min.js"></script>
+    <script src="js/course/bootbox.min.js"></script>
+    <script src="js/course/bootstrap.min.js"></script>
+
+    <script>
+        function validateForm() {
+            var classCode = $("#txtClassCode").val();
+            var className = $("#txtClassName").val();
+            var classDescription = $("textarea#txtClassDescription").val();
+            var classGrade = $("#txtClassGrade").val();
+            
+            console.log('[firstname]: ' + classCode);
+            console.log('[lastname]: ' + className);
+            console.log('[username]: ' + classDescription);
+            console.log('[password]: ' + classGrade);
+
+            if(!classCode || 
+                !className ||
+                !classDescription ||
+                !classGrade ){
+                bootbox.alert("Please fill all required fields");
+                return false;
+            }
+
+            return true;
+        }
+    </script>
+    
+
+
+</body></html>

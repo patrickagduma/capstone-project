@@ -1,0 +1,206 @@
+.Signin{
+    text-align: center !important;
+    margin-top: 50px !important;
+    font-size: 50px !important;
+    margin-bottom: -30px !important;
+    font-family: montserrat !important;
+}
+.bkg{
+    background-color: #FFEEDB;
+}
+
+.nav-header{
+    background-color: #3a4147 !important;
+    font-family: montserrat !important;
+}
+.nav-linkN{
+    color: #fff !important;
+    font-family: montserrat;
+}
+.nav-linkN:hover{
+    color: #d7d7d7 !important;
+}
+.loginbox1{
+    margin-top:180px;
+    margin-left: 300px;
+}
+.table thead th{
+    background-color: #ffffff !important;
+}
+
+
+.footerwrapper {
+    background: #c8cdd4 none repeat scroll 0 0;
+    border-top: 5px solid #f5f5f5;
+    color: #727c8a;
+    font-family: montserrat !important;
+    margin-top: 11%;
+    overflow: auto;
+    padding: 2rem;
+    width: 100%;
+}
+
+.footer-menu-container .menu {
+    border-right: 1px solid #b5b6db;
+    float: left;
+    margin-right: 2rem;
+    width: 30%;
+}
+
+.footer-menu-container {
+    margin: 0 auto;
+    width: 70rem;
+}
+
+.menu a {
+    display: block;
+    margin-bottom: 1rem;
+    color:#727c8a;
+    text-decoration: none;
+}
+.menu a:hover {
+    text-decoration: underline;
+}
+.footer-copyright {
+    background: #008aff none repeat scroll 0 0;
+    padding: 1rem;
+    width: 100%;
+}
+
+.footer-copyright p {
+    color: #d7d7d7;
+    text-align: center;
+}
+.cont1{
+    /*background-color: rgba(255, 255, 255, 1);*/
+    border-radius: 20px;
+    background-color: white;
+    margin-top: 2%;
+    
+}
+.table td, .table th{
+    background-color: #ffffff !important;
+}
+.full {
+    width: 100%;    
+}
+.gap {
+    height: 30px;
+    width: 100%;
+    clear: both;
+    display: block;
+}
+.footer {
+    background: #EDEFF1;
+    height: auto;
+    margin-top: 11%;
+    padding-bottom: 30px;
+    position: relative;
+    width: 100%;
+    border-bottom: 1px solid #CCCCCC;
+    border-top: 1px solid #DDDDDD;
+}
+.footer p {
+    margin: 0;
+}
+.footer img {
+    max-width: 100%;
+}
+.footer h3 {
+    border-bottom: 1px solid #BAC1C8;
+    color: #000;
+    font-size: 18px;
+    font-weight: 600;
+    line-height: 27px;
+    padding: 40px 0 10px;
+    text-transform: uppercase;
+}
+.footer ul {
+    font-size: 13px;
+    list-style-type: none;
+    margin-left: 0;
+    padding-left: 0;
+    margin-top: 15px;
+    color: #7F8C8D;
+}
+.footer ul li a {
+    padding: 0 0 5px 0;
+    display: block;
+    color:#000;
+}
+.footer a {
+    color: #78828D
+}
+.supportLi h4 {
+    font-size: 20px;
+    font-weight: lighter;
+    line-height: normal;
+    margin-bottom: 0 !important;
+    padding-bottom: 0;
+}
+.bg-gray {
+    background-image: -moz-linear-gradient(center bottom, #BBBBBB 0%, #F0F0F0 100%);
+    box-shadow: 0 1px 0 #B4B3B3;
+}
+.social li {
+    background: none repeat scroll 0 0 #B5B5B5;
+    border: 2px solid #B5B5B5;
+    -webkit-border-radius: 50%;
+    -moz-border-radius: 50%;
+    -o-border-radius: 50%;
+    -ms-border-radius: 50%;
+    border-radius: 50%;
+    float: left;
+    height: 36px;
+    line-height: 36px;
+    margin: 0 8px 0 0;
+    padding: 0;
+    text-align: center;
+    width: 36px;
+    transition: all 0.5s ease 0s;
+    -moz-transition: all 0.5s ease 0s;
+    -webkit-transition: all 0.5s ease 0s;
+    -ms-transition: all 0.5s ease 0s;
+    -o-transition: all 0.5s ease 0s;
+}
+.social li:hover {
+    transform: scale(1.15) rotate(360deg);
+    -webkit-transform: scale(1.1) rotate(360deg);
+    -moz-transform: scale(1.1) rotate(360deg);
+    -ms-transform: scale(1.1) rotate(360deg);
+    -o-transform: scale(1.1) rotate(360deg);
+}
+.social li a {
+    color: #EDEFF1;
+}
+.social li:hover {
+    border: 2px solid #2c3e50;
+    background: #2c3e50;
+}
+.social li a i {
+    font-size: 16px;
+    margin: 0 0 0 5px;
+    color: #EDEFF1 !important;
+}
+.footer-bottom {
+    background: #BA3B46;
+    border-top: 1px solid #DDDDDD;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    color:#fff;
+}
+.footer-bottom p.pull-left {
+    padding-top: 6px;
+}
+.payments {
+    font-size: 1.5em;   
+}
+.centers{
+    margin-left: 35%;
+}
+.center{
+    text-align:center;
+}
+.headfoot{
+    background-color: #BA3B46 !important;
+}

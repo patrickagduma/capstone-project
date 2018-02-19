@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+        <title>Capstone: Homepage</title>
+
+        <!-- Bootstrap core CSS -->
+        <link href="css/studentSearchClasses/bootstrap.min.css" rel="stylesheet">
+        <link rel="stylesheet" href="css/studentSearchClasses/font-awesome.min.css">
+            <link rel="stylesheet" href="css/studentSearchClasses/search_class.css">
+            <link rel="stylesheet" href="css/studentSearchClasses/font-awesome.css">
+            <link rel="stylesheet" href="css/studentSearchClasses/new.css">
+
+        <!-- Custom styles for this template -->
+        <style>
+            body {
+                /* background-image: url("inner.jpg"); */
+                background-size: 100%;
+                background-repeat: no-repeat;
+                padding-top: 54px;
+            }
+            @media (min-width: 992px) {
+                body {
+                    padding-top: 56px;
+                }
+            }
+        </style>
+    </head>
+
+    <body class="bkg">
+    <!-- Navigation -->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top nav-header headfoot">
+        <div class="container">
+
+                <a class="navbar-brand" style="text-transform: capitalize" href="studentHomepage.php">Welcome <?= $_SESSION["firstname"] . " " . $_SESSION["lastname"] ?></a>
+
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarResponsive">
+                <ul class="navbar-nav ml-auto">
+                            <li class="nav-item">
+                                <a class="nav-link nav-linkN" href="studentSearchClasses.php"> <i class="fa fa-search" aria-hidden="true"></i> Course Search </a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link nav-linkN" href="logout.php"> <i class="fa fa-sign-out" aria-hidden="true"></i> Logout </a>
+                            </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+        <!-- Page Content -->
+        <div class="container cont1">
+            <div class="row">
+                <div class="col-lg-12 text-left">
+                    <br>
+
+                    <div id="status-alert" class="alert alert-success" style="display:none;">
+                        <p style="margin-bottom: 0px;"><span id="spnStatus"></span></p>
+                    </div>
+
+                    <h1 class="mt-5">Search Classes</h1>
+
+                    <form id="formClassSearch" action="studentSearchClassesFunction.php" method="post">
+                        <div class="input-group">
+                            <input type="text" id="txtSearchKey" name="searchKey" class="form-control" placeholder="Search Course Name" title="Enter key to search">
+                            <div class="input-group-btn">
+                                <button class="btn btn-default" type="submit"><i class="fa fa-search" aria-hidden="true"></i></button>
+                            </div>
+                        </div>
+                    </form>
+
+                    <br>
+                    <hr>
+                    <br>
+
+                    <table id="tblClassSearch" class="table table1 table-hover">
+                        <thead>
+                            <tr>
+                                <th>Code</th>
+                                <th>Name</th>
+                                <th>Description</th>
+                                <th>Instructor</th>
+                                <th>Enroll</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <?php
+                                if (isset($result)) {
+                                    while($row = mysqli_fetch_array($result)){
+                            ?>
+                                <tr>
+                                    <td><?= $row['course_code'] ?></td>
+                                    <td><?= $row['class_name'] ?></td>
+                                    <td><?= $row['class_description'] ?></td>
+                                    <td><?= $row['instructor'] ?></td>
+                                    <td><button type="button" onclick="registerCourse(<?= $row['id'] ?>, 
+                                    <?= $_SESSION['id'] ?> )">Enroll</button></td>
+                                </tr>
+                            <?php
+                                    }
+                                }
+                            ?>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+
+        <form id="courseEnrollmentForm" action="submitStudentCourseEnrollment.php" method="post">
+            <input type="hidden" id="hdnCourseId" name="courseId" />
+            <input type="hidden" id="hdnStudentId" name="studentId" />
+        </form>
+
+
+<div class="footer" id="footer">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-4  col-md-2 col-sm-4 col-xs-6">
+                    <h3> Developers </h3>
+                    <ul>
+                        <li> <a href="#"> Alfonso Louie Alfonso </a> </li>
+                        <li> <a href="#"> John Patrick Agduma </a> </li>
+                        <li> <a href="#"> Jon Kirk Donio </a> </li>
+                        <li> <a href="#"> Niko Jay Mateo </a> </li>
+                    </ul>
+                </div>
+                <div class="col-lg-4  col-md-2 col-sm-4 col-xs-6">
+                    <h3> Company </h3>
+                    <ul>
+                        <li> <a href="#"> About Us </a> </li>
+                        <li> <a href="#"> Contact Us </a> </li>
+                        <li> <a href="#"> FAQs </a> </li>
+                        <li> <a href="#"> Policy </a> </li>
+                    </ul>
+                </div>
+                        <div class="col-lg-4  col-md-3 col-sm-6 col-xs-12 ">
+                    <h3> Social media </h3>
+              
+                    <ul class="social">
+                        <li> <a href="#"> <i class=" fa fa-facebook">   </i> </a> </li>
+                        <li> <a href="#"> <i class="fa fa-twitter">   </i> </a> </li>
+                        <li> <a href="#"> <i class="fa fa-google-plus">   </i> </a> </li>
+                        <li> <a href="#"> <i class="fa fa-pinterest">   </i> </a> </li>
+                        <li> <a href="#"> <i class="fa fa-youtube">   </i> </a> </li>
+                    </ul>
+                </div>
+ 
+        
+            </div>
+            <!--/.row--> 
+        </div>
+        <!--/.container--> 
+    </div>
+    <!--/.footer-->
+    
+    <div class="footer-bottom">
+        <div class="container">
+            <p class="centers" > Copyright © Culturama 2018. All right reserved. </p>
+
+        </div>
+    </div>
+
+    <!-- Bootstrap core JavaScript -->
+    <script src="js/studentSearchClasses/jquery.min.js"></script>
+    <script src="js/studentSearchClasses/popper.min.js"></script>
+    <script src="js/studentSearchClasses/bootbox.min.js"></script>
+    <script src="js/studentSearchClasses/bootstrap.min.js"></script>
+
+        <script>
+            function registerCourse(courseId, studentId) {
+                $('#hdnCourseId').val(courseId);
+                $('#hdnStudentId').val(studentId);
+                 $('#courseEnrollmentForm').submit();
+            }
+        </script>
+    
+</body></html>

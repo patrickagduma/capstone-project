@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+        <title>Capstone: Create a new Quiz</title>
+
+        <link href="css/TeacherViewQuestion/bootstrap.min.css" rel="stylesheet">
+        <link rel="stylesheet" href="css/TeacherViewQuestion/font-awesome.min.css">
+        <link rel="stylesheet" href="css/TeacherViewQuestion/topics.css">
+            <link rel="stylesheet" href="css/TeacherViewQuestion/font-awesome.css">
+            <link rel="stylesheet" href="css/TeacherViewQuestion/new.css">
+
+            <style>
+
+           
+
+            </style>
+
+    </head>
+    <body class="bkg">
+    <!-- Navigation -->
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top nav-header headfoot">
+        <div class="container">
+
+                <a class="navbar-brand nav-linkN" style="text-transform: capitalize" href="teacherHomepage.php">Welcome <?= $_SESSION["firstname"] . " " . $_SESSION["lastname"] ?></a>
+
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarResponsive">
+                <ul class="navbar-nav ml-auto">
+                    <li class="nav-item">
+                        <a class="nav-link nav-linkN" href="course.php"><i class="fa fa-cog" aria-hidden="true"></i> Course</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link nav-linkN" href="teacherRegistration.php"> <i class="fa fa-check-square-o" aria-hidden="true"></i> Registrations</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link nav-linkN" href="Teacher_Topic.php"> <i class="fa fa-book" aria-hidden="true"></i> Topics </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link nav-linkN" href="logout.php"> <i class="fa fa-sign-out" aria-hidden="true"></i> Logout </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+        <div class="container cont1">
+            <div class="col-sm-12 ">
+                <div class="col-sm-12" style="text-align: center;">
+                <h3>View Questions</h3>
+                </div>
+                <table class="table">
+  <thead>
+    <tr>
+      <th scope="col">#</th>
+      <th scope="col">Question</th>
+      <th scope="col">Answer</th>
+    </tr>
+  </thead>
+
+  <tbody>
+      <?php
+        $displayItemNo = 0;
+        if (isset($questionsAndAnswers)) {
+            foreach ($questionsAndAnswers as $qa) {
+                $displayItemNo++;
+                $problem = isset($qa['problem']) ? $qa['problem'] : "n/a";
+                $bAnswer = isset($qa['booleanAnswer']) ? " (" . $qa['booleanAnswer'] . ")" : "";
+                $sAnswer = "";
+
+                if ( (isset($qa['singleAnswer1']) && !IsNullOrEmptyString($qa['singleAnswer1']))) {
+                    $sAnswer = " (" . $qa['singleAnswer1'] . ")";
+                }
+
+                $mAnswer = "";
+
+                if ( (isset($qa['multiAnswer1']) && !IsNullOrEmptyString($qa['multiAnswer1'])) || 
+                        (isset($qa['multiAnswer2']) && !IsNullOrEmptyString($qa['multiAnswer2'])) || 
+                        (isset($qa['multiAnswer3']) && !IsNullOrEmptyString($qa['multiAnswer3'])) || 
+                        (isset($qa['multiAnswer4']) && !IsNullOrEmptyString($qa['multiAnswer4'])) || 
+                        (isset($qa['multiAnswer5']) && !IsNullOrEmptyString($qa['multiAnswer5'])) || 
+                        (isset($qa['multiAnswer6']) && !IsNullOrEmptyString($qa['multiAnswer6'])) ) {
+                    $mAnswer .= " (";
+                    $mAnswer1 = !IsNullOrEmptyString($qa['multiAnswer1']) ? $qa['multiAnswer1'] . ", " : "";
+                    $mAnswer2 = !IsNullOrEmptyString($qa['multiAnswer2']) ? $qa['multiAnswer2'] . ", " : "";
+                    $mAnswer3 = !IsNullOrEmptyString($qa['multiAnswer3']) ? $qa['multiAnswer3'] . ", " : "";
+                    $mAnswer4 = !IsNullOrEmptyString($qa['multiAnswer4']) ? $qa['multiAnswer4'] . ", " : "";
+                    $mAnswer5 = !IsNullOrEmptyString($qa['multiAnswer5']) ? $qa['multiAnswer5'] . ", " : "";
+                    $mAnswer6 = !IsNullOrEmptyString($qa['multiAnswer6']) ? $qa['multiAnswer6'] . ", " : "";
+                    $mAnswer .= $mAnswer1;
+                    $mAnswer .= $mAnswer2;
+                    $mAnswer .= $mAnswer3;
+                    $mAnswer .= $mAnswer4;
+                    $mAnswer .= $mAnswer5;
+                    $mAnswer .= $mAnswer6;
+                    $mAnswer .= ")";
+                }
+
+    ?>
+
+    <tr>
+      <th scope="row"><?= $displayItemNo?></th>
+      <td><?= $problem ?></td>
+      <td><?= $bAnswer ?><?= $sAnswer ?><?= $mAnswer ?></td>
+    </tr>
+    <?php
+                    }
+            
+}
+        //From stackoverflow: https://stackoverflow.com/questions/381265/better-way-to-check-variable-for-null-or-empty-string
+        function IsNullOrEmptyString($text){
+            return (!isset($text) || trim($text)==='');
+        }
+        
+    ?>
+  </tbody>
+
+</table>
+<div class="col-md-12" style="text-align: center;" >
+<button class="btn-1 btn-lg btn" onclick="window.location.href='Teacher_Topic.php'">Back to Topic</button>
+</div>
+                
+            </div>
+            
+        </div>
+
+<div class="footer" id="footer">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-4  col-md-2 col-sm-4 col-xs-6">
+                    <h3> Developers </h3>
+                    <ul>
+                        <li> <a href="#"> Alfonso Louie Alfonso </a> </li>
+                        <li> <a href="#"> John Patrick Agduma </a> </li>
+                        <li> <a href="#"> Jon Kirk Donio </a> </li>
+                        <li> <a href="#"> Niko Jay Mateo </a> </li>
+                    </ul>
+                </div>
+                <div class="col-lg-4  col-md-2 col-sm-4 col-xs-6">
+                    <h3> Company </h3>
+                    <ul>
+                        <li> <a href="#"> About Us </a> </li>
+                        <li> <a href="#"> Contact Us </a> </li>
+                        <li> <a href="#"> FAQs </a> </li>
+                        <li> <a href="#"> Policy </a> </li>
+                    </ul>
+                </div>
+                        <div class="col-lg-4  col-md-3 col-sm-6 col-xs-12 ">
+                    <h3> Social media </h3>
+              
+                    <ul class="social">
+                        <li> <a href="#"> <i class=" fa fa-facebook">   </i> </a> </li>
+                        <li> <a href="#"> <i class="fa fa-twitter">   </i> </a> </li>
+                        <li> <a href="#"> <i class="fa fa-google-plus">   </i> </a> </li>
+                        <li> <a href="#"> <i class="fa fa-pinterest">   </i> </a> </li>
+                        <li> <a href="#"> <i class="fa fa-youtube">   </i> </a> </li>
+                    </ul>
+                </div>
+ 
+        
+            </div>
+            <!--/.row--> 
+        </div>
+        <!--/.container--> 
+    </div>
+    <!--/.footer-->
+    
+    <div class="footer-bottom">
+        <div class="container">
+            <p class="centers" > Copyright © Culturama 2018. All right reserved. </p>
+
+        </div>
+    </div>
+        <!-- End: Modal For Add Question -->
+
+    <!-- Bootstrap core JavaScript -->
+    <script src="js/jquery.min.js"></script>
+    <script src="js/popper.min.js"></script>
+    <script src="js/bootbox.min.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+
+    
+
+
+</body></html>

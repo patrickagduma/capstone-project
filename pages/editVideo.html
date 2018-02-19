@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>Capstone: Add a video topic</title>
+
+    <link href="css/addVideo/bootstrap.min.css" rel="stylesheet">
+    <link href="css/addVideo/video.css" rel="stylesheet">
+    <link rel="stylesheet" href="css/addVideo/font-awesome.min.css">
+    <link rel="stylesheet" href="css/addVideo/new.css">
+    <style>
+    
+        .right-inner-addon {
+            position: relative;
+        }
+
+        .right-inner-addon i {
+            position: absolute;
+            right: 15px;
+            padding: 10px 12px;
+            pointer-events: none;
+        }
+    </style>
+</head>
+<body class="bkg">
+    <!-- Navigation -->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top nav-header headfoot">
+        <div class="container">
+
+            <a class="navbar-brand" style="text-transform: capitalize" href="teacherHomepage.php">Welcome <?= $_SESSION["firstname"] . " " . $_SESSION["lastname"] ?></a>
+
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarResponsive">
+                <ul class="navbar-nav ml-auto">
+                    <li class="nav-item">
+                        <a class="nav-link nav-linkN" href="course.php"><i class="fa fa-cog" aria-hidden="true"></i> Course</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link nav-linkN" href="teacherRegistration.php"> <i class="fa fa-check-square-o" aria-hidden="true"></i> Registrations</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link nav-linkN" href="Teacher_Topic.php"> <i class="fa fa-book" aria-hidden="true"></i> Topics </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link nav-linkN" href="logout.php"> <i class="fa fa-sign-out" aria-hidden="true"></i> Logout </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+<form id="addVideoForm" class="form-horizontal" role="form" action="editVideo.php" onsubmit="return validateForm();" method="post">
+<input type="hidden" id="hndCourseId" name="courseId" value="<?=$courseId?>">
+<div class="container cont1">
+    <div class="row">
+        <div class="panel panel-info" style="margin-top: 100px;">
+            <h4><i class="fa fa-youtube" aria-hidden="true"></i>&nbsp;Video</h4>
+            <hr>
+            <div class="panel-body">
+                <div class="form-group has-error has-feedback">
+                    <label for="selClass" class="col-md-3 control-label">Class</label>
+                    <div class="col-md-11">
+                        <?php
+                            if (isset($courseId)) {
+                        ?>
+                            <input type="hidden" name="sel_class" value="<?= $courseId ?>">
+                            <select id="selClass" class="form-control" >
+                        <?php
+                            } else {
+                        ?>
+                            <select name="sel_class" id="selClass" class="form-control">
+                        <?php
+                            }
+                        ?>
+                                <option class="list-group-item" value="">Select a Class</option>
+                                <?php
+                                    if (mysqli_num_rows($resultCourses) > 0) {
+                                        while($row = mysqli_fetch_array($resultCourses)){
+                                            $optionHtml = "<option class='list-group-item' value='" . $row['course_code'] . "'";
+                                            if ($row['id'] == $courseId) {
+                                                $optionHtml .= " selected";
+                                            }
+                                            $optionHtml .= ">" . $row['class_name'] . "</option>";
+                                            echo $optionHtml;
+                                        }
+                                    } 
+                                ?>
+                            </select>
+                    </div>
+                </div>
+            
+                <div class="form-group">
+                    <label for="txtTitle" class="col-md-3 control-label">Topic</label>
+                    <div class="col-md-11">
+                        <input type="text" class="form-control" id="txtTopic" name="subject" size="120" value="<?=$topic?>"><br>
+                    </div>
+                </div>
+
+                <div id="divVplayer" class="form-group" style="display: none;">
+                    <iframe src="./Teacher_AddVideo_files/saved_resource.html"></iframe>
+                </div>
+
+                <div class="form-group right-inner-addon">
+                    <div class="col-md-11">
+                        <i class="fa fa-eye" aria-hidden="true"></i>
+                        <input type="search" class="form-control" id="txtVideoUrl" name="videolink" placeholder="https://www.youtube.com/embed/uXOiR4UAVGk" title="Enter valid youtube video link and press ENTER key to refresh the video." value="video_link">
+                        <p style="font-style: italic; font-size: 14px;" >Please follow this format link: https://www.youtube.com/embed/uXOiR4UAVGk</p>
+                    </div>
+                </div>
+                
+            </div>
+
+        </div>
+    </div>
+    <div class="row top-space">
+        <div class="form-group">
+            <div class="col-md-offset-3 col-md-11">
+                <button type="" class="btn btn-primary btn-md" ><i class="fa fa-youtube" aria-hidden="true"></i>&nbsp;&nbsp;Add Video</button>
+            </div>
+        </div>
+    </div>
+</div>
+</form>
+<div class="footer" id="footer">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-4  col-md-2 col-sm-4 col-xs-6">
+                    <h3> Developers </h3>
+                    <ul>
+                        <li> <a href="#"> Alfonso Louie Alfonso </a> </li>
+                        <li> <a href="#"> John Patrick Agduma </a> </li>
+                        <li> <a href="#"> Jon Kirk Donio </a> </li>
+                        <li> <a href="#"> Niko Jay Mateo </a> </li>
+                    </ul>
+                </div>
+                <div class="col-lg-4  col-md-2 col-sm-4 col-xs-6">
+                    <h3> Company </h3>
+                    <ul>
+                        <li> <a href="#"> About Us </a> </li>
+                        <li> <a href="#"> Contact Us </a> </li>
+                        <li> <a href="#"> FAQs </a> </li>
+                        <li> <a href="#"> Policy </a> </li>
+                    </ul>
+                </div>
+                        <div class="col-lg-4  col-md-3 col-sm-6 col-xs-12 ">
+                    <h3> Social media </h3>
+              
+                    <ul class="social">
+                        <li> <a href="#"> <i class=" fa fa-facebook">   </i> </a> </li>
+                        <li> <a href="#"> <i class="fa fa-twitter">   </i> </a> </li>
+                        <li> <a href="#"> <i class="fa fa-google-plus">   </i> </a> </li>
+                        <li> <a href="#"> <i class="fa fa-pinterest">   </i> </a> </li>
+                        <li> <a href="#"> <i class="fa fa-youtube">   </i> </a> </li>
+                    </ul>
+                </div>
+ 
+        
+            </div>
+            <!--/.row--> 
+        </div>
+        <!--/.container--> 
+    </div>
+    <!--/.footer-->
+    
+    <div class="footer-bottom">
+        <div class="container">
+            <p class="centers" > Copyright © Culturama 2018. All right reserved. </p>
+
+        </div>
+    </div>
+    <!-- Bootstrap core JavaScript -->
+    <script src="js/jquery.min.js"></script>
+    <script src="js/popper.min.js"></script>
+    <script src="js/bootbox.min.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+
+    <script>
+        function validateForm() {
+            var selClass = $("#selClass").val();
+            var txtTopic = $("#txtTopic").val();
+            var txtVideoUrl = $("#txtVideoUrl").val();
+            
+            // console.log('[selClass]: ' + selClass);
+            // console.log('[txtTopic]: ' + txtTopic);
+            // console.log('[txtVideoUrl]: ' + txtVideoUrl);
+            // console.log('[password]: ' + password);
+            // console.log('[verifyPassword]: ' + verifyPassword);
+            // console.log('[usertype]: ' + usertype);
+
+
+            if(!selClass || 
+                !txtTopic ||
+                !txtVideoUrl){
+                bootbox.alert("Please fill all required fields");
+                return false;
+            }
+
+            return true;
+        }
+    </script>
+
+
+</body></html>

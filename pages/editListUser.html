@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<!-- saved from url=(0028)http://localhost:4567/signup -->
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <title>Capstone: Sign Up</title>
+
+    <!-- Bootstrap core CSS -->
+    <link href="css/course/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="css/course/font-awesome.min.css">
+    <link rel="stylesheet" href="css/course/new.css">
+    <link rel="stylesheet" href="css/course/signup.css">
+
+    <style>
+
+        body{
+            background-image: url("QUIZ.png");
+            background-size: 100% 100%;
+            background-repeat: no-repeat;
+            padding-top: 54px;
+        }
+
+    </style>
+
+</head>
+
+<body>
+    <!-- Navigation -->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top nav-header headfoot">
+        <div class="container">
+
+                <a class="navbar-brand" style="text-transform: capitalize" href="http://localhost:4567/login">Already a user?</a>
+
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarResponsive">
+                <ul class="navbar-nav ml-auto">
+                        <li class="nav-item">
+                            <a class="nav-link nav-linkN" href="http://localhost:4567/login"><i class="fa fa-sign-in" aria-hidden="true"></i> Log in </a>
+                        </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+<div id="signupbox" class="row signupbox">
+    <div class="col-md-6 title rightspace">Sign Up!
+    </div>
+    <div class="col-md-6 rightspace">
+    <div class="panel panel-info">
+        <hr>
+        <div class="panel-body">
+            <form id="signupform" class="form-horizontal" action="editUser.php" method="post">
+
+                <input type="hidden" name="txtID" value="<?=$id?>">
+                <div class="form-group has-error has-feedback">
+                    <label for="txtFirstName" class="col-md-9 control-label">First Name</label>
+                    <div class="col-md-9">
+                        <input type="text" id="txtFirstName" class="form-control" name="firstName" placeholder="First Name" value="<?=$firstname?>" required="">
+                    </div>
+                </div>
+
+                <div class="form-group has-error has-feedback">
+                    <label for="txtLastName" class="col-md-3 control-label">Last Name</label>
+                    <div class="col-md-9">
+                        <input type="text" id="txtLastName" class="form-control" name="lastName" placeholder="Last Name" value="<?=$lastname?>" required="">
+                    </div>
+                </div>
+
+                <div class="form-group has-error has-feedback">
+                    <label for="txtUsername" class="col-md-3 control-label">Username</label>
+                    <div class="col-md-9">
+                        <input type="text" class="form-control" id="txtUsername" name="username" placeholder="Username" value="<?=$username?>" required="">
+                        <span class="glyphicon glyphicon-remove form-control-feedback"></span>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="password" class="col-md-3 control-label">Password</label>
+                    <div class="col-md-9">
+                        <input type="password" class="form-control" id="txtPassword" name="password" placeholder="Password" value="<?=$password?>" required="">
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="verify" class="col-md-3 control-label">Verify Password</label>
+                    <div class="col-md-9">
+                        <input type="password" class="form-control" id="txtVerifyPassword" placeholder="Verify Password" value="<?=$password?>" required="">
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="txtEmail" class="col-md-3 control-label">Email (Optional)</label>
+                    <div class="col-md-9">
+                        <input type="email" class="form-control" id="txtEmail" name="email" placeholder="Email Address (Optional)" value="<?=$email?>" required="">
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <div class="radio">
+                        <input type="radio" id="rdbTrue" name="userType" value="T">
+                        <label for="rdbTrue" class="radio-inline">Teacher</label>
+                    </div>
+                    <div class="radio">
+                        <input type="radio" id="rdbFalse" name="userType" value="S">
+                        <label for="rdbFalse" class="radio-inline">Student</label>
+                    </div>
+                </div>
+                <hr>
+                <div class="form-group">
+                    <div class="col-md-offset-3 col-md-9">
+                        <button id="btnSave" name="btnSave" class="btn btn-info"><i class="fa fa-address-book-o" aria-hidden="true"></i>&nbsp;&nbsp;Save</button>
+                    </div>
+                </div>
+
+
+            </form>
+        </div>
+            
+        </div>
+
+
+    </div>
+    </div>
+
+
+    <!-- Bootstrap core JavaScript -->
+    <script src="js/course/jquery.min.js"></script>
+    <script src="js/course/popper.min.js"></script>
+    <script src="js/course/bootbox.min.js"></script>
+    <script src="js/course/bootstrap.min.js"></script>
+<!-- <script src="js/course/signup.js"></script> -->
+
+
+</body></html>

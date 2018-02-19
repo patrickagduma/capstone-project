@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<!-- saved from url=(0028)http://localhost:4567/signup -->
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <title>Capstone: Sign Up</title>
+
+    <!-- Bootstrap core CSS -->
+    <link href="css/signup/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="css/signup/font-awesome.min.css">
+    <link rel="stylesheet" href="css/signup/signup.css">
+    <link rel="stylesheet" href="css/signup/new.css">
+
+    <style>
+
+        body{
+            background-image: url("QUIZ.png");
+            background-size: 100% 100%;
+            background-repeat: no-repeat;
+            padding-top: 54px;
+        }
+
+    </style>
+
+</head>
+
+<body class="bkg">
+    <!-- Navigation -->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top nav-header headfoot">
+        <div class="container">
+
+                <a class="navbar-brand nav-linkN" style="text-transform: capitalize" href="index.php"><img class="headerlogo" src="css/index/thesloghead.png"></a>
+
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarResponsive">
+                <ul class="navbar-nav ml-auto">
+                            <li class="nav-item">
+                                <a class="nav-link nav-linkN" href="sign_up.php"> <i class="fa fa-user-plus" aria-hidden="true"></i> Sign up</a>
+                            </li>
+                        <li class="nav-item">
+                            <a class="nav-link nav-linkN" href="login.php"><i class="fa fa-sign-in" aria-hidden="true"></i> Log in </a>
+                        </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+<div id="signupbox" class="row signupbox">
+    <div class="col-md-6 title rightspace">Sign Up!
+    </div>
+    <div class="col-md-6 rightspace">
+    <div class="panel panel-info">
+        <hr>
+        <div class="panel-body">
+            <form id="signupform" class="form-horizontal" action="sign_up_registration.php" onsubmit="return validateForm();" method="post">
+
+
+                <div class="form-group has-error has-feedback">
+                    <label for="txtFirstName" class="col-md-9 control-label">First Name</label>
+                    <div class="col-md-9">
+                        <input type="text" id="txtFirstName" class="form-control" name="firstName" placeholder="First Name" value="">
+                    </div>
+                </div>
+
+                <div class="form-group has-error has-feedback">
+                    <label for="txtLastName" class="col-md-3 control-label">Last Name</label>
+                    <div class="col-md-9">
+                        <input type="text" id="txtLastName" class="form-control" name="lastName" placeholder="Last Name" value="">
+                    </div>
+                </div>
+
+                <div class="form-group has-error has-feedback">
+                    <label for="txtUsername" class="col-md-3 control-label">Username</label>
+                    <div class="col-md-9">
+                        <input type="text" class="form-control" id="txtUsername" name="username" placeholder="Username" value="">
+                        <span class="glyphicon glyphicon-remove form-control-feedback"></span>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="password" class="col-md-3 control-label">Password</label>
+                    <div class="col-md-9">
+                        <input type="password" class="form-control" id="txtPassword" name="password" placeholder="Password" value="">
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="verify" class="col-md-3 control-label">Verify Password</label>
+                    <div class="col-md-9">
+                        <input type="password" class="form-control" id="txtVerifyPassword" placeholder="Verify Password">
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="txtEmail" class="col-md-3 control-label">Email (Optional)</label>
+                    <div class="col-md-9">
+                        <input type="email" class="form-control" id="txtEmail" name="email" placeholder="Email Address (Optional)" value="">
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <div class="radio">
+                        <input type="radio" id="rdbTrue" name="userType" value="T">
+                        <label for="rdbTrue" class="radio-inline">Teacher</label>
+                    </div>
+                    <div class="radio">
+                        <input type="radio" id="rdbFalse" name="userType" value="S">
+                        <label for="rdbFalse" class="radio-inline">Student</label>
+                    </div>
+                </div>
+                <hr>
+                <div class="form-group">
+                    <div class="col-md-offset-3 col-md-9">
+                        <button id="btnSignUp" name="btnSignUp" class="btn btn-info"><i class="fa fa-address-book-o" aria-hidden="true"></i>&nbsp;&nbsp;Sign Up</button>
+                    </div>
+                </div>
+
+
+            </form>
+        </div>
+            
+        </div>
+
+
+    </div>
+    </div>
+
+
+    <!-- Bootstrap core JavaScript -->
+    <script src="js/signup/jquery.min.js"></script>
+    <script src="js/signup/popper.min.js"></script>
+    <script src="js/signup/bootbox.min.js"></script>
+    <script src="js/signup/bootstrap.min.js"></script>
+
+    <script>
+        function validateForm() {
+            var firstname = $("#txtFirstName").val();
+            var lastname = $("#txtLastName").val();
+            var username = $("#txtUsername").val();
+            var password = $("#txtPassword").val();
+            var verifyPassword = $("#txtVerifyPassword").val();
+            var usertype = $("input[name=userType]:checked").val();
+
+            // console.log('[firstname]: ' + firstname);
+            // console.log('[lastname]: ' + lastname);
+            // console.log('[username]: ' + username);
+            // console.log('[password]: ' + password);
+            // console.log('[verifyPassword]: ' + verifyPassword);
+            // console.log('[usertype]: ' + usertype);
+
+            if(!firstname || 
+                !lastname || 
+                !username || 
+                !password || 
+                !verifyPassword){
+                bootbox.alert("Please fill all required fields");
+                return false;
+            } else if (password != verifyPassword) {
+                bootbox.alert("Passwords do not match");
+                return false;
+            }
+
+            return true;
+        }
+    </script>
+
+
+</body></html>

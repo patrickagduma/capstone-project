@@ -1,0 +1,53 @@
+<ol>
+	<?php
+		//Loop questions and answers array and get each QA item
+		if (isset($questionsAndAnswers)) {
+			foreach ($questionsAndAnswers as $qa) {
+				$problem = isset($qa['problem']) ? $qa['problem'] : "n/a";
+				$bAnswer = isset($qa['booleanAnswer']) ? " - answer (" . $qa['booleanAnswer'] . ")" : "";
+				$sAnswer = "";
+
+				if ( (isset($qa['singleAnswer1']) && !IsNullOrEmptyString($qa['singleAnswer1']))) {
+					$sAnswer = " - answer (" . $qa['singleAnswer1'] . ")";
+				}
+
+				$mAnswer = "";
+
+				if ( (isset($qa['multiAnswer1']) && !IsNullOrEmptyString($qa['multiAnswer1'])) || 
+						(isset($qa['multiAnswer2']) && !IsNullOrEmptyString($qa['multiAnswer2'])) || 
+						(isset($qa['multiAnswer3']) && !IsNullOrEmptyString($qa['multiAnswer3'])) || 
+						(isset($qa['multiAnswer4']) && !IsNullOrEmptyString($qa['multiAnswer4'])) || 
+						(isset($qa['multiAnswer5']) && !IsNullOrEmptyString($qa['multiAnswer5'])) || 
+						(isset($qa['multiAnswer6']) && !IsNullOrEmptyString($qa['multiAnswer6'])) ) {
+					$mAnswer .= " answer (";
+					$mAnswer1 = !IsNullOrEmptyString($qa['multiAnswer1']) ? $qa['multiAnswer1'] . ", " : "";
+					$mAnswer2 = !IsNullOrEmptyString($qa['multiAnswer2']) ? $qa['multiAnswer2'] . ", " : "";
+					$mAnswer3 = !IsNullOrEmptyString($qa['multiAnswer3']) ? $qa['multiAnswer3'] . ", " : "";
+					$mAnswer4 = !IsNullOrEmptyString($qa['multiAnswer4']) ? $qa['multiAnswer4'] . ", " : "";
+					$mAnswer5 = !IsNullOrEmptyString($qa['multiAnswer5']) ? $qa['multiAnswer5'] . ", " : "";
+					$mAnswer6 = !IsNullOrEmptyString($qa['multiAnswer6']) ? $qa['multiAnswer6'] . ", " : "";
+					$mAnswer .= $mAnswer1;
+					$mAnswer .= $mAnswer2;
+					$mAnswer .= $mAnswer3;
+					$mAnswer .= $mAnswer4;
+					$mAnswer .= $mAnswer5;
+					$mAnswer .= $mAnswer6;
+					$mAnswer .= ")";
+				}
+
+
+
+				$displayHtml = $problem . $bAnswer . $sAnswer . $mAnswer;
+
+				echo "<li>" . $displayHtml . "</li>";
+			}
+		}
+
+		//From stackoverflow: https://stackoverflow.com/questions/381265/better-way-to-check-variable-for-null-or-empty-string
+		function IsNullOrEmptyString($text){
+		    return (!isset($text) || trim($text)==='');
+		}
+	?>
+</ol>
+
+<button onclick="window.location.href='Teacher_Topic.php'">Back to Topic</button>

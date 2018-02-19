@@ -1,0 +1,35 @@
+            <div>
+                <h4>Student Registration to Class for Approval</h4>
+                <table id="tblEnrollmentForApproval" class="table table1 table-hover" style="background-color: #ffffff">
+                    <thead>
+                    <tr>
+                        <th>Class</th>
+                        <th>Student</th>
+                        <th>Accept</th>
+                        <th>Deny</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                        <?php
+                            if (mysqli_num_rows($resultRegistration) > 0) {
+                                while($row = mysqli_fetch_array($resultRegistration)){
+                        ?>
+                            <tr>
+                                <td><?= $row['class_name'] ?></td>
+                                <td><?= $row['student_name'] ?></td>
+                                <td><button type="button" onclick="grantRegistration(<?= $row['id'] ?>, <?= $row['student_id'] ?>, <?= $row['course_id'] ?>)">Accept</button></td>
+                                <td><button type="button" onclick="denyRegistration(<?= $row['id'] ?>)">Deny</button></td>
+                            </tr>
+                        <?php
+                                }
+                            } else {
+                        ?>
+                            <tr>
+                                <td colspan="4">No Data Available</td>
+                            </tr>
+                        <?php
+                            }
+                        ?>
+                    </tbody>
+                </table>
+            </div>

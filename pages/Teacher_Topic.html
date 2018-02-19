@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+<!-- saved from url=(0031)http://localhost:4567/postTopic -->
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+        <title>Capstone: Create a new Quiz</title>
+
+        <link href="css/teacherTopic/bootstrap.min.css" rel="stylesheet">
+        <link rel="stylesheet" href="css/teacherTopic/font-awesome.min.css">
+        <link rel="stylesheet" href="css/teacherTopic/topics.css">
+        <link rel="stylesheet" href="css/teacherTopic/new.css">
+            <link rel="stylesheet" href="css/teacherTopic/font-awesome.css">
+
+            <style>
+
+           
+
+            </style>
+
+    </head>
+    <body class="bkg">
+
+<!--     <?php
+        $topicDetails = $_SESSION['topic'];
+        if (isset($topicDetails)) {
+            echo "[FROM-SESSION]:<br />";
+            echo "[courseId]: " . $topicDetails['courseId'] . "<br />";
+            echo "[topic]: " . $topicDetails['topic'] . "<br />";
+            echo "[videoLink]: " . $topicDetails['videoLink'] . "<br />";
+            echo "[summary]: " . $topicDetails['summary'] . "<br />";
+            echo "[permalink]: " . $topicDetails['permalink'] . "<br />";
+
+            if (isset($topicDetails['QAs'])) {
+                echo "[questions-count]: " . count($topicDetails['QAs']) . "<br />";
+            } else {
+                echo "[questions-count]: 0<br />";
+            }
+        }
+    ?> -->
+
+    <!-- Navigation -->
+   <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top nav-header headfoot">
+        <div class="container">
+
+                <a class="navbar-brand nav-linkN" style="text-transform: capitalize" href="teacherHomepage.php">Welcome <?= $_SESSION["firstname"] . " " . $_SESSION["lastname"] ?></a>
+
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarResponsive">
+                <ul class="navbar-nav ml-auto">
+                            <li class="nav-item">
+                                <a class="nav-link nav-linkN" href="course.php"><i class="fa fa-cog" aria-hidden="true"></i> Course</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link nav-linkN" href="teacherRegistration.php"> <i class="fa fa-check-square-o" aria-hidden="true"></i> Registrations</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link nav-linkN" href="Teacher_Topic.php"> <i class="fa fa-book" aria-hidden="true"></i> Topics </a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link nav-linkN" href="logout.php"> <i class="fa fa-sign-out" aria-hidden="true"></i> Logout </a>
+                            </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+        <div class="container cont1" style="border-right: none;">
+            <form id="formTeacherTopic" action="teacherTopicStoreDetails.php" onsubmit="return validateForm();" method="post">
+                <div class="row sm-flex-center top-space top-space1" style="border-right: none;">
+                    <div class="col-sm-12">
+                        <div class="panel panel-info">
+                            <h4>Topic</h4>
+                            <div class="panel-body" style="border-right: 1px solid #eee;">
+                                <div class="form-group has-error has-feedback">
+                                    <label for="selClass" class="col-md-3 control-label">Class</label>
+                                    <div class="col-md-11">
+                                        <select id="selClass" name="courseId" class="form-control">
+                                            <!-- TODO: convert ni gikan dapat sa database -->
+                                            <option class="list-group-item" value="">Select a Class</option>
+                                                <?php
+                                                    if (mysqli_num_rows($resultCourses) > 0) {
+                                                        while($row = mysqli_fetch_array($resultCourses)){
+                                                            $selected = "";
+                                                            if (isset($topicDetails) && 
+                                                                isset($topicDetails['courseId']) && 
+                                                                $row['id'] == $topicDetails['courseId']) {
+                                                                $selected = " selected";
+                                                            }
+                                                            
+                                                            echo "<option class=\"list-group-item\" value=\"" . $row['id'] . "\"" . $selected . ">" . $row['class_name'] . "(" . $row['course_code'] . ")" . "</option>";
+                                                        }
+                                                    }
+                                                ?>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="txtTitle" class="col-md-3 control-label">Video Topics</label>
+                                    <div class="col-md-11">
+                                        <select id="selVideoTopics" name="videoLink" class="form-control">
+                                            <!-- TODO: convert ni gikan dapat sa database -->
+                                            <option value="">Select a video</option>
+                                            <?php
+                                                if (mysqli_num_rows($resultClassVideo) > 0) {
+                                                    while($row = mysqli_fetch_array($resultClassVideo)){
+                                                        echo "<option class=\"list-group-item\" value=\"" . $row['id'] . "\"" . $selected . ">" . $row['topic'] . "</option>";
+                                                    }
+                                                } else {
+                                                    echo "<li class=\"list-group-item\">No Videos</li>";
+                                                }
+                                            ?>
+                                        </select>
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="txtTitle" class="col-md-3 control-label">Topic</label>
+                                    <div class="col-md-11">
+                                        <input type="text" class="form-control" id="txtTopic" name="topic" size="120" value="<?= $topicText ?>"><br>
+                                    </div>
+                                </div>
+
+                                <div id="divVplayer" class="form-group" style="display: none;">
+                                    <iframe src="./Teacher_Topic_files/saved_resource.html"></iframe>
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="txtTopicSummary" class="col-md-3 control-label">Summary</label>
+                                    <div class="col-md-11">
+                                        <textarea class="form-control" id="txtTopicSummary" name="summary" placeholder="Topic Summary" title="Enter Content Summary" cols="30" rows="10"><?= $topicSummary ?></textarea>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row top-space">
+                    <div class="form-group">
+                        <div class="row top-space" style="margin-left: 1rem;">
+                            <div class="form-group">
+                                <div class="col-md-12">
+                                        <button class="btn btn-primary btn-lg">Add Question</button>
+                                        <button type="button" onclick="saveTopic()" class="btn btn-primary btn-lg">Save</button>
+                                        <button type="button" onclick="cancelTopicCreation()" class="btn btn-primary btn-lg">Cancel</button>
+                                </div>        
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div>
+
+        
+<div class="footer" id="footer">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-4  col-md-2 col-sm-4 col-xs-6">
+                    <h3> Developers </h3>
+                    <ul>
+                        <li> <a href="#"> Alfonso Louie Alfonso </a> </li>
+                        <li> <a href="#"> John Patrick Agduma </a> </li>
+                        <li> <a href="#"> Jon Kirk Donio </a> </li>
+                        <li> <a href="#"> Niko Jay Mateo </a> </li>
+                    </ul>
+                </div>
+                <div class="col-lg-4  col-md-2 col-sm-4 col-xs-6">
+                    <h3> Company </h3>
+                    <ul>
+                        <li> <a href="#"> About Us </a> </li>
+                        <li> <a href="#"> Contact Us </a> </li>
+                        <li> <a href="#"> FAQs </a> </li>
+                        <li> <a href="#"> Policy </a> </li>
+                    </ul>
+                </div>
+                        <div class="col-lg-4  col-md-3 col-sm-6 col-xs-12 ">
+                    <h3> Social media </h3>
+              
+                    <ul class="social">
+                        <li> <a href="#"> <i class=" fa fa-facebook">   </i> </a> </li>
+                        <li> <a href="#"> <i class="fa fa-twitter">   </i> </a> </li>
+                        <li> <a href="#"> <i class="fa fa-google-plus">   </i> </a> </li>
+                        <li> <a href="#"> <i class="fa fa-pinterest">   </i> </a> </li>
+                        <li> <a href="#"> <i class="fa fa-youtube">   </i> </a> </li>
+                    </ul>
+                </div>
+ 
+        
+            </div>
+            <!--/.row--> 
+        </div>
+        <!--/.container--> 
+    </div>
+    <!--/.footer-->
+    
+    <div class="footer-bottom">
+        <div class="container">
+            <p class="centers" > Copyright © Culturama 2018. All right reserved. </p>
+
+        </div>
+    </div>
+        <!-- End: Modal For Add Question -->
+
+    <!-- Bootstrap core JavaScript -->
+    <script src="js/jquery.min.js"></script>
+    <script src="js/popper.min.js"></script>
+    <script src="js/bootbox.min.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+
+    <script>
+        function cancelTopicCreation(){
+            if (choice = confirm("This is clear all topic data entered.")) {
+                window.location.href='cancelTopicCreation.php';
+            }
+        }
+
+        function saveTopic(){
+            if (validateForm()) {
+                window.location.href='processTopicSave.php'; 
+            }
+        }
+
+        function validateForm() {
+            var selClass = $("#selClass").val();
+            var selVideoTopics = $("#selVideoTopics").val();
+            var txtTopic = $("#txtTopic").val();
+            var txtTopicSummary = $("textarea#txtTopicSummary").val();
+
+            // console.log("[selClass]: " + selClass);
+            // console.log("[selVideoTopics]: " + selVideoTopics);
+            // console.log("[txtTopic]: " + txtTopic);
+            // console.log("[txtTopicSummary]: " + txtTopicSummary);
+
+            if(!selClass || 
+                !selVideoTopics || 
+                !txtTopic || 
+                !txtTopicSummary){
+                bootbox.alert("Please fill all required fields");
+                return false;
+            }
+
+            return true;
+        }
+    </script>
+
+
+
+</body></html>

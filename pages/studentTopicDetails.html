@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+        <title>Capstone: Create a new Quiz</title>
+
+        <link href="css/studentTopicDetails/bootstrap.min.css" rel="stylesheet">
+        <link rel="stylesheet" href="css/studentTopicDetails/font-awesome.min.css">
+        <link rel="stylesheet" href="css/studentTopicDetails/topics.css">
+            <link rel="stylesheet" href="css/studentTopicDetails/font-awesome.css">
+            <link rel="stylesheet" href="css/studentTopicDetails/new.css">
+
+        <style>
+
+            body{
+                /* background-image: url("inner.jpg"); */
+                background-size: 102% 102%;
+                background-repeat: no-repeat;
+
+            }
+            input[type='radio'], input[type='checkbox'] {
+                margin-right: 10px;
+            }
+        </style>
+    </head>
+    <body class="bkg">
+    <!-- Navigation -->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top nav-header headfoot">
+        <div class="container">
+
+                <a class="navbar-brand" style="text-transform: capitalize" href="studentHomepage.php">Welcome <?= $_SESSION["firstname"] . " " . $_SESSION["lastname"] ?></a>
+
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarResponsive">
+                <ul class="navbar-nav ml-auto">
+                            <li class="nav-item">
+                                <a class="nav-link nav-linkN" href="studentSearchClasses.php"> <i class="fa fa-search" aria-hidden="true"></i> Course Search </a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link nav-linkN" href="logout.php"> <i class="fa fa-sign-out" aria-hidden="true"></i> Logout </a>
+                            </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+        <div class="container cont1">
+            <div class="row sm-flex-center top-space">
+                <div class="col-sm-12 column-separator">
+                    <div class="panel panel-info">
+                        <h4>Topic</h4>
+                        <div class="panel-body" style="border-right: 1px solid #eee;">
+                            <!-- <input type="hidden" id="hndTopicId" name="topicId" value="lesson_2_damit_pagkain_at_tirahan">
+                            <input type="hidden" id="hndCourseCode" name="courseCode" value="AP111">
+                            <input type="hidden" id="hndStudent" name="student" value="dlim">
+                            <input type="hidden" id="hndStudentName" name="studentName" value="Dustin Hyrell Lim"> -->
+                        <?php
+                                if (mysqli_num_rows($result) > 0) {
+                                    while($row = mysqli_fetch_array($result)){
+                            ?>
+
+                            <div class="form-group has-error has-feedback">
+                                <label for="txtClass" class="col-md-3 control-label">Course</label>
+                                <div class="col-md-11">
+                                    <input type="text" id="txtClass" class="form-control" value="<?= $row['class_name'] ?>" readonly="">
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="txtTitle" class="col-md-3 control-label">Topic</label>
+                                <div class="col-md-11">
+                                    <input type="text" readonly="" class="form-control" id="txtTopic" name="subject" size="120" value="<?= $row['topic'] ?>"><br>
+                                </div>
+                            </div>
+
+                            <!-- <div id="divVplayer" class="form-group">
+                                    
+                            <iframe id="ytplayer" type="text/html" width="560" height="315" src="./Student_TakeQuiz_files/nWfavRkouCM&amp;feature=youtu.html" frameborder="0" allowfullscreen=""></iframe></div> -->
+
+                             <div class="embed-responsive embed-responsive-16by9 col-md-11">
+                             <iframe id="ytplayer" width="460" height="315" type="text/html"  class="embed-responsive-item ytube" src="<?= $row['video_link'] ?>" allowfullscreen></iframe>
+                            </div>
+
+                            <div class="form-group right-inner-addon" style="margin-top: 1%;">
+                            <div class="col-md-11">
+                                <i class="fa fa-eye" aria-hidden="true"></i>
+                                <input type="search" readonly="" class="form-control" id="txtVideoUrl" name="videolink" placeholder="" title="Enter valid youtube video link and press ENTER key to refresh the video." value="<?= $row['video_link'] ?>">
+                            </div>
+                        </div>
+
+                            <div class="form-group">
+                                <label for="txtTopicSummary" class="col-md-3 control-label">Summary</label>
+                                <div class="col-md-11">
+                                    <textarea class="form-control" readonly="" id="txtTopicSummary" name="summary" placeholder="Topic Summary" title="Enter Content Summary" cols="30" rows="10"><?= $row['summary'] ?></textarea>
+                                </div>
+                            </div>
+                            
+                        </div>
+                        <div class="row top-space">
+                        <?php if ($num_rows == 0) { ?>
+                            <div class="form-group">
+                                <div class="row top-space" style="margin-left: 1rem; padding-top: 5rem;">
+                                    <div class="form-group">
+                                        <div class="col-md-12">
+                                                <button class="btn btn-primary btn-lg" onclick="window.location.href='studentTakeQuiz.php?id=<?= $row['id'] ?>'">Take Quiz</button>
+                                        </div>        
+                                    </div>
+                                </div>
+                            </div>
+                        <?php } ?>
+                    <?php
+                            }
+                            }
+                        ?>
+                </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+<div class="footer" id="footer">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-4  col-md-2 col-sm-4 col-xs-6">
+                    <h3> Developers </h3>
+                    <ul>
+                        <li> <a href="#"> Alfonso Louie Alfonso </a> </li>
+                        <li> <a href="#"> John Patrick Agduma </a> </li>
+                        <li> <a href="#"> Jon Kirk Donio </a> </li>
+                        <li> <a href="#"> Niko Jay Mateo </a> </li>
+                    </ul>
+                </div>
+                <div class="col-lg-4  col-md-2 col-sm-4 col-xs-6">
+                    <h3> Company </h3>
+                    <ul>
+                        <li> <a href="#"> About Us </a> </li>
+                        <li> <a href="#"> Contact Us </a> </li>
+                        <li> <a href="#"> FAQs </a> </li>
+                        <li> <a href="#"> Policy </a> </li>
+                    </ul>
+                </div>
+                        <div class="col-lg-4  col-md-3 col-sm-6 col-xs-12 ">
+                    <h3> Social media </h3>
+              
+                    <ul class="social">
+                        <li> <a href="#"> <i class=" fa fa-facebook">   </i> </a> </li>
+                        <li> <a href="#"> <i class="fa fa-twitter">   </i> </a> </li>
+                        <li> <a href="#"> <i class="fa fa-google-plus">   </i> </a> </li>
+                        <li> <a href="#"> <i class="fa fa-pinterest">   </i> </a> </li>
+                        <li> <a href="#"> <i class="fa fa-youtube">   </i> </a> </li>
+                    </ul>
+                </div>
+ 
+        
+            </div>
+            <!--/.row--> 
+        </div>
+        <!--/.container--> 
+    </div>
+    <!--/.footer-->
+    
+    <div class="footer-bottom">
+        <div class="container">
+            <p class="centers" > Copyright © Culturama 2018. All right reserved. </p>
+
+        </div>
+    </div>
+    <!-- Bootstrap core JavaScript -->
+    <script src="js/studentTopicDetails/jquery.min.js"></script>
+    <script src="js/studentTopicDetails/popper.min.js"></script>
+    <script src="js/studentTopicDetails/bootbox.min.js"></script>
+    <script src="js/studentTopicDetails/bootstrap.min.js"></script>
+    
+
+
+</body></html>
