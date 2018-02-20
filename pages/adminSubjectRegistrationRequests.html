@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<!-- saved from url=(0031)http://localhost:4567/approvals -->
+<html lang="en"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+        <title>Capstone: Student-Class Registrations for Approval</title>
+
+        <!-- Bootstrap core CSS -->
+        <link href="css/teacherRegistration/bootstrap.min.css" rel="stylesheet">
+            <link rel="stylesheet" href="css/teacherRegistration/approvals.css">
+            <link rel="stylesheet" href="css/teacherRegistration/new.css">
+            <link rel="stylesheet" href="css/teacherRegistration/font-awesome.css">
+
+        <!-- Custom styles for this template -->
+        <style>
+            body {
+                /* background-image: url("inner.jpg"); */
+                background-size: 102% 102%;
+                background-repeat: no-repeat;
+                padding-top: 56px;
+                padding-top: 54px;
+            }
+            @media (min-width: 992px) {
+                body {
+                    padding-top: 56px;
+                }
+            }
+
+            div#divMain { padding: 25px; }
+        </style>
+
+    </head>
+
+    <body class="bkg">
+        <!-- Navigation -->
+    <!-- Navigation -->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top nav-header headfoot">
+        <div class="container">
+
+                <a class="navbar-brand nav-linkN" style="text-transform: capitalize" href="adminHomepage.php">Administrator: Subject Registration Requests</a>
+
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarResponsive">
+                <ul class="navbar-nav ml-auto">
+                            <li class="nav-item">
+                                <a class="nav-link nav-linkN" href="adminCourse.php"><i class="fa fa-cog" aria-hidden="true"></i> Subject </a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link nav-linkN" href="adminSubjectRegistrationRequests.php"> <i class="fa fa-check-square-o" aria-hidden="true"></i> Registration Requests </a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link nav-linkN" href="SubjectTopics.php"> <i class="fa fa-book" aria-hidden="true"></i> Topics </a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link nav-linkN" href="logout.php"> <i class="fa fa-sign-out" aria-hidden="true"></i> Logout </a>
+                            </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+        <!-- Page Content -->
+
+            <div id="divMain" class="container cont1">
+                <div class="row">
+                    <div class="col-sm-12">
+                        <?php include('allClassRegistrationApproval.html'); ?>
+                    </div>
+                </div>
+            </div>
+
+        <form id="grantRegistrationForm" action="submitGrantRegistration.php" method="post">
+            <input type="hidden" id="hdnGrantRegistrationId" name="registrationId" />
+            <input type="hidden" id="hdnGrantStudentId" name="studentId" />
+            <input type="hidden" id="hdnGrantCourseId" name="courseId" />
+            <input type="hidden" id="hdnGrantFromPage" name="fromPage" value="courseRegistration" />
+        </form>
+        <form id="denyRegistrationForm" action="submitDenyRegistration.php" method="post">
+            <input type="hidden" id="hdnDenyRegistrationId" name="registrationId" />
+            <input type="hidden" id="hdnGrantFromPage" name="fromPage" value="courseRegistration" />
+        </form>
+
+        <div class=" ">
+
+
+    <?php include('footer.html'); ?>
+
+    <!-- Bootstrap core JavaScript -->
+    <script src="js/teacherRegistration/jquery.min.js"></script>
+    <script src="js/teacherRegistration/popper.min.js"></script>
+    <script src="js/teacherRegistration/bootbox.min.js"></script>
+    <script src="js/teacherRegistration/bootstrap.min.js"></script>
+
+
+        <script>
+
+        <?php
+            if ($status == 'denied') {
+                echo "alert('Registration Denied!');";
+            } else if ($status == 'approved') {
+                echo "alert('Registration Approved!');";
+            }
+        ?>
+
+            function grantRegistration(id, studentId, courseId) {
+                $('#hdnGrantRegistrationId').val(id);
+                $('#hdnGrantStudentId').val(studentId);
+                $('#hdnGrantCourseId').val(courseId);
+                 $('#grantRegistrationForm').submit();
+            }
+
+            function denyRegistration(id) {
+                $('#hdnDenyRegistrationId').val(id);
+                 $('#denyRegistrationForm').submit();
+            }
+
+        </script>
+    
+
+</body></html>

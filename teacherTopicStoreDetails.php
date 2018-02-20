@@ -28,5 +28,5 @@
 
 	$_SESSION['topic'] = $unsaveTopic;
 
-	header('Location:Teacher_AddQuestion_truefalse.php');
+	header('Location:Teacher_AddQuestion_truefalseVQ.php');
 ?>

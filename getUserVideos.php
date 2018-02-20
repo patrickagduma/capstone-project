@@ -3,7 +3,13 @@
 	session_start();
 
 	$userId = $_SESSION['id'];
-	$sqlClassVideos = " SELECT  v.*  FROM `class_video` v WHERE v.created_by = " . $userId . " order by topic ";
+    $userType = $_SESSION['userType'];
+
+    if (isset($userType) && $userType == 'A') {
+        $sqlClassVideos = " SELECT  v.*  FROM `class_video` v ORDER BY topic ";
+    } else {
+        $sqlClassVideos = " SELECT  v.*  FROM `class_video` v WHERE v.created_by = " . $userId . " order by topic ";
+    }
 
 	$resultClassVideo  = mysqli_query($con, $sqlClassVideos) or die("Error in Selecting " . mysqli_error($connection));
 

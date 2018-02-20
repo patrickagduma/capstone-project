@@ -34,13 +34,15 @@ require_once ('libs/connect.php');
 
 		if($user['userType'] == 'T'){
 			header('location:teacherHomepage.php?id=' . $user['id']);
-			
-		session_write_close();
+			session_write_close();
 		}
 		elseif($user['userType'] == 'S'){
 			header('location:studentHomepage.php?id=' . $user['id']);
-			
-		session_write_close();
+			session_write_close();
+		}
+		elseif($user['userType'] == 'A'){
+			header('location:adminHomepage.php?id=' . $user['id']);
+			session_write_close();
 		}
 
 		

@@ -24,13 +24,13 @@
     <body class="bkg">
 
     <?php
-        $topicDetails = $_SESSION['topic'];
+        //$topicDetails = $_SESSION['topic'];
 
-        if ($status == 'insufficient_data') {
-            echo "<script>";
-            echo "alert('Please fill up all the entries.')";
-            echo "</script>";
-        }
+        //if ($status == 'insufficient_data') {
+            //echo "<script>";
+            //echo "alert('Please fill up all the entries.')";
+            //echo "</script>";
+        //}
     ?>
 
 
@@ -79,21 +79,21 @@
                 <div class="form-group col-sm-4">
                     <!-- Button -->
                     <div class="">
-                        <button type="button" class="btn btn-primary btn-lg btn-2" onclick="window.location.href='Teacher_AddQuestion_truefalse.php'">True or False</button>
+                        <button type="button" class="btn btn-primary btn-lg btn-2" onclick="window.location.href='Teacher_AddQuestion_truefalseVQ.php'">True or False</button>
                     </div>
                 </div>
 
                  <div class="form-group col-sm-4">
                     <!-- Button -->
                     <div class="">
-                        <button type="button" class="btn btn-secondary btn-lg btn-2" onclick="window.location.href='Teacher_AddQuestion_singleanswer.php'">Single Answer</button>
+                        <button type="button" class="btn btn-secondary btn-lg btn-2" onclick="window.location.href='Teacher_AddQuestion_singleanswerVQ.php'">Single Answer</button>
                     </div>
                 </div>
 
                 <div class="form-group col-sm-4">
                     <!-- Button -->
                     <div class="">
-                        <button type="button" class="btn btn-secondary btn-lg btn-2" onclick="window.location.href='Teacher_AddQuestion_multipleans.php'">Multiple Answer</button>
+                        <button type="button" class="btn btn-secondary btn-lg btn-2" onclick="window.location.href='Teacher_AddQuestion_multipleansVQ.php'">Multiple Answer</button>
                     </div>
                 </div>
             </div>

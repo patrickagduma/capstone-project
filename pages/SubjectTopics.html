@@ -45,29 +45,30 @@
    <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top nav-header headfoot">
         <div class="container">
 
-                <a class="navbar-brand nav-linkN" style="text-transform: capitalize" href="teacherHomepage.php">Welcome <?= $_SESSION["firstname"] . " " . $_SESSION["lastname"] ?></a>
+                <a class="navbar-brand nav-linkN" style="text-transform: capitalize" href="adminHomepage.php">Administrator: Create subject topic</a>
 
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
             <div class="collapse navbar-collapse" id="navbarResponsive">
                 <ul class="navbar-nav ml-auto">
-                            <li class="nav-item">
-                                <a class="nav-link nav-linkN" href="course.php"><i class="fa fa-cog" aria-hidden="true"></i> Course</a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link nav-linkN" href="teacherRegistration.php"> <i class="fa fa-check-square-o" aria-hidden="true"></i> Registrations</a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link nav-linkN" href="Teacher_Topic.php"> <i class="fa fa-book" aria-hidden="true"></i> Topics </a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link nav-linkN" href="logout.php"> <i class="fa fa-sign-out" aria-hidden="true"></i> Logout </a>
-                            </li>
+                    <li class="nav-item">
+                        <a class="nav-link nav-linkN" href="adminCourse.php"><i class="fa fa-cog" aria-hidden="true"></i> Subject </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link nav-linkN" href="adminSubjectRegistrationRequests.php"> <i class="fa fa-check-square-o" aria-hidden="true"></i> Registration Requests </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link nav-linkN" href="SubjectTopics.php"> <i class="fa fa-book" aria-hidden="true"></i> Topics </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link nav-linkN" href="logout.php"> <i class="fa fa-sign-out" aria-hidden="true"></i> Logout </a>
+                    </li>
                 </ul>
             </div>
         </div>
     </nav>
+
         <div class="container cont1" style="border-right: none;">
             <form id="formTeacherTopic" action="teacherTopicStoreDetails.php" onsubmit="return validateForm();" method="post">
                 <div class="row sm-flex-center top-space top-space1" style="border-right: none;">

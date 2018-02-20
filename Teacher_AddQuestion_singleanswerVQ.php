@@ -9,8 +9,7 @@
 		$questionsAndAnswers = $unsaveTopic['QAs'];
 	}
 
-	include ('pages/teacherViewQuestion.html');
+	//include ('pages/teacherViewQuestion.html');
 	//include ('pages/Teacher_AddQuestion_truefalse.html');
-	//include ('pages/Teacher_AddQuestion_singleanswer.html');
-	//include ('pages/Teacher_AddQuestion_multipleans.html');
+	include ('pages/Teacher_AddQuestions_singleanswer.html');
 ?>

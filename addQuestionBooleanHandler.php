@@ -24,7 +24,7 @@
 		$_SESSION['topic'] = $unsaveTopic;
 
 		if ($_POST['saveType'] == 'saveAddQuestion') {
-			header('Location:Teacher_AddQuestion_truefalse.php');
+			header('Location:Teacher_AddQuestion_truefalseVQ.php');
 		} else if ($_POST['saveType'] == 'saveViewQuestions') {
 			header('Location:Teacher_viewQuestions.php');
 		} else {
