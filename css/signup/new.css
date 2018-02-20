@@ -2,15 +2,15 @@
     background-color: #ffffff !important;
 }
 .btn{
-    background-color: #129ed9 !important;
-    color:#fff !important;
-    border-color: #129ed9;
+    background-color: #fba433;
+    color:#fff;
+    border-color: #fba433;
 
 }
 .btn:hover{
-    background-color: #2d7b9b !important;
-    border-color: #2d7b9b!important;
-    color:#f4f4f4 !important;
+    background-color: #df9b42;
+    color:#fff;
+    border-color: #df9b42;
 
 }
 .nav-header{
@@ -26,8 +26,11 @@
     color: #444 !important;
 }
 .headfoot{
-    background-color: #ccdc48!important;
+    background-color: #3498DB!important;
 }
 .footer-bottom {
-    background: #ccdc48 !important;
+    background: #3498DB !important;
+}
+body{
+    font-family: montserrat !important;
 }
