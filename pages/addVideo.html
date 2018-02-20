@@ -101,7 +101,7 @@
                 </div>
 
                 <div id="divVplayer" class="form-group" style="display: none;">
-                    <iframe src="./Teacher_AddVideo_files/saved_resource.html"></iframe>
+                    <iframe src=""></iframe>
                 </div>
 
                 <div class="form-group right-inner-addon">
@@ -183,22 +183,12 @@
             var selClass = $("#selClass").val();
             var txtTopic = $("#txtTopic").val();
             var txtVideoUrl = $("#txtVideoUrl").val();
-            
-            // console.log('[selClass]: ' + selClass);
-            // console.log('[txtTopic]: ' + txtTopic);
-            // console.log('[txtVideoUrl]: ' + txtVideoUrl);
-            // console.log('[password]: ' + password);
-            // console.log('[verifyPassword]: ' + verifyPassword);
-            // console.log('[usertype]: ' + usertype);
-
-
             if(!selClass || 
                 !txtTopic ||
                 !txtVideoUrl){
                 bootbox.alert("Please fill all required fields");
                 return false;
             }
-
             return true;
         }
     </script>
