@@ -8,15 +8,15 @@
     background-color: #f3f3f3 !important;
 }
 .btn{
-    background-color: #129ed9 !important;
-    color:#000 !important;
-    border-color: #129ed9;
+    background-color: #fba433 !important ;
+    color:#fff !important;
+    border-color: #fba433 !important;
 
 }
 .btn:hover{
-    background-color: #2d7b9b !important;
-    border-color: #2d7b9b!important;
-    color:#000 !important;
+    background-color: #df9b42 !important;
+    color:#fff !important;
+    border-color: #df9b42 !important;
 
 }
 .nav-header{
@@ -32,8 +32,11 @@
     color: #444 !important;
 }
 .headfoot{
-    background-color: #ccdc48!important;
+    background-color: #3498DB!important;
 }
 .footer-bottom {
-    background: #ccdc48 !important;
+    background: #3498DB !important;
+}
+body{
+    font-family: montserrat !important;
 }

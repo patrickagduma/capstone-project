@@ -14,15 +14,15 @@
     padding: 10px 91px 10px 91px !important;
 }
 .btn{
-    background-color: #129ed9;
+    background-color: #fba433;
     color:#fff;
-    border-color: #129ed9;
+    border-color: #fba433;
 
 }
 .btn:hover{
-    background-color: #2d7b9b;
+    background-color: #df9b42;
     color:#fff;
-    border-color: #2d7b9b;
+    border-color: #df9b42;
 
 }
 .nav-header{
@@ -190,11 +190,14 @@
     color: #EDEFF1 !important;
 }
 .footer-bottom {
-    background: #ccdc48;
+    background: #3498DB;
     border-top: 1px solid #DDDDDD;
     padding-top: 10px;
     padding-bottom: 10px;
     color:#fff;
+}
+.headfoot{
+    background-color: #3498DB !important;
 }
 .footer-bottom p.pull-left {
     padding-top: 6px;
@@ -212,9 +215,7 @@
     top: 40%;
     bottom: auto;
 }
-.headfoot{
-    background-color: #ccdc48!important;
-}
+
 .jumbotron{
     background-color: #fff;
     margin-bottom: 0rem;
@@ -231,4 +232,7 @@
 
 .btn-1{
     padding: .5rem 5rem !important;
+}
+body{
+    font-family: montserrat !important;
 }

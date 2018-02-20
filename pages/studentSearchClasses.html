@@ -62,7 +62,7 @@
                         <p style="margin-bottom: 0px;"><span id="spnStatus"></span></p>
                     </div>
 
-                    <h1 class="mt-5">Search Classes</h1>
+                    <h1 class="col-md-12" style="text-align: center;">Search Classes</h1>
 
                     <form id="formClassSearch" action="studentSearchClassesFunction.php" method="post">
                         <div class="input-group">
@@ -97,7 +97,7 @@
                                     <td><?= $row['class_name'] ?></td>
                                     <td><?= $row['class_description'] ?></td>
                                     <td><?= $row['instructor'] ?></td>
-                                    <td><button type="button" onclick="registerCourse(<?= $row['id'] ?>, 
+                                    <td><button class="btn" type="button" onclick="registerCourse(<?= $row['id'] ?>, 
                                     <?= $_SESSION['id'] ?> )">Enroll</button></td>
                                 </tr>
                             <?php

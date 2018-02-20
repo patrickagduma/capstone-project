@@ -1,5 +1,5 @@
             <div>
-                <h4>Student Registration to Class for Approval</h4>
+                <h4 style="text-align: center;">Student Registration to Class for Approval</h4>
                 <table id="tblEnrollmentForApproval" class="table table1 table-hover" style="background-color: #ffffff">
                     <thead>
                     <tr>
@@ -17,8 +17,8 @@
                             <tr>
                                 <td><?= $row['class_name'] ?></td>
                                 <td><?= $row['student_name'] ?></td>
-                                <td><button type="button" onclick="grantRegistration(<?= $row['id'] ?>, <?= $row['student_id'] ?>, <?= $row['course_id'] ?>)">Accept</button></td>
-                                <td><button type="button" onclick="denyRegistration(<?= $row['id'] ?>)">Deny</button></td>
+                                <td><button class="btn" type="button" onclick="grantRegistration(<?= $row['id'] ?>, <?= $row['student_id'] ?>, <?= $row['course_id'] ?>)">Accept</button></td>
+                                <td><button class="btn" type="button" onclick="denyRegistration(<?= $row['id'] ?>)">Deny</button></td>
                             </tr>
                         <?php
                                 }

@@ -11,18 +11,19 @@
     background-color: #FFF;
 }
 .btn-login{
-    background-color: #129ed9;
+        background-color: #fba433;
     color:#fff;
-    border-color: #129ed9;
+    border-color: #fba433;
     margin-left: 110px !important;
     padding: 10px 91px 10px 91px !important;
 }
 .btn-login:hover{
-    background-color: #2d7b9b;
+     background-color: #df9b42;
     color:#fff;
-    border-color: #2d7b9b;
+    border-color: #df9b42;
 
 }
+
 .nav-header{
     background-color: #3a4147 !important;
     font-family: montserrat !important;
@@ -173,7 +174,7 @@
     bottom: auto;
 }
 .headfoot{
-    background-color: #ccdc48!important;
+    background-color: #3498DB!important;
 }
 .jumbotron{
 	background-color: #fff;
@@ -187,6 +188,8 @@
 .headerlogo{
     width:20%;
 }
-
+body{
+    font-family: montserrat !important;
+}
 
 
