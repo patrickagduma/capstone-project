@@ -52,7 +52,7 @@
             <div class="collapse navbar-collapse" id="navbarResponsive">
                 <ul class="navbar-nav ml-auto">
                     <li class="nav-item">
-                        <a class="nav-link nav-linkN" href="course.php"><i class="fa fa-cog" aria-hidden="true"></i> Course</a>
+                        <a class="nav-link nav-linkN" href="course.php"><i class="fa fa-cog" aria-hidden="true"></i> Classes </a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link nav-linkN" href="teacherRegistration.php"> <i class="fa fa-check-square-o" aria-hidden="true"></i> Registrations</a>
@@ -72,110 +72,64 @@
             <div class="row sm-flex-center top-space">
                 <div class="col-sm-12 col-md-12" style="padding: 1rem 1rem;">
                     <div class="panel panel-info">
-                        <h2 style="text-align: center;">Course Details</h2>
-                        <div class="panel-body">
-                            <div class="form-group has-error has-feedback">
-                                <label class="control-label"><b>Class Code:</b><span class="details"></span></label>
-                            </div>
-
-                            <div class="form-group">
-                                <label class="control-label"><b>Class Name:</b><span class="details"></span></label>
-                            </div>
-
-                            <div class="form-group">
-                                <label class="control-label"><b>Class Description:</b><p class="details"></p></label>
-                            </div>
-                            <div class="form-group">
-                                <label class="control-label"><b>Year Level:</b><p class="details"></p></label>
-                            </div>
-                            <div class="form-group">
-                                <label class="control-label"><b>Section:</b><p class="details"></p></label>
-                            </div>
-                            <div class="form-group">
-                                <label class="control-label"><b>Class Grading System:</b><p class="details"></p></label>
-                            </div>
-
-                            <div class="form-group col-sm-12" style="text-align: center;">
-                                <div>
-                                    <button class="btn btn-info" data-toggle="modal" data-target="#myModal"><i class="fa fa-info-circle" aria-hidden="true"></i>&nbsp;Course Details</button>
-                                
+                        <h2 style="text-align: center;">Class Details</h2>
+                            <form id="signupform" class="form-horizontal" action="adminAddClasses.php" onsubmit="return validateForm();" method="post">
+                            <input type="hidden" id="hdnTeacher" name="teacherId" value="<?= $_SESSION["id"] ?>">
+                                <div class="modal-body">
+                                    <div class="form-group has-error has-feedback">
+                                        <label for="selClass" class="col-md-3 control-label">Subject</label>
+                                        <div class="col-md-11">
+                                            <select id="selClass" name="subjectId" class="form-control">
+                                                <option class="list-group-item" value="">Select a subject</option>
+                                                <?php
+                                                    if (mysqli_num_rows($resultCourses) > 0) {
+                                                        while($row = mysqli_fetch_array($resultCourses)){
+                                                            $optionHtml = "<option class='list-group-item' value='" . $row['id'] . "'";
+                                                            if ($row['id'] == $courseId) {
+                                                                $optionHtml .= " selected";
+                                                            }
+                                                            $optionHtml .= ">" . $row['name'] . "</option>";
+                                                            echo $optionHtml;
+                                                        }
+                                                    } 
+                                                ?>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="form-group has-error has-feedback">
+                                        <label for="txtClassCode" class="control-label">Class Code</label>
+                                        <div>
+                                            <input type="text" id="txtClassCode" class="form-control" name="classCode" value="" placeholder="Class or Course Code" title="Enter Class or Course Code">
+                                        </div>
+                                    </div>
+                                    
+                                    <div class="form-group">
+                                        <label for="txtYearLevel" class="control-label">Year Level</label>
+                                        <div>
+                                            <input type="text" class="form-control" id="txtYearLevel" name="yearLevel" value="" placeholder="Year Level" title="Enter Year Level">
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="txtSection" class="control-label">Section</label>
+                                        <div>
+                                            <input type="text" class="form-control" id="txtSection" name="section" value="" placeholder="Section" title="Enter Section">
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="txtClassGrade" class="control-label">Class Grading System</label>
+                                        <div>
+                                            <input type="text" class="form-control" id="txtClassGrade" name="classGrade" value="" placeholder="Grading System" title="Enter Grading System">
+                                        </div>
+                                    </div>
                                 </div>
-                            </div>
-
+                                <div class="modal-footer">
+                                    <button class="btn btn-info">Save</button>
+                                </div>
+                            </form> 
                         </div>
                     </div>
                 </div>
-      
             </div>
-
-
-
-
-
-        </div>
-
-        <!-- Modal for Add Question -->
-        <div class="modal fade" id="myModal" role="dialog">
-            <div class="modal-dialog">
-
-                <!-- Modal content-->
-                <div class="modal-content">
-                <form id="signupform" class="form-horizontal" action="addCourse.php" onsubmit="return validateForm();" method="post">
-                    <div class="modal-header">
-                        <h4 class="modal-title">Course Details</h4>
-                        <button type="button" class="close" data-dismiss="modal">×</button>
-                    </div>
-                    <div class="modal-body">
-                        <div class="form-group has-error has-feedback">
-                            <label for="txtClassCode" class="control-label">Class Code</label>
-                            <div>
-                                <input type="text" id="txtClassCode" class="form-control" name="classCode" value="" placeholder="Class or Course Code" title="Enter Class or Course Code">
-                            </div>
-                        </div>
-
-                        <div class="form-group">
-                            <label for="txtClassName" class="control-label">Class Name</label>
-                            <div>
-                                <input type="text" class="form-control" id="txtClassName" name="className" value="" placeholder="Class or Course Name" title="Enter Class or Course Name">
-                            </div>
-                        </div>
-
-                        <div class="form-group">
-                            <label for="txtClassDescription" class="control-label">Class Description</label>
-                            <div>
-                                <textarea class="form-control" id="txtClassDescription" name="classDescription" placeholder="Class or Course Description" title="Enter Class or Course Description" cols="30" rows="3" style="width: 91.5%"></textarea>
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <label for="txtYearLevel" class="control-label">Year Level</label>
-                            <div>
-                                <input type="text" class="form-control" id="txtYearLevel" name="yearLevel" value="" placeholder="Year Level" title="Enter Year Level">
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <label for="txtSection" class="control-label">Section</label>
-                            <div>
-                                <input type="text" class="form-control" id="txtSection" name="section" value="" placeholder="Section" title="Enter Section">
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <label for="txtClassGrade" class="control-label">Class Grading System</label>
-                            <div>
-                                <input type="text" class="form-control" id="txtClassGrade" name="classGrade" value="" placeholder="Grading System" title="Enter Grading System">
-                            </div>
-                        </div>
-                    </div>
-                    <div class="modal-footer">
-                        <button class="btn btn-info">Save</button>
-                        <button class="btn btn-default" data-dismiss="modal">Close</button>
-                    </div>
-                </form> 
-                </div>
-
-            </div>
-
-        </div>
-        <!-- End: Modal For Add Question -->
 
     <?php include('footer.html'); ?>
 
@@ -187,19 +141,18 @@
 
     <script>
         function validateForm() {
+            var selClass = $('#selClass').val();
             var classCode = $("#txtClassCode").val();
-            var className = $("#txtClassName").val();
-            var classDescription = $("textarea#txtClassDescription").val();
+            var classInstructor = $("#selInstructor").val();
+            var yearLevel = $("#txtYearLevel").val();
+            var section = $("#txtSection").val();
             var classGrade = $("#txtClassGrade").val();
-            
-            console.log('[firstname]: ' + classCode);
-            console.log('[lastname]: ' + className);
-            console.log('[username]: ' + classDescription);
-            console.log('[password]: ' + classGrade);
 
-            if(!classCode || 
-                !className ||
-                !classDescription ||
+            if(!selClass ||
+                !classCode || 
+                !classInstructor ||
+                !yearLevel ||
+                !section ||
                 !classGrade ){
                 bootbox.alert("Please fill all required fields");
                 return false;

@@ -2,7 +2,7 @@
 	require_once ('libs/connect.php');
 	include("classRegistrationApproval.php");
 
-	$sqlCourses = "select * from classes where created_by = " . $_SESSION['id'] . " order by class_name ";
+	$sqlCourses = "select * from classes where instructor_id = " . $_SESSION['id'];
 	$resultRegistration = mysqli_query($con, $sql);
 	$resultCourses = mysqli_query($con, $sqlCourses);
 

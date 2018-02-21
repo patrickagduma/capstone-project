@@ -10,9 +10,9 @@
 	}
 
 	$id = '';
-	$course_code = '';
-	$class_name = '';
-	$class_description = '';
+	$name = '';
+	$code = '';
+	$subject_id = '';
 	$year_level = '';
 	$section = '';
 	$baseGrade = 50;
@@ -38,22 +38,22 @@
 		$resultRegistration  = mysqli_query($con, $sql);
 
 
-		$sql = "select id, course_code, class_name, class_description, year_level, section, base_grade from classes
-				where id = ".$_GET['id'];
+		$sql = "select c.*, s.* from classes c
+				inner join subject s on s.id = c.subject_id
+				where c.id = ".$_GET['id'];
 		$result = mysqli_query($con, $sql);
 		if(mysqli_num_rows($result) > 0){
 			$row = mysqli_fetch_assoc($result);
 			$id = $row['id'];
-			$course_code = $row['course_code'];
-			$class_name = $row['class_name'];
-			$class_description = $row['class_description'];
+			$name = $row['name'];
+			$code = $row['code'];
 			$year_level = $row['year_level'];
 			$section = $row['section'];
 			$baseGrade = $row['base_grade'];
 		}
 
 		$sqlEditVideos = "select * from subject_videos 
-						  where course_id =" . $_GET['id'];
+						  where subject_id =" . $_GET['id'];
 		$resultEditVideos = mysqli_query($con, $sqlEditVideos);
 
 

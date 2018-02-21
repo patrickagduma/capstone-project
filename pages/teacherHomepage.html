@@ -54,7 +54,7 @@
             <div class="collapse navbar-collapse" id="navbarResponsive">
                 <ul class="navbar-nav ml-auto">
                             <li class="nav-item">
-                                <a class="nav-link nav-linkN" href="course.php"><i class="fa fa-cog" aria-hidden="true"></i> Course</a>
+                                <a class="nav-link nav-linkN" href="course.php"><i class="fa fa-cog" aria-hidden="true"></i> Classes</a>
                             </li>
                             <li class="nav-item">
                                 <a class="nav-link nav-linkN" href="teacherRegistration.php"> <i class="fa fa-check-square-o" aria-hidden="true"></i> Registrations</a>
@@ -82,8 +82,7 @@
                             if (mysqli_num_rows($resultCourses) > 0) {
                                 while($row = mysqli_fetch_array($resultCourses)){
                         ?>
-                            <li class="list-group-item"><a href="editListCourse.php?id=<?= $row['id'] ?>"><?= $row['class_name'] ?>
-                                (<?= $row['course_code'] ?>)</a></li>
+                            <li class="list-group-item"><a href="editListCourse.php?id=<?= $row['id'] ?>"><?= $row['code'] ?>_<?= $row['year_level'] ?>_<?= $row['section'] ?></a></li>
                         <?php
                                 }
                             } else {
@@ -91,11 +90,7 @@
                             <li class="list-group-item">No Course</li>
                         <?php
                             }
-                        ?>
-
-
-
-                            
+                        ?> 
                     </ul>
             </div>
         </div>

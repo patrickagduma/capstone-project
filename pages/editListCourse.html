@@ -52,7 +52,7 @@
             <div class="collapse navbar-collapse" id="navbarResponsive">
                 <ul class="navbar-nav ml-auto">
                     <li class="nav-item">
-                        <a class="nav-link nav-linkN" href="course.php"><i class="fa fa-cog" aria-hidden="true"></i> Course</a>
+                        <a class="nav-link nav-linkN" href="course.php"><i class="fa fa-cog" aria-hidden="true"></i> Classes</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link nav-linkN" href="teacherRegistration.php"> <i class="fa fa-check-square-o" aria-hidden="true"></i> Registrations</a>
@@ -72,18 +72,14 @@
             <div class="row sm-flex-center top-space">
                 <div class="col-sm-4 column-separator">
                     <div class="panel panel-info">
-                        <h4>Course Details</h4>
+                        <h4>Class Details</h4>
                         <div class="panel-body">
                             <div class="form-group has-error has-feedback">
-                                <label class="control-label"><b>Class Code:<br> <?=$course_code?></b><span class="details"></span></label>
+                                <label class="control-label"><b>Subject:<br> <?=$name?></b><span class="details"></span></label>
                             </div>
 
                             <div class="form-group">
-                                <label class="control-label"><b>Class Name:<br> <?=$class_name?></b><span class="details"></span></label>
-                            </div>
-
-                            <div class="form-group">
-                                <label class="control-label"><b>Class Description:<br> <?=$class_description?></b><p class="details"></p></label>
+                                <label class="control-label"><b>Code:<br> <?=$code?></b><span class="details"></span></label>
                             </div>
                             <div class="form-group">
                                 <label class="control-label"><b>Year Level:<br> <?=$year_level?></b><span class="details"></span></label>
@@ -307,26 +303,18 @@
                    
                         <input type="hidden" name="txtID" value="<?=$id?>">
                         <div class="form-group has-error has-feedback">
-                            <label for="txtClassCode" class="control-label">Class Code</label>
+                            <label for="txtClassCode" class="control-label">Subject</label>
                             <div>
-                                <input type="text" id="txtClassCode" class="form-control" name="classCode" value="<?=$course_code?>" placeholder="Class or Course Code" title="Enter Class or Course Code">
+                                <input type="text" id="txtClassCode" class="form-control" name="classCode" value="<?=$name?>" placeholder="Class or Course Code" title="Enter Class or Course Code">
                             </div>
                         </div>
 
                         <div class="form-group">
-                            <label for="txtClassName" class="control-label">Class Name</label>
+                            <label for="txtClassName" class="control-label">Code</label>
                             <div>
-                                <input type="text" class="form-control" id="txtClassName" name="className" value="<?=$class_name?>" placeholder="Class or Course Name" title="Enter Class or Course Name">
+                                <input type="text" class="form-control" id="txtClassName" name="className" value="<?=$code?>" placeholder="Class or Course Name" title="Enter Class or Course Name">
                             </div>
                         </div>
-
-                        <div class="form-group">
-                            <label for="txtClassDescription" class="control-label">Class Description</label>
-                            <div>
-                                <textarea class="form-control" id="txtClassDescription" name="classDescription" placeholder="Class or Course Description" title="Enter Class or Course Description" cols="30" rows="3" style="width: 91.5%"><?=$class_description?></textarea>
-                            </div>
-                        </div>
-
                         <div class="form-group">
                             <label for="txtYearLevel" class="control-label">Year Level</label>
                             <div>
