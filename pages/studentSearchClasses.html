@@ -83,7 +83,6 @@
                                 <th>Code</th>
                                 <th>Name</th>
                                 <th>Description</th>
-                                <th>Instructor</th>
                                 <th>Enroll</th>
                             </tr>
                         </thead>
@@ -93,10 +92,9 @@
                                     while($row = mysqli_fetch_array($result)){
                             ?>
                                 <tr>
-                                    <td><?= $row['course_code'] ?></td>
-                                    <td><?= $row['class_name'] ?></td>
-                                    <td><?= $row['class_description'] ?></td>
-                                    <td><?= $row['instructor'] ?></td>
+                                    <td><?= $row['code'] ?></td>
+                                    <td><?= $row['name'] ?></td>
+                                    <td><?= $row['description'] ?></td>
                                     <td><button class="btn" type="button" onclick="registerCourse(<?= $row['id'] ?>, 
                                     <?= $_SESSION['id'] ?> )">Enroll</button></td>
                                 </tr>

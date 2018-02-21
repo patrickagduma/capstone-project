@@ -10,10 +10,12 @@
 	}
 
 	$id = '';
-	$course_code = '';
-	$class_name = '';
-	$class_description = '';
-	$baseGrade = 50;
+	$code = '';
+	$name = '';
+	$description = '';
+	// $year_level = '';
+	// $section = '';
+	// $baseGrade = 50;
 	$course_id = '';
 	$topic = '';
 	$video_link = '';
@@ -24,61 +26,60 @@
 			sce.student_id,
 			concat(u.firstname, ' ', u.lastname) as student_name,
 			sce.course_id,
-			c.class_name,
-			sce.lastmodifieddate
-		from student_course_enrollment sce
+			c.code,
+			sce.last_modified_date
+		from student_class_enrollment sce
 		inner join users u on u.id = sce.student_id
-		inner join courses c on c.id = sce.course_id
+		inner join classes c on c.id = sce.course_id
 		where c.created_by = ". $_SESSION['id'] .
 			" and sce.status is null and sce.course_id=" . $_GET['id'] . 
-		" order by sce.lastmodifieddate desc";
+		" order by sce.last_modified_date desc";
 
 		$resultRegistration  = mysqli_query($con, $sql);
 
 
-		$sql = "select id, course_code, class_name, class_description, base_grade from courses
+		$sql = "select id, code, name, description from subject
 				where id = ".$_GET['id'];
 		$result = mysqli_query($con, $sql);
 		if(mysqli_num_rows($result) > 0){
 			$row = mysqli_fetch_assoc($result);
 			$id = $row['id'];
-			$course_code = $row['course_code'];
-			$class_name = $row['class_name'];
-			$class_description = $row['class_description'];
-			$baseGrade = $row['base_grade'];
+			$code = $row['code'];
+			$name = $row['name'];
+			$description = $row['description'];
 		}
 
-		$sqlEditVideos = "select * from class_video 
-						  where course_id =" . $_GET['id'];
+		$sqlEditVideos = "select * from subject_videos 
+						  where subject_id =" . $_GET['id'];
 		$resultEditVideos = mysqli_query($con, $sqlEditVideos);
 
 
 		
 
 		$sqlStudentList = "select
-			sce.id,
-			sce.student_id,
+			sc.id,
+			sc.student_id,
 			u.firstname,
 			u.lastname,
 			u.email,
-			sce.course_id,
-			sce.lastmodifieddate
-		from student_classes sce
-		inner join users u on u.id = sce.student_id
-		where sce.is_active=1 and sce.course_id=" . $_GET['id'] . 
-		" order by sce.lastmodifieddate desc";
+			sc.class_id,
+			sc.last_modified_date
+		from student_classes sc
+		inner join users u on u.id = sc.student_id
+		where sc.is_active=1 and sc.class_id=" . $_GET['id'] . 
+		" order by sc.last_modified_date desc";
 
 		$resultStudentList  = mysqli_query($con, $sqlStudentList);
 
 		$sqlTopic  = " SELECT  t.*, v.topic as video_topic, v.video_link  FROM topic t ";
-		$sqlTopic .= " LEFT JOIN class_video v on v.id = t.video_id ";
-		$sqlTopic .= " WHERE t.course_id = " . $_GET['id'];
+		$sqlTopic .= " LEFT JOIN subject_videos v on v.id = t.video_id ";
+		$sqlTopic .= " WHERE t.subject_id = " . $_GET['id'];
 
 		$resultTopic = mysqli_query($con, $sqlTopic);
 	}
 
 
-	$sqlCourseStudents  = " select student_id from student_classes sc where sc.course_id = ";
+	$sqlCourseStudents  = " select student_id from student_classes sc where sc.student_id = ";
 	$sqlCourseStudents .= $id;
 	$sqlCourseStudents .= " and sc.is_active = true ";
 	$rsCourseStudents = mysqli_query($con, $sqlCourseStudents);
@@ -92,7 +93,7 @@
 			$studentQuizzes[$studentIndex]['student_id'] = $studentId;
 
 			$sqlTopics  = " select distinct t.id from topic t inner join topic_item ti on ti.topic_id = t.id ";
-			$sqlTopics .= " where ti.course_id = ";
+			$sqlTopics .= " where ti.subject_id = ";
 			$sqlTopics .= $id;
 			$rsTopics = mysqli_query($con, $sqlTopics);
 			$courseTopicCount = mysqli_num_rows($rsTopics);
@@ -104,7 +105,7 @@
 				while($topic = mysqli_fetch_array($rsTopics)){ // Course Topics
 					$topicId = $topic['id'];
 
-					$sqlItems = "select ti.* from topic_item ti where ti.course_id =" . $id . " and ti.topic_id = " . $topicId;
+					$sqlItems = "select ti.* from topic_item ti where ti.subject_id =" . $id . " and ti.topic_id = " . $topicId;
 					$rsItems = mysqli_query($con, $sqlItems);
 					$itemsCount = mysqli_num_rows($rsItems);
 
@@ -114,7 +115,7 @@
 							$topicItemId = $cAns['id'];
 
 							$sqlStudentAnswer = "select distinct
-								ti.course_id,
+								ti.subject_id,
 								tia.student_id,
 								ti.topic_id,
 								tia.topic_item_id,
@@ -131,7 +132,7 @@
 								ti.multi_answer_6
 							from topic_item_answer tia
 							inner join topic_item ti on ti.id = tia.topic_item_id
-							where ti.course_id = " . $id . " and tia.student_id = " . $studentId . " and tia.topic_item_id = " . $topicItemId;
+							where ti.subject_id = " . $id . " and tia.student_id = " . $studentId . " and tia.topic_item_id = " . $topicItemId;
 							$resultStudentListAnswer  = mysqli_query($con, $sqlStudentAnswer);
 
 							if (mysqli_num_rows($resultStudentListAnswer) > 0){

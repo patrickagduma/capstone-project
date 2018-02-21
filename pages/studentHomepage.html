@@ -72,14 +72,14 @@
 <div id="divMainContainer" class="container cont1" style="font-family: Montserrat">
     <div class="row sm-flex-center">
         <div class="col-sm-6">
-            <p>Enrolled Courses (Subjects)</p>
+            <p>Enrolled Classes</p>
             <div class="list">
                     <ul class="list-group" style="overflow: scroll; height: 200px; width: 530px;">
                     <?php
                         if (mysqli_num_rows($resultTopic) > 0) {
                             while($row = mysqli_fetch_array($resultTopic)){
                     ?>
-                            <li class="list-group-item"><?= $row['class_name'] ?> (<?= $row['course_code'] ?>)</li>
+                            <li class="list-group-item"><?= $row['code'] ?></li>
                     <?php
                             }
                         }
@@ -103,7 +103,7 @@
                                     $link = "studentTopicDetails.php?id=" . $row['id'];
                                 }
                         ?>
-                        <li class="list-group-item"><a href="<?= $link ?>"><?= $row['course_code'] ?>: <?= $row['topic'] ?></a> <?= $isTaken ? ' (Taken)' : '' ?></li>
+                        <li class="list-group-item"><a href="<?= $link ?>"><?= $row['code'] ?>: <?= $row['topic'] ?></a> <?= $isTaken ? ' (Taken)' : '' ?></li>
                         <?php
                                 }
                             }

@@ -4,7 +4,7 @@
 	$fromPage = $_POST['fromPage'];
 
 	if(isset($_POST['registrationId'])){
-		$sql = "update student_course_enrollment set status = 'denied' where id=" . $_POST['registrationId'];
+		$sql = "update student_class_enrollment set status = 'denied' where id=" . $_POST['registrationId'];
 
 		if(mysqli_query($con, $sql)){
 			if ($fromPage == 'courseRegistration') {

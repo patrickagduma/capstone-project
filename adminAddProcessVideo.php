@@ -13,7 +13,7 @@
 		//echo "SQL[]" .$sql;
 		if(mysqli_query($con, $sql)){
 			$id = mysqli_insert_id($con);
-			header('Location:editListCourse.php?id=' . $courseId);
+			header('Location:adminCourseDetails.php?id=' . $courseId);
 		}
 		else{
 			echo "Error ".mysqli_error($con);

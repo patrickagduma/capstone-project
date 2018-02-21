@@ -9,11 +9,11 @@
 	}
 
 	$sql = "select sce.id, sce.student_id, concat(u.firstname, ' ', u.lastname) as student_name,
-			sce.course_id, c.class_name, sce.lastmodifieddate
-			from student_course_enrollment sce
+			sce.course_id, c.code, sce.last_modified_date
+			from student_class_enrollment sce
 			inner join users u on u.id = sce.student_id
-			inner join courses c on c.id = sce.course_id
+			inner join classes c on c.id = sce.course_id
 			where c.created_by = ". $_SESSION['id'] ."
 			and sce.status is null
-			order by sce.lastmodifieddate desc";
+			order by sce.last_modified_date desc";
 ?>

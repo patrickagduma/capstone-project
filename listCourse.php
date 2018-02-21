@@ -10,11 +10,11 @@
 		<th>class_description</th>
 		<th>instructor</th>
 		<th>created_by</th>
-		<th>lastModifiedDate</th>
+		<th>last_modified_date</th>
 		<th>action</th>
 	</tr>
 	<?php
-		$sql = "select id, course_code, class_name, class_description, instructor, created_by, lastModifiedDate from courses";
+		$sql = "select id, course_code, class_name, class_description, instructor, created_by, last_modified_date from classes";
 		$result = mysqli_query($con, $sql);
 		if(mysqli_num_rows($result) > 0){
 			while($row = mysqli_fetch_assoc($result)){
@@ -26,7 +26,7 @@
 		<td><?=$row['class_description']?></td>
 		<td><?=$row['instructor']?></td>
 		<td><?=$row['created_by']?></td>
-		<td><?=$row['lastModifiedDate']?></td>
+		<td><?=$row['last_modified_date']?></td>
 		<td>
 				<a href="editListCourse.php?id=<?=$row['id']?>">Edit</a>
 				<a href="deleteListCourse.php?id=<?=$row['id']?>">Delete</a>

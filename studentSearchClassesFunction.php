@@ -4,9 +4,9 @@
 	$searchKey = $_POST['searchKey'];
 	if (strlen($searchKey) >= 3) {
 		
-		$sql = " SELECT c.* FROM courses c WHERE lower(concat(course_code, ' ', class_name, ' ', class_description)) like  '%" . $searchKey . "%' and ";
+		$sql = " SELECT s.* FROM subject s WHERE lower(concat(code, ' ', name, ' ', description)) like  '%" . $searchKey . "%' and ";
 
-		$sql .= " c.id not in ( SELECT sce.course_id FROM student_course_enrollment sce WHERE sce.student_id = " . $_SESSION['id'] . " ) ";
+		$sql .= " s.id not in ( SELECT sce.student_id FROM student_class_enrollment sce WHERE sce.student_id = " . $_SESSION['id'] . " ) ";
 
 	
 

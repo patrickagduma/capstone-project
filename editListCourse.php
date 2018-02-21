@@ -13,6 +13,8 @@
 	$course_code = '';
 	$class_name = '';
 	$class_description = '';
+	$year_level = '';
+	$section = '';
 	$baseGrade = 50;
 	$course_id = '';
 	$topic = '';
@@ -25,18 +27,18 @@
 			concat(u.firstname, ' ', u.lastname) as student_name,
 			sce.course_id,
 			c.class_name,
-			sce.lastmodifieddate
-		from student_course_enrollment sce
+			sce.last_modified_date
+		from student_class_enrollment sce
 		inner join users u on u.id = sce.student_id
-		inner join courses c on c.id = sce.course_id
+		inner join classes c on c.id = sce.course_id
 		where c.created_by = ". $_SESSION['id'] .
 			" and sce.status is null and sce.course_id=" . $_GET['id'] . 
-		" order by sce.lastmodifieddate desc";
+		" order by sce.last_modified_date desc";
 
 		$resultRegistration  = mysqli_query($con, $sql);
 
 
-		$sql = "select id, course_code, class_name, class_description, base_grade from courses
+		$sql = "select id, course_code, class_name, class_description, year_level, section, base_grade from classes
 				where id = ".$_GET['id'];
 		$result = mysqli_query($con, $sql);
 		if(mysqli_num_rows($result) > 0){
@@ -45,10 +47,12 @@
 			$course_code = $row['course_code'];
 			$class_name = $row['class_name'];
 			$class_description = $row['class_description'];
+			$year_level = $row['year_level'];
+			$section = $row['section'];
 			$baseGrade = $row['base_grade'];
 		}
 
-		$sqlEditVideos = "select * from class_video 
+		$sqlEditVideos = "select * from subject_videos 
 						  where course_id =" . $_GET['id'];
 		$resultEditVideos = mysqli_query($con, $sqlEditVideos);
 
@@ -62,16 +66,16 @@
 			u.lastname,
 			u.email,
 			sce.course_id,
-			sce.lastmodifieddate
+			sce.last_modified_date
 		from student_classes sce
 		inner join users u on u.id = sce.student_id
 		where sce.is_active=1 and sce.course_id=" . $_GET['id'] . 
-		" order by sce.lastmodifieddate desc";
+		" order by sce.last_modified_date desc";
 
 		$resultStudentList  = mysqli_query($con, $sqlStudentList);
 
 		$sqlTopic  = " SELECT  t.*, v.topic as video_topic, v.video_link  FROM topic t ";
-		$sqlTopic .= " LEFT JOIN class_video v on v.id = t.video_id ";
+		$sqlTopic .= " LEFT JOIN subject_videos v on v.id = t.video_id ";
 		$sqlTopic .= " WHERE t.course_id = " . $_GET['id'];
 
 		$resultTopic = mysqli_query($con, $sqlTopic);

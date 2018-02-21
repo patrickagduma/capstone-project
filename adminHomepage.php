@@ -2,7 +2,7 @@
 	require_once ('libs/connect.php');
 	include("allClassRegistrationApproval.php");
 
-	$sqlCourses = "select * from courses order by class_name ";
+	$sqlCourses = "select * from subject order by name ";
 	$resultRegistration = mysqli_query($con, $sql);
 	$resultCourses = mysqli_query($con, $sqlCourses);
 

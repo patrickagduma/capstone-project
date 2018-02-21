@@ -22,7 +22,7 @@
 
 
 	/* START: Courses */
-	$sqlCourses = "select * from courses where created_by = " . $_SESSION['id'];
+	$sqlCourses = "select * from classes where created_by = " . $_SESSION['id'];
 	if (isset($courseId)) {
 		$sqlCourses .= " and id = " . $courseId;
 	}
@@ -31,7 +31,7 @@
 	/* END: Courses */
 
 	/* START: Videos */
-	$sqlClassVideos = " SELECT  v.*  FROM `class_video` v ";
+	$sqlClassVideos = " SELECT  v.*  FROM `subject_videos` v ";
 	if (isset($courseId)) {
 		$sqlClassVideos .= " WHERE v.course_id =  " . $courseId;
 	}

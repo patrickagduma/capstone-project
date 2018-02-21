@@ -4,8 +4,8 @@
 
 	$topicDetails = $_SESSION['topic'];
 	
-    $sqlTopic = "insert into topic(subject_id, topic, video_id, summary, permalink) 
-    value('".$topicDetails['courseId']."', '".$topicDetails['topic']."', '".$topicDetails['videoLink']."', '".$topicDetails['summary']."', '".$topicDetails['permalink']."')";
+    $sqlTopic = "insert into topic(subject_id, video_id, topic, summary, permalink) 
+    value('".$topicDetails['courseId']."', '".$topicDetails['topicVideo']."', '".$topicDetails['videoLink']."', '".$topicDetails['summary']."', '".$topicDetails['permalink']."')";
 
     //echo "[SQL]: " . $sqlTopic . "<br />";
 
@@ -49,7 +49,7 @@
             $multiAnswer5 = isset($qaItem['multiAnswer5']) && $qaItem['multiAnswer5'] != "" ? "'" . $qaItem['multiAnswer5'] . "'" : 'null';
             $multiAnswer6 = isset($qaItem['multiAnswer6']) && $qaItem['multiAnswer6'] != "" ? "'" . $qaItem['multiAnswer6'] . "'" : 'null';
 
-            $sqlQAItem  = "insert into topic_item(topic_id, course_id, question, permalink, boolean_answer, single_choice_1, single_choice_2, single_choice_3, single_choice_4, single_choice_5, single_choice_6, single_answer, multi_choice_1, multi_choice_2, multi_choice_3, multi_choice_4, multi_choice_5, multi_choice_6, multi_answer_1, multi_answer_2, multi_answer_3, multi_answer_4, multi_answer_5, multi_answer_6) value (";
+            $sqlQAItem  = "insert into topic_item(topic_id, subject_id, question, permalink, boolean_answer, single_choice_1, single_choice_2, single_choice_3, single_choice_4, single_choice_5, single_choice_6, single_answer, multi_choice_1, multi_choice_2, multi_choice_3, multi_choice_4, multi_choice_5, multi_choice_6, multi_answer_1, multi_answer_2, multi_answer_3, multi_answer_4, multi_answer_5, multi_answer_6) value (";
             $sqlQAItem .= $topicId . ", " . $courseId . ", " . $problem . ", " . $permalink . ", ";
             $sqlQAItem .= $booleanAnswer . ", ";
             $sqlQAItem .= $singleChoice1 . ", " . $singleChoice2 . ", " . $singleChoice3 . ", " . $singleChoice4 . ", " . $singleChoice5 . ", " . $singleChoice6 . ", " . $singleAnswer1 . ", ";
@@ -59,7 +59,7 @@
 
             if (mysqli_query($con, $sqlQAItem)) {
                 $_SESSION['topic'] = null;
-                header('Location:editListCourse.php?id=' . $courseId . '&status=success_topic');
+                header('Location:adminCourseDetails.php?id=' . $courseId . '&status=success_topic');
             } else {
                 echo "Error: " . $sqlQAItem . "<br>" . mysqli_error($con);
             }

@@ -82,13 +82,13 @@
 	$_SESSION['topic'] = $unsaveTopic;
 
 	if ($_POST['saveType'] == 'saveAddQuestion') {
-		header('Location:Teacher_AddQuestion_multipleansVQ.php');
+		header('Location:admin_AddQuestion_multipleansVQ.php');
 	} else if ($_POST['saveType'] == 'saveViewQuestions') {
 		header('Location:Teacher_viewQuestions.php');
 	} else {
-		header('Location:Teacher_Topic.php');
+		header('Location:SubjectTopics.php');
 	}
 	} else {
-		header('Location:Teacher_AddQuestion_multipleansVQ.php?status=insufficient_data');
+		header('Location:admin_AddQuestion_multipleansVQ.php?status=insufficient_data');
 	}
 ?>

@@ -85,6 +85,12 @@
                             <div class="form-group">
                                 <label class="control-label"><b>Class Description:<br> <?=$class_description?></b><p class="details"></p></label>
                             </div>
+                            <div class="form-group">
+                                <label class="control-label"><b>Year Level:<br> <?=$year_level?></b><span class="details"></span></label>
+                            </div>
+                            <div class="form-group">
+                                <label class="control-label"><b>Section:<br> <?=$section?></b><span class="details"></span></label>
+                            </div>
 
                             <div class="form-group">
                                 <label class="control-label"><b>Base Grade:<br> <?= $baseGrade ?></b><p class="details"></p></label>
@@ -320,6 +326,21 @@
                                 <textarea class="form-control" id="txtClassDescription" name="classDescription" placeholder="Class or Course Description" title="Enter Class or Course Description" cols="30" rows="3" style="width: 91.5%"><?=$class_description?></textarea>
                             </div>
                         </div>
+
+                        <div class="form-group">
+                            <label for="txtYearLevel" class="control-label">Year Level</label>
+                            <div>
+                                <input type="text" class="form-control" id="txtYearLevel" name="yearLevel" value="<?=$year_level?>" placeholder="Year Level" title="Enter Year Level">
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="txtSection" class="control-label">Section</label>
+                            <div>
+                                <input type="text" class="form-control" id="txtSection" name="section" value="<?=$section?>" placeholder="Section" title="Enter Section">
+                            </div>
+                        </div>
+
                          <div class="form-group">
                             <label class="control-label"><b>Class Grading System</b><p class="details"></p></label>
                             <div>
@@ -430,10 +451,10 @@
     </div>
 
     <!-- Bootstrap core JavaScript -->
-    <script src="js/course/jquery.min.js"></script>
-    <script src="js/course/popper.min.js"></script>
-    <script src="js/course/bootbox.min.js"></script>
-    <script src="js/course/bootstrap.min.js"></script>
+    <script src="js/jquery.min.js"></script>
+    <script src="js/popper.min.js"></script>
+    <script src="js/bootbox.min.js"></script>
+    <script src="js/bootstrap.min.js"></script>
 
     <script>
             <?php

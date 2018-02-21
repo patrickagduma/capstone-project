@@ -3,12 +3,12 @@
 
 	$fromPage = $_POST['fromPage'];
 
-	$sqlInsert = "insert into student_classes(student_id, course_id, is_active, lastModifiedDate) value('".$_POST['studentId']."', '".$_POST['courseId']."', 1, now())
+	$sqlInsert = "insert into student_classes(student_id, course_id, is_active, last_modified_date) value('".$_POST['studentId']."', '".$_POST['courseId']."', 1, now())
 	";
 
 	$insert = mysqli_query($con, $sqlInsert);
 
-	$sql = "update student_course_enrollment set status = 'approved' where id=" . $_POST['registrationId'];
+	$sql = "update student_class_enrollment set status = 'approved' where id=" . $_POST['registrationId'];
 	$delete = mysqli_query($con, $sql);
 
 	if($insert && $delete){

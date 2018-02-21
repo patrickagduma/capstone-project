@@ -54,14 +54,14 @@
 		$_SESSION['topic'] = $unsaveTopic;
 
 		if ($_POST['saveType'] == 'saveAddQuestion') {
-			header('Location:Teacher_AddQuestion_singleanswerVQ.php');
+			header('Location:admin_AddQuestion_singleanswerVQ.php');
 		} else if ($_POST['saveType'] == 'saveViewQuestions') {
 			header('Location:Teacher_viewQuestions.php');
 		} else {
-			header('Location:Teacher_Topic.php');
+			header('Location:SubjectTopics.php');
 		}
 	} else {
-		header('Location:Teacher_AddQuestion_singleanswerVQ.php?status=insufficient_data');
+		header('Location:admin_AddQuestion_singleanswerVQ.php?status=insufficient_data');
 	}
 
 

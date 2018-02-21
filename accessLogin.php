@@ -30,17 +30,17 @@ require_once ('libs/connect.php');
 		$_SESSION['firstname'] = $user['firstname'];
 		$_SESSION['lastname'] = $user['lastname'];
 		$_SESSION['email'] = $user['email'];
-		$_SESSION['userType'] = $user['userType'];
+		$_SESSION['userType'] = $user['user_type'];
 
-		if($user['userType'] == 'T'){
+		if($user['user_type'] == 'T'){
 			header('location:teacherHomepage.php?id=' . $user['id']);
 			session_write_close();
 		}
-		elseif($user['userType'] == 'S'){
+		elseif($user['user_type'] == 'S'){
 			header('location:studentHomepage.php?id=' . $user['id']);
 			session_write_close();
 		}
-		elseif($user['userType'] == 'A'){
+		elseif($user['user_type'] == 'A'){
 			header('location:adminHomepage.php?id=' . $user['id']);
 			session_write_close();
 		}

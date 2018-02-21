@@ -1,0 +1,348 @@
+<!DOCTYPE html>
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+        <title>Capstone: Create a new Quiz</title>
+
+        <link href="css/teacherAddQuestion/bootstrap.min.css" rel="stylesheet">
+        <link rel="stylesheet" href="css/teacherAddQuestion/font-awesome.min.css">
+        <link rel="stylesheet" href="css/teacherAddQuestion/new.css">
+        <link rel="stylesheet" href="css/teacherAddQuestion/topics.css">
+            <link rel="stylesheet" href="css/teacherAddQuestion/font-awesome.css">
+
+            <style>
+
+           
+
+            </style>
+
+    </head>
+    <body class="bkg">
+
+<?php
+        //$topicDetails = $_SESSION['topic'];
+
+        //if ($status == 'insufficient_data') {
+            //echo "<script>";
+            //echo "alert('Please fill up all the entries.')";
+            //echo "</script>";
+        //}
+    ?>
+    
+    <!-- Navigation -->
+       <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top nav-header headfoot">
+        <div class="container ">
+
+                <a class="navbar-brand nav-linkN" style="text-transform: capitalize" href="adminHomepage.php">Administrator: Dashboard</a>
+
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarResponsive">
+                <ul class="navbar-nav ml-auto">
+                    <li class="nav-item">
+                        <a class="nav-link nav-linkN" href="adminCourse.php"><i class="fa fa-cog" aria-hidden="true"></i> Subject </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link nav-linkN" href="adminClasses.php"> <i class="fa fa-book" aria-hidden="true"></i> Classes </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link nav-linkN" href="adminSubjectRegistrationRequests.php"> <i class="fa fa-check-square-o" aria-hidden="true"></i> Registration Requests </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link nav-linkN" href="logout.php"> <i class="fa fa-sign-out" aria-hidden="true"></i> Logout </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+        <div class="container cont1">
+            <div class="row sm-flex-center top-space top-space1">
+                     <div class="col-sm-12 pull-right">
+                        <div class="panel panel-info" style="text-align: center;">
+                        <h1>Type of Questions</h1>
+                        <div class="panel-body underlined" style="border-right: 1px solid #eee;">
+                            <ol id="listQuestions"></ol>
+                        </div>
+                      
+                    </div>
+                </div>
+            </div>
+            <div class="top-space row col-sm-12 " style="text-align: center;">
+
+
+                <div class="form-group col-sm-4">
+                    <!-- Button -->
+                    <div class="">
+                        <button type="button" class="btn btn-primary btn-lg btn-2" onclick="window.location.href='Teacher_AddQuestion_truefalseVQ.php'">True or False</button>
+                    </div>
+                </div>
+
+                 <div class="form-group col-sm-4">
+                    <!-- Button -->
+                    <div class="">
+                        <button type="button" class="btn btn-secondary btn-lg btn-2" onclick="window.location.href='Teacher_AddQuestion_singleanswerVQ.php'">Single Answer</button>
+                    </div>
+                </div>
+
+                <div class="form-group col-sm-4">
+                    <!-- Button -->
+                    <div class="">
+                        <button type="button" class="btn btn-secondary btn-lg btn-2" onclick="window.location.href='Teacher_AddQuestion_multipleansVQ.php'">Multiple Answer</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <form id="addQuestionSingleForm" action="adminAddQuestionSingleHandler.php" onsubmit="return validateForm();" method="post">
+            <div class="container cont1">  
+                <div class="form-group col-sm-12">
+                        <label for="exampleTextarea">Problem:</label>
+                        <textarea class="form-control" id="exampleTextarea" name="problem" rows="3"></textarea>
+                    </div>
+
+                <div class="form-group col-sm-12">
+
+                 <div class="form-group row">
+                    <label for="example-text-input" class="col-form-label">A.)</label>
+                    <div class="col-8">
+                    <input class="form-control" type="text" name="singleChoice1" id="txtSingleChoice1">
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label for="example-search-input" class="col-form-label">B.)</label>
+                    <div class="col-8">
+                     <input class="form-control" type="search" name="singleChoice2" id="txtSingleChoice2">
+                     </div>
+                </div>
+                <div class="form-group row">
+                    <label for="example-search-input" class="col-form-label">C.)</label>
+                    <div class="col-8">
+                     <input class="form-control" type="search" name="singleChoice3" id="txtSingleChoice3">
+                     </div>
+                </div>
+                <div class="form-group row">
+                    <label for="example-search-input" class="col-form-label">D.)</label>
+                    <div class="col-8">
+                     <input class="form-control" type="search" name="singleChoice4" id="txtSingleChoice4">
+                     </div>
+                </div>
+                <div class="form-group row">
+                    <label for="example-search-input" class="col-form-label">E.)</label>
+                    <div class="col-8">
+                     <input class="form-control" type="search" name="singleChoice5" id="txtSingleChoice5">
+                     </div>
+                </div>
+                <div class="form-group row">
+                    <label for="example-search-input" class="col-form-label">F.)</label>
+                    <div class="col-8">
+                     <input class="form-control" type="search" name="singleChoice6" id="txtSingleChoice6">
+                     </div>
+                </div>
+
+                <h3>Answers</h3>
+                <div class="form-group row">
+                    <label for="example-search-input" class="col-form-label">Answer 1</label>
+                    <div class="col-8">
+                     <input class="form-control" type="search" name="singleAnswer1" id="txtSingleAnswer1">
+                     </div>
+                </div>
+                
+                <div class="row col-sm-12">
+                    <input type="hidden" id="hdnSaveType" name="saveType">
+                    <div class="form-group col-sm-3">
+                  
+                    </div>
+                    <div class="form-group col-sm-4">
+                        <!-- Button -->
+                        <div class="">
+                            <button type="button" class="btn btn-primary btn-lg" onclick="handleFormSubmission('saveAddQuestion')">Add Question</button>
+                        </div>
+                    </div>
+
+                     <div class="form-group col-sm-4">
+                        <!-- Button -->
+                        <div class="">
+                            <button type="button" class="btn btn-primary btn-lg" onclick="viewQuestions()">View Questions</button>
+                        </div>
+                    </div>
+                </div>
+                </div>
+            </div>
+        </form>
+
+        <div class="container cont1">
+            <div class="col-sm-12 ">
+                <div class="col-sm-12" style="text-align: center;">
+                <h3>View Questions</h3>
+                </div>
+                <table class="table">
+  <thead>
+    <tr>
+      <th scope="col">#</th>
+      <th scope="col">Question</th>
+      <th scope="col">Answer</th>
+    </tr>
+  </thead>
+
+  <tbody>
+      <?php
+        $displayItemNo = 0;
+        if (isset($questionsAndAnswers)) {
+            foreach ($questionsAndAnswers as $qa) {
+                $displayItemNo++;
+                $problem = isset($qa['problem']) ? $qa['problem'] : "n/a";
+                $bAnswer = isset($qa['booleanAnswer']) ? " (" . $qa['booleanAnswer'] . ")" : "";
+                $sAnswer = "";
+
+                if ( (isset($qa['singleAnswer1']) && !IsNullOrEmptyString($qa['singleAnswer1']))) {
+                    $sAnswer = " (" . $qa['singleAnswer1'] . ")";
+                }
+
+                $mAnswer = "";
+
+                if ( (isset($qa['multiAnswer1']) && !IsNullOrEmptyString($qa['multiAnswer1'])) || 
+                        (isset($qa['multiAnswer2']) && !IsNullOrEmptyString($qa['multiAnswer2'])) || 
+                        (isset($qa['multiAnswer3']) && !IsNullOrEmptyString($qa['multiAnswer3'])) || 
+                        (isset($qa['multiAnswer4']) && !IsNullOrEmptyString($qa['multiAnswer4'])) || 
+                        (isset($qa['multiAnswer5']) && !IsNullOrEmptyString($qa['multiAnswer5'])) || 
+                        (isset($qa['multiAnswer6']) && !IsNullOrEmptyString($qa['multiAnswer6'])) ) {
+                    $mAnswer .= " (";
+                    $mAnswer1 = !IsNullOrEmptyString($qa['multiAnswer1']) ? $qa['multiAnswer1'] . ", " : "";
+                    $mAnswer2 = !IsNullOrEmptyString($qa['multiAnswer2']) ? $qa['multiAnswer2'] . ", " : "";
+                    $mAnswer3 = !IsNullOrEmptyString($qa['multiAnswer3']) ? $qa['multiAnswer3'] . ", " : "";
+                    $mAnswer4 = !IsNullOrEmptyString($qa['multiAnswer4']) ? $qa['multiAnswer4'] . ", " : "";
+                    $mAnswer5 = !IsNullOrEmptyString($qa['multiAnswer5']) ? $qa['multiAnswer5'] . ", " : "";
+                    $mAnswer6 = !IsNullOrEmptyString($qa['multiAnswer6']) ? $qa['multiAnswer6'] . ", " : "";
+                    $mAnswer .= $mAnswer1;
+                    $mAnswer .= $mAnswer2;
+                    $mAnswer .= $mAnswer3;
+                    $mAnswer .= $mAnswer4;
+                    $mAnswer .= $mAnswer5;
+                    $mAnswer .= $mAnswer6;
+                    $mAnswer .= ")";
+                }
+
+    ?>
+
+    <tr>
+      <th scope="row"><?= $displayItemNo?></th>
+      <td><?= $problem ?></td>
+      <td><?= $bAnswer ?><?= $sAnswer ?><?= $mAnswer ?></td>
+    </tr>
+    <?php
+                    }
+            
+}
+        //From stackoverflow: https://stackoverflow.com/questions/381265/better-way-to-check-variable-for-null-or-empty-string
+        function IsNullOrEmptyString($text){
+            return (!isset($text) || trim($text)==='');
+        }
+        
+    ?>
+  </tbody>
+
+</table>
+<div class="col-md-12" style="text-align: center;" >
+<button class="btn-1 btn-lg btn" onclick="window.location.href='SubjectTopics.php'">Back to Topic</button>
+</div>
+                
+            </div>
+            
+        </div>
+
+
+<div class="footer" id="footer">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-4  col-md-2 col-sm-4 col-xs-6">
+                    <h3> Developers </h3>
+                    <ul>
+                        <li> <a href="#"> Alfonso Louie Alfonso </a> </li>
+                        <li> <a href="#"> John Patrick Agduma </a> </li>
+                        <li> <a href="#"> Jon Kirk Donio </a> </li>
+                        <li> <a href="#"> Niko Jay Mateo </a> </li>
+                    </ul>
+                </div>
+                <div class="col-lg-4  col-md-2 col-sm-4 col-xs-6">
+                    <h3> Company </h3>
+                    <ul>
+                        <li> <a href="#"> About Us </a> </li>
+                        <li> <a href="#"> Contact Us </a> </li>
+                        <li> <a href="#"> FAQs </a> </li>
+                        <li> <a href="#"> Policy </a> </li>
+                    </ul>
+                </div>
+                        <div class="col-lg-4  col-md-3 col-sm-6 col-xs-12 ">
+                    <h3> Social media </h3>
+              
+                    <ul class="social">
+                        <li> <a href="#"> <i class=" fa fa-facebook">   </i> </a> </li>
+                        <li> <a href="#"> <i class="fa fa-twitter">   </i> </a> </li>
+                        <li> <a href="#"> <i class="fa fa-google-plus">   </i> </a> </li>
+                        <li> <a href="#"> <i class="fa fa-pinterest">   </i> </a> </li>
+                        <li> <a href="#"> <i class="fa fa-youtube">   </i> </a> </li>
+                    </ul>
+                </div>
+ 
+        
+            </div>
+            <!--/.row--> 
+        </div>
+        <!--/.container--> 
+    </div>
+    <!--/.footer-->
+    
+    <div class="footer-bottom">
+        <div class="container">
+            <p class="centers" > Copyright © Culturama 2018. All right reserved. </p>
+
+        </div>
+    </div>
+        <!-- End: Modal For Add Question -->
+
+    <!-- Bootstrap core JavaScript -->
+    <script src="js/jquery.min.js"></script>
+    <script src="js/popper.min.js"></script>
+    <script src="js/bootbox.min.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+
+    <script>
+        function handleFormSubmission(saveType) {
+            $('#hdnSaveType').val(saveType);
+            $('#addQuestionSingleForm').submit();
+        }
+
+        function viewQuestions() {
+            window.location = "Teacher_viewQuestions.php";
+        }
+
+        function validateForm() {
+                    var exampleTextarea = $("textarea#exampleTextarea").val();
+                    var singleChoice1 = $("#txtSingleChoice1").val();
+                    var singleChoice2 = $("#txtSingleChoice2").val();
+                    var singleChoice3 = $("#txtSingleChoice3").val();
+                    var singleAnswer1 = $("#txtSingleAnswer1").val();
+                    
+
+                    if(!exampleTextarea || 
+                        !singleChoice1 ||
+                        !singleChoice2 ||
+                        !singleChoice3 ||
+                        !singleAnswer1){
+                        bootbox.alert("Please fill all required fields");
+                        return false;
+                    }
+
+                    return true;
+                }
+
+    </script>
+    
+
+
+</body></html>

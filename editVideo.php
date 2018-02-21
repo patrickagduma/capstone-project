@@ -3,7 +3,7 @@
 	session_start();
 
 
-	$sql = "update class_video set topic = '".$_POST['videoTopic']."',
+	$sql = "update subject_videos set topic = '".$_POST['videoTopic']."',
 							video_link = '".$_POST['videoTopicLink']."',
 							course_id = '". $_POST['courseId'] ."'
 			where id = '".$_POST['videoId']."'

@@ -2,7 +2,7 @@
 	require_once('libs/connect.php');
 session_start();
 	
-		$sql = "insert into users(firstname, lastname, username, password, email, userType, isActive, lastModifiedDate) value('".$_POST['firstName']."', '".$_POST['lastName']."', '".$_POST['username']."', '" . md5($_POST['password']) . "', '".$_POST['email']."', '".$_POST['userType']."', 1, now())
+		$sql = "insert into users(firstname, lastname, username, password, email, user_type, is_active, last_modified_date) value('".$_POST['firstName']."', '".$_POST['lastName']."', '".$_POST['username']."', '" . md5($_POST['password']) . "', '".$_POST['email']."', '".$_POST['userType']."', 1, now())
 		";
 
 		

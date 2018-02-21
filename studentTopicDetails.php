@@ -7,9 +7,9 @@
 	if (isset($topicId)) {
 			$sql = " SELECT t.*, cv.video_link, c.class_name
 					FROM `topic` t 
-					inner join class_video cv on 
+					inner join subject_videos cv on 
 						cv.id = t.video_id
-		            inner join courses c on
+		            inner join classes c on
 						c.id = t.course_id
 					where
 						t.id = " . $topicId;

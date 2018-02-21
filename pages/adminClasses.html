@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+        <title>Capstone: Register a Class (Course)</title>
+
+        <!-- Bootstrap core CSS -->
+        <link href="css/course/bootstrap.min.css" rel="stylesheet">
+        <link href="css/course/course_template.css" rel="stylesheet">
+        <link rel="stylesheet" href="css/course/font-awesome.css">
+        <link rel="stylesheet" href="css/course/new.css">
+
+        <style type="text/css">
+
+            @media (min-width: 992px) {
+
+            }
+
+            h4 { padding: 20px 0; }
+
+            .top-space { margin-top: 30px; }
+
+            .column-separator { border-right: 1px solid #eee; }
+            input[type='text'] { width: 91.5%; }
+            textarea { width: 91.5%; }
+
+            span.status {
+                /*font-family: "Courier New", Georgia, Serif;*/
+                font-style: italic;
+                font-size: 0.65em;
+                padding: 5px;
+                border: 1px solid #ddd;
+                background-color: #eee;
+            }
+
+            span.details, p.details { margin-left: 10px; }
+        </style>
+    </head>
+    <body class="bkg">
+    <!-- Navigation -->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top nav-header headfoot">
+        <div class="container ">
+
+                <a class="navbar-brand nav-linkN" style="text-transform: capitalize" href="adminHomepage.php">Administrator: Dashboard</a>
+
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarResponsive">
+                <ul class="navbar-nav ml-auto">
+                    <li class="nav-item">
+                        <a class="nav-link nav-linkN" href="adminCourse.php"><i class="fa fa-cog" aria-hidden="true"></i> Subject </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link nav-linkN" href="adminClasses.php"> <i class="fa fa-book" aria-hidden="true"></i> Classes </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link nav-linkN" href="adminSubjectRegistrationRequests.php"> <i class="fa fa-check-square-o" aria-hidden="true"></i> Registration Requests </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link nav-linkN" href="logout.php"> <i class="fa fa-sign-out" aria-hidden="true"></i> Logout </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+        <div class="container cont1">
+            <div class="row sm-flex-center top-space">
+                <div class="col-sm-12 col-md-12" style="padding: 1rem 1rem;">
+                    <div class="panel panel-info">
+                        <h2 style="text-align: center;">Course Details</h2>
+                            <form id="signupform" class="form-horizontal" action="adminAddClasses.php" onsubmit="return validateForm();" method="post">
+                                <input type="hidden" id="hdnId" name="classId" />
+                                <input type="hidden" id="hndCourseId" name="courseId" value="<?=$courseId?>">
+                                <div class="modal-body">
+                                    <div class="form-group has-error has-feedback">
+                                        <label for="selClass" class="col-md-3 control-label">Subject</label>
+                                        <div class="col-md-11">
+                                            <?php
+                                                if (isset($courseId)) {
+                                            ?>
+                                                <input type="hidden" name="sel_class" value="<?= $courseId ?>">
+                                                <select id="selClass" class="form-control" >
+                                            <?php
+                                                } else {
+                                            ?>
+                                                <select name="sel_class" id="selClass" class="form-control">
+                                            <?php
+                                                }
+                                            ?>
+                                                    <option class="list-group-item" value="">Select a subject</option>
+                                                    <?php
+                                                        if (mysqli_num_rows($resultCourses) > 0) {
+                                                            while($row = mysqli_fetch_array($resultCourses)){
+                                                                $optionHtml = "<option class='list-group-item' value='" . $row['code'] . "'";
+                                                                if ($row['id'] == $courseId) {
+                                                                    $optionHtml .= " selected";
+                                                                }
+                                                                $optionHtml .= ">" . $row['name'] . "</option>";
+                                                                echo $optionHtml;
+                                                            }
+                                                        } 
+                                                    ?>
+                                                </select>
+                                        </div>
+                                    </div>
+                                    <div class="form-group has-error has-feedback">
+                                        <label for="txtClassCode" class="control-label">Class Code</label>
+                                        <div>
+                                            <input type="text" id="txtClassCode" class="form-control" name="classCode" value="" placeholder="Class or Course Code" title="Enter Class or Course Code">
+                                        </div>
+                                    </div>
+                                    <div class="form-group has-error has-feedback">
+                                        <label for="txtClassInstructor" class="control-label">Class Instructor</label>
+                                        <div>
+                                            <input type="text" id="txtClassInstructor" class="form-control" name="classInstructor" value="" placeholder="Class Instructor" title="Instructor">
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="txtYearLevel" class="control-label">Year Level</label>
+                                        <div>
+                                            <input type="text" class="form-control" id="txtYearLevel" name="yearLevel" value="" placeholder="Year Level" title="Enter Year Level">
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="txtSection" class="control-label">Section</label>
+                                        <div>
+                                            <input type="text" class="form-control" id="txtSection" name="section" value="" placeholder="Section" title="Enter Section">
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="txtClassGrade" class="control-label">Class Grading System</label>
+                                        <div>
+                                            <input type="text" class="form-control" id="txtClassGrade" name="classGrade" value="" placeholder="Grading System" title="Enter Grading System">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="modal-footer">
+                                    <button class="btn btn-info">Save</button>
+                                </div>
+                            </form> 
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+    <?php include('footer.html'); ?>
+
+    <!-- Bootstrap core JavaScript -->
+    <script src="js/jquery.min.js"></script>
+    <script src="js/popper.min.js"></script>
+    <script src="js/bootbox.min.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+
+    <script>
+        function validateForm() {
+            var classCode = $("#txtClassCode").val();
+            var classInstructor = $("#txtClassInstructor").val();
+            var yearLevel = $("#txtYearLevel").val();
+            var section = $("#txtSection").val();
+            var classGrade = $("#txtClassGrade").val();
+            
+            // console.log('[firstname]: ' + classCode);
+            // console.log('[lastname]: ' + className);
+            // console.log('[username]: ' + classDescription);
+            // console.log('[password]: ' + classGrade);
+
+            if(!classCode || 
+                !classInstructor ||
+                !yearLevel ||
+                !section ||
+                !classGrade ){
+                bootbox.alert("Please fill all required fields");
+                return false;
+            }
+
+            return true;
+        }
+    </script>
+    
+
+
+</body></html>
