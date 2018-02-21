@@ -1,8 +1,8 @@
 -- MySQL dump 10.13  Distrib 5.7.17, for Win64 (x86_64)
 --
--- Host: localhost    Database: capstone_db
+-- Host: 127.0.0.1    Database: capstone_db
 -- ------------------------------------------------------
--- Server version	5.7.14
+-- Server version	5.7.19
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
@@ -26,14 +26,14 @@ CREATE TABLE `classes` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `subject_id` int(11) NOT NULL,
   `code` varchar(15) NOT NULL,
-  `instructor` varchar(50) NOT NULL,
+  `instructor_id` int(50) NOT NULL,
   `year_level` varchar(100) NOT NULL,
   `section` varchar(100) NOT NULL,
   `created_by` int(11) NOT NULL,
   `last_modified_date` date DEFAULT NULL,
   `base_grade` int(11) NOT NULL DEFAULT '50',
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=11 DEFAULT CHARSET=latin1;
+) ENGINE=MyISAM AUTO_INCREMENT=26 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -42,7 +42,7 @@ CREATE TABLE `classes` (
 
 LOCK TABLES `classes` WRITE;
 /*!40000 ALTER TABLE `classes` DISABLE KEYS */;
-INSERT INTO `classes` VALUES (1,0,'TRI101','John Patrick Agduma','','',1,'2018-02-06',50),(2,0,'ENG24','John Patrick Agduma','','',1,'2018-02-06',40),(9,0,'AP123','Kirk Donio','','',20,'2018-02-19',50),(6,0,'AP3','John Patrick Agduma','','',1,'2018-02-07',50),(7,0,'AP24','John Patrick Agduma','','',1,'2018-02-12',50),(8,0,'AP27','Dustin Hyrell Lim','','',18,'2018-02-13',50),(10,0,'IT1','John Patrick Agduma','Grade 4','Apple',1,'2018-02-20',50);
+INSERT INTO `classes` VALUES (11,9,'KF-101',1,'4','Talakitok',22,'2018-02-22',40),(12,9,'Drunken Fist',20,'5','Pasang-awa',22,'2018-02-22',50),(13,9,'Lubricant 2',18,'3','Hampas-lupa',22,'2018-02-22',60),(14,5,'DUM1-101',18,'1','AAA',22,'2018-02-22',50),(15,5,'DUM1-102',1,'1','AAB',22,'2018-02-22',40),(16,5,'DUM-103',20,'1','AAC',22,'2018-02-22',55),(17,6,'DUM2-201',18,'2','BAA',22,'2018-02-22',40),(18,6,'DUM2-202',1,'2','BAB',22,'2018-02-22',40),(19,6,'DUM2-203',20,'2','BAC',22,'2018-02-22',50),(20,7,'DUM3-301',1,'3','CAA',22,'2018-02-22',50),(21,7,'DUM3-302',20,'3','CAB',22,'2018-02-22',60),(22,7,'DUM3-303',18,'3','CAC',22,'2018-02-22',70),(23,8,'DUM4-401',20,'4','DAA',22,'2018-02-22',30),(24,8,'DUM4-402',18,'4','DAB',22,'2018-02-22',40),(25,8,'DUM4-403',1,'4','DAC',22,'2018-02-22',60);
 /*!40000 ALTER TABLE `classes` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -60,7 +60,7 @@ CREATE TABLE `student_class_enrollment` (
   `status` varchar(10) DEFAULT NULL,
   `last_modified_date` date NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=9 DEFAULT CHARSET=latin1;
+) ENGINE=MyISAM AUTO_INCREMENT=11 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -69,7 +69,7 @@ CREATE TABLE `student_class_enrollment` (
 
 LOCK TABLES `student_class_enrollment` WRITE;
 /*!40000 ALTER TABLE `student_class_enrollment` DISABLE KEYS */;
-INSERT INTO `student_class_enrollment` VALUES (1,2,1,'approved','2018-02-06'),(2,3,1,'approved','2018-02-06'),(3,4,1,'denied','2018-02-06'),(4,4,2,'approved','2018-02-06'),(5,3,6,'approved','2018-02-09'),(6,19,8,'approved','2018-02-13'),(7,21,9,'approved','2018-02-19'),(8,19,4,NULL,'2018-02-21');
+INSERT INTO `student_class_enrollment` VALUES (10,2,15,NULL,'2018-02-22');
 /*!40000 ALTER TABLE `student_class_enrollment` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -114,7 +114,7 @@ CREATE TABLE `subject` (
   `description` text,
   `created_by` int(11) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -123,7 +123,7 @@ CREATE TABLE `subject` (
 
 LOCK TABLES `subject` WRITE;
 /*!40000 ALTER TABLE `subject` DISABLE KEYS */;
-INSERT INTO `subject` VALUES (4,'Fil1','Filipino 1','Sample Description for Filipino 1',22),(5,'dum1','dummy subject 1','dummy',22),(6,'dum2','dummy subject 2','dummy',22),(7,'dum3','dummy subject 3','dummy',22),(8,'dum4','dummy subject 4','dummy',22);
+INSERT INTO `subject` VALUES (4,'Fil1','Filipino 1','Sample Description for Filipino 1',22),(5,'dum1','dummy subject 1','dummy',22),(6,'dum2','dummy subject 2','dummy',22),(7,'dum3','dummy subject 3','dummy',22),(8,'dum4','dummy subject 4','dummy',22),(9,'MA1KF','Kung Fu','Introduction to Martial Arts with Kung Fu',22);
 /*!40000 ALTER TABLE `subject` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -297,4 +297,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2018-02-21 20:56:14
+-- Dump completed on 2018-02-22  1:02:35
