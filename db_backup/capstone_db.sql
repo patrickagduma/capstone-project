@@ -60,7 +60,7 @@ CREATE TABLE `student_class_enrollment` (
   `status` varchar(10) DEFAULT NULL,
   `last_modified_date` date NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=11 DEFAULT CHARSET=latin1;
+) ENGINE=MyISAM AUTO_INCREMENT=17 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -69,7 +69,7 @@ CREATE TABLE `student_class_enrollment` (
 
 LOCK TABLES `student_class_enrollment` WRITE;
 /*!40000 ALTER TABLE `student_class_enrollment` DISABLE KEYS */;
-INSERT INTO `student_class_enrollment` VALUES (10,2,15,NULL,'2018-02-22');
+INSERT INTO `student_class_enrollment` VALUES (13,2,11,'approved','2018-02-22'),(14,2,17,'approved','2018-02-22'),(15,2,15,'approved','2018-02-22'),(16,2,24,'denied','2018-02-22');
 /*!40000 ALTER TABLE `student_class_enrollment` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -87,7 +87,7 @@ CREATE TABLE `student_classes` (
   `is_active` int(1) NOT NULL,
   `last_modified_date` date NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=14 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -96,7 +96,7 @@ CREATE TABLE `student_classes` (
 
 LOCK TABLES `student_classes` WRITE;
 /*!40000 ALTER TABLE `student_classes` DISABLE KEYS */;
-INSERT INTO `student_classes` VALUES (1,2,1,1,'2018-02-06'),(2,3,1,1,'2018-02-06'),(3,4,1,1,'2018-02-06'),(4,4,2,1,'2018-02-07'),(5,3,6,1,'2018-02-09'),(6,19,8,1,'2018-02-13'),(7,21,9,1,'2018-02-19'),(8,19,9,1,'2018-02-19');
+INSERT INTO `student_classes` VALUES (11,2,11,1,'2018-02-22'),(12,2,17,1,'2018-02-22'),(13,2,15,1,'2018-02-22');
 /*!40000 ALTER TABLE `student_classes` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -179,7 +179,6 @@ CREATE TABLE `topic` (
 
 LOCK TABLES `topic` WRITE;
 /*!40000 ALTER TABLE `topic` DISABLE KEYS */;
-INSERT INTO `topic` VALUES (1,4,'',18,'sample summary',''),(2,4,'',18,'sample summary',''),(3,4,'',18,'sample','');
 /*!40000 ALTER TABLE `topic` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -226,7 +225,6 @@ CREATE TABLE `topic_item` (
 
 LOCK TABLES `topic_item` WRITE;
 /*!40000 ALTER TABLE `topic_item` DISABLE KEYS */;
-INSERT INTO `topic_item` VALUES (1,2,4,'q1','q1',1,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL),(2,2,4,'q2','q2',1,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL),(3,2,4,'q3','q3',1,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL),(4,2,4,'q4','q4',1,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL),(5,2,4,'q5','q5',1,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL),(6,2,4,'q6','q6',NULL,'a1','a2','a3','a4',NULL,NULL,'a1',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL),(7,2,4,'q7','q7',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'a1','a2','a3','a4','a5',NULL,'a1','a2',NULL,NULL,NULL,NULL),(8,3,4,'q1','q1',1,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL);
 /*!40000 ALTER TABLE `topic_item` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -297,4 +295,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2018-02-22  1:02:35
+-- Dump completed on 2018-02-22  2:21:35
