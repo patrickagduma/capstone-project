@@ -4,19 +4,20 @@
 	session_start();
 
 	$Id = $_SESSION['id'];
-	$instructor = $_SESSION['firstname'] . " " . $_SESSION['lastname'];
+	$classCode = $_POST['classCode'];
+	$className = $_POST['className'];
+	$classDescription = $_POST['classDescription'];
 
-		$sql = "insert into subject(code, name, description, created_by) 
-				value('".$_POST['classCode']."', '".$_POST['className']."', '".$_POST['classDescription']."', '".$Id."')
-		";
+	$sql = "insert into subject(code, name, description, created_by) 
+			value('" . $classCode . "', '" . $className . "', '" . $classDescription . "', '" . $Id . "')";
 
-		if(mysqli_query($con, $sql)){
-			$id = mysqli_insert_id($con);
-			header('Location:adminCourseDetails.php?id=' . $id);
-		}
-		else{
-			echo "Error ".mysqli_error($con);
-		}
+	if(mysqli_query($con, $sql)){
+		$id = mysqli_insert_id($con);
+		header('Location:adminHomepage.php?status=success_subject_creation');
+	}
+	else{
+		echo "Error ".mysqli_error($con);
+	}
 
-		exit(0);
+	exit(0);
 ?>

@@ -30,27 +30,27 @@
     </head>
 
     <body class="bkg">
-    <!-- Navigation -->
-    <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top nav-header headfoot">
-        <div class="container">
+        <!-- Navigation -->
+        <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top nav-header headfoot">
+            <div class="container">
 
-                <a class="navbar-brand" style="text-transform: capitalize" href="studentHomepage.php">Welcome <?= $_SESSION["firstname"] . " " . $_SESSION["lastname"] ?></a>
+                    <a class="navbar-brand" style="text-transform: capitalize" href="studentHomepage.php">Welcome <?= $_SESSION["firstname"] . " " . $_SESSION["lastname"] ?></a>
 
-            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="collapse navbar-collapse" id="navbarResponsive">
-                <ul class="navbar-nav ml-auto">
-                            <li class="nav-item">
-                                <a class="nav-link nav-linkN" href="studentSearchClasses.php"> <i class="fa fa-search" aria-hidden="true"></i> Course Search </a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link nav-linkN" href="logout.php"> <i class="fa fa-sign-out" aria-hidden="true"></i> Logout </a>
-                            </li>
-                </ul>
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarResponsive">
+                    <ul class="navbar-nav ml-auto">
+                                <li class="nav-item">
+                                    <a class="nav-link nav-linkN" href="studentSearchClasses.php"> <i class="fa fa-search" aria-hidden="true"></i> Course Search </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link nav-linkN" href="logout.php"> <i class="fa fa-sign-out" aria-hidden="true"></i> Logout </a>
+                                </li>
+                    </ul>
+                </div>
             </div>
-        </div>
-    </nav>
+        </nav>
 
         <!-- Page Content -->
         <div class="container cont1">
@@ -80,9 +80,11 @@
                     <table id="tblClassSearch" class="table table1 table-hover">
                         <thead>
                             <tr>
-                                <th>Code</th>
-                                <th>Name</th>
-                                <th>Description</th>
+                                <th>Subject</th>
+                                <th>Class</th>
+                                <th>Teacher</th>
+                                <th>Year/Level</th>
+                                <th>Section</th>
                                 <th>Enroll</th>
                             </tr>
                         </thead>
@@ -92,11 +94,12 @@
                                     while($row = mysqli_fetch_array($result)){
                             ?>
                                 <tr>
-                                    <td><?= $row['code'] ?></td>
-                                    <td><?= $row['name'] ?></td>
-                                    <td><?= $row['description'] ?></td>
-                                    <td><button class="btn" type="button" onclick="registerCourse(<?= $row['id'] ?>, 
-                                    <?= $_SESSION['id'] ?> )">Enroll</button></td>
+                                    <td><?= $row['subject'] ?></td>
+                                    <td><?= $row['class_code'] ?></td>
+                                    <td><?= $row['teacher'] ?></td>
+                                    <td><?= $row['year_level'] ?></td>
+                                    <td><?= $row['section'] ?></td>
+                                    <td><button class="btn" type="button" onclick="registerCourse(<?= $row['id'] ?>, <?= $_SESSION['id'] ?>)">Enroll</button></td>
                                 </tr>
                             <?php
                                     }
@@ -113,67 +116,67 @@
             <input type="hidden" id="hdnStudentId" name="studentId" />
         </form>
 
-
-<div class="footer" id="footer">
-        <div class="container">
-            <div class="row">
-                <div class="col-lg-4  col-md-2 col-sm-4 col-xs-6">
-                    <h3> Developers </h3>
-                    <ul>
-                        <li> <a href="#"> Alfonso Louie Alfonso </a> </li>
-                        <li> <a href="#"> John Patrick Agduma </a> </li>
-                        <li> <a href="#"> Jon Kirk Donio </a> </li>
-                        <li> <a href="#"> Niko Jay Mateo </a> </li>
-                    </ul>
-                </div>
-                <div class="col-lg-4  col-md-2 col-sm-4 col-xs-6">
-                    <h3> Company </h3>
-                    <ul>
-                        <li> <a href="#"> About Us </a> </li>
-                        <li> <a href="#"> Contact Us </a> </li>
-                        <li> <a href="#"> FAQs </a> </li>
-                        <li> <a href="#"> Policy </a> </li>
-                    </ul>
-                </div>
-                        <div class="col-lg-4  col-md-3 col-sm-6 col-xs-12 ">
-                    <h3> Social media </h3>
-              
-                    <ul class="social">
-                        <li> <a href="#"> <i class=" fa fa-facebook">   </i> </a> </li>
-                        <li> <a href="#"> <i class="fa fa-twitter">   </i> </a> </li>
-                        <li> <a href="#"> <i class="fa fa-google-plus">   </i> </a> </li>
-                        <li> <a href="#"> <i class="fa fa-pinterest">   </i> </a> </li>
-                        <li> <a href="#"> <i class="fa fa-youtube">   </i> </a> </li>
-                    </ul>
-                </div>
- 
-        
-            </div>
-            <!--/.row--> 
-        </div>
-        <!--/.container--> 
-    </div>
-    <!--/.footer-->
+        <div class="footer" id="footer">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-4  col-md-2 col-sm-4 col-xs-6">
+                        <h3> Developers </h3>
+                        <ul>
+                            <li> <a href="#"> Alfonso Louie Alfonso </a> </li>
+                            <li> <a href="#"> John Patrick Agduma </a> </li>
+                            <li> <a href="#"> Jon Kirk Donio </a> </li>
+                            <li> <a href="#"> Niko Jay Mateo </a> </li>
+                        </ul>
+                    </div>
+                    <div class="col-lg-4  col-md-2 col-sm-4 col-xs-6">
+                        <h3> Company </h3>
+                        <ul>
+                            <li> <a href="#"> About Us </a> </li>
+                            <li> <a href="#"> Contact Us </a> </li>
+                            <li> <a href="#"> FAQs </a> </li>
+                            <li> <a href="#"> Policy </a> </li>
+                        </ul>
+                    </div>
+                            <div class="col-lg-4  col-md-3 col-sm-6 col-xs-12 ">
+                        <h3> Social media </h3>
+                
+                        <ul class="social">
+                            <li> <a href="#"> <i class=" fa fa-facebook">   </i> </a> </li>
+                            <li> <a href="#"> <i class="fa fa-twitter">   </i> </a> </li>
+                            <li> <a href="#"> <i class="fa fa-google-plus">   </i> </a> </li>
+                            <li> <a href="#"> <i class="fa fa-pinterest">   </i> </a> </li>
+                            <li> <a href="#"> <i class="fa fa-youtube">   </i> </a> </li>
+                        </ul>
+                    </div>
     
-    <div class="footer-bottom">
-        <div class="container">
-            <p class="centers" > Copyright © Culturama 2018. All right reserved. </p>
-
+            
+                </div>
+                <!--/.row--> 
+            </div>
+            <!--/.container--> 
         </div>
-    </div>
+        <!--/.footer-->
+    
+        <div class="footer-bottom">
+            <div class="container">
+                <p class="centers" > Copyright © Culturama 2018. All right reserved. </p>
+            </div>
+        </div>
 
-    <!-- Bootstrap core JavaScript -->
-    <script src="js/jquery.min.js"></script>
-    <script src="js/popper.min.js"></script>
-    <script src="js/bootbox.min.js"></script>
-    <script src="js/bootstrap.min.js"></script>
+        <!-- Bootstrap core JavaScript -->
+        <script src="js/jquery.min.js"></script>
+        <script src="js/popper.min.js"></script>
+        <script src="js/bootbox.min.js"></script>
+        <script src="js/bootstrap.min.js"></script>
 
         <script>
+
             function registerCourse(courseId, studentId) {
                 $('#hdnCourseId').val(courseId);
                 $('#hdnStudentId').val(studentId);
-                 $('#courseEnrollmentForm').submit();
+                $('#courseEnrollmentForm').submit();
             }
         </script>
     
-</body></html>
+    </body>
+</html>

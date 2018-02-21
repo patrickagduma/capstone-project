@@ -8,15 +8,15 @@
 	$sqlAddRegistration = "insert into student_class_enrollment(student_id, course_id, last_modified_date) value('" .$student_id."', '" .$course_id. "', now())";
 
 
-	$sqlApproveRegistration = "insert into student_classes(student_id, course_id, is_active, last_modified_date) value('" .$student_id."', '" .$course_id. "', 1, now())";
+	//$sqlApproveRegistration = "insert into student_classes(student_id, course_id, is_active, last_modified_date) value('" .$student_id."', '" .$course_id. "', 1, now())";
 
 	// echo "[sql]: " . $sqlAddRegistration;
 	if(mysqli_query($con, $sqlAddRegistration)){
-			header('Location:studentSearchClasses.php?cid=' . $course_id);
-		}
-		else{
-			echo "Error ".mysqli_error($con);
-		}
+		header('Location:studentSearchClasses.php?status=success_enrollment_request');
+	}
+	else{
+		echo "Error ".mysqli_error($con);
+	}
 
-		exit(0);
+	exit(0);
 ?>

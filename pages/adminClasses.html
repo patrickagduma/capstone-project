@@ -72,40 +72,27 @@
             <div class="row sm-flex-center top-space">
                 <div class="col-sm-12 col-md-12" style="padding: 1rem 1rem;">
                     <div class="panel panel-info">
-                        <h2 style="text-align: center;">Course Details</h2>
+                        <h2 style="text-align: center;">Class Details</h2>
                             <form id="signupform" class="form-horizontal" action="adminAddClasses.php" onsubmit="return validateForm();" method="post">
-                                <input type="hidden" id="hdnId" name="classId" />
-                                <input type="hidden" id="hndCourseId" name="courseId" value="<?=$courseId?>">
                                 <div class="modal-body">
                                     <div class="form-group has-error has-feedback">
                                         <label for="selClass" class="col-md-3 control-label">Subject</label>
                                         <div class="col-md-11">
-                                            <?php
-                                                if (isset($courseId)) {
-                                            ?>
-                                                <input type="hidden" name="sel_class" value="<?= $courseId ?>">
-                                                <select id="selClass" class="form-control" >
-                                            <?php
-                                                } else {
-                                            ?>
-                                                <select name="sel_class" id="selClass" class="form-control">
-                                            <?php
-                                                }
-                                            ?>
-                                                    <option class="list-group-item" value="">Select a subject</option>
-                                                    <?php
-                                                        if (mysqli_num_rows($resultCourses) > 0) {
-                                                            while($row = mysqli_fetch_array($resultCourses)){
-                                                                $optionHtml = "<option class='list-group-item' value='" . $row['code'] . "'";
-                                                                if ($row['id'] == $courseId) {
-                                                                    $optionHtml .= " selected";
-                                                                }
-                                                                $optionHtml .= ">" . $row['name'] . "</option>";
-                                                                echo $optionHtml;
+                                            <select id="selClass" name="subjectId" class="form-control">
+                                                <option class="list-group-item" value="">Select a subject</option>
+                                                <?php
+                                                    if (mysqli_num_rows($resultCourses) > 0) {
+                                                        while($row = mysqli_fetch_array($resultCourses)){
+                                                            $optionHtml = "<option class='list-group-item' value='" . $row['id'] . "'";
+                                                            if ($row['id'] == $courseId) {
+                                                                $optionHtml .= " selected";
                                                             }
-                                                        } 
-                                                    ?>
-                                                </select>
+                                                            $optionHtml .= ">" . $row['name'] . "</option>";
+                                                            echo $optionHtml;
+                                                        }
+                                                    } 
+                                                ?>
+                                            </select>
                                         </div>
                                     </div>
                                     <div class="form-group has-error has-feedback">
@@ -117,7 +104,17 @@
                                     <div class="form-group has-error has-feedback">
                                         <label for="txtClassInstructor" class="control-label">Class Instructor</label>
                                         <div>
-                                            <input type="text" id="txtClassInstructor" class="form-control" name="classInstructor" value="" placeholder="Class Instructor" title="Instructor">
+                                            <select id="selInstructor" name="instructorId" class="form-control">
+                                                <option class="list-group-item" value="">Select instructor</option>
+                                                <?php
+                                                    if (mysqli_num_rows($resultTeachers) > 0) {
+                                                        while($row = mysqli_fetch_array($resultTeachers)){
+                                                            $optionHtml = "<option class='list-group-item' value='" . $row['id'] . "'>" . $row['teacher_name'] . "</option>";
+                                                            echo $optionHtml;
+                                                        }
+                                                    } 
+                                                ?>
+                                            </select>
                                         </div>
                                     </div>
                                     <div class="form-group">
@@ -158,18 +155,15 @@
 
     <script>
         function validateForm() {
+            var selClass = $('#selClass').val();
             var classCode = $("#txtClassCode").val();
-            var classInstructor = $("#txtClassInstructor").val();
+            var classInstructor = $("#selInstructor").val();
             var yearLevel = $("#txtYearLevel").val();
             var section = $("#txtSection").val();
             var classGrade = $("#txtClassGrade").val();
-            
-            // console.log('[firstname]: ' + classCode);
-            // console.log('[lastname]: ' + className);
-            // console.log('[username]: ' + classDescription);
-            // console.log('[password]: ' + classGrade);
 
-            if(!classCode || 
+            if(!selClass ||
+                !classCode || 
                 !classInstructor ||
                 !yearLevel ||
                 !section ||

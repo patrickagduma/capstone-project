@@ -40,35 +40,35 @@
         </style>
     </head>
     <body class="bkg">
-    <!-- Navigation -->
-    <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top nav-header headfoot">
-        <div class="container ">
+        <!-- Navigation -->
+        <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top nav-header headfoot">
+            <div class="container ">
 
-                <a class="navbar-brand nav-linkN" style="text-transform: capitalize" href="adminHomepage.php">Administrator: Dashboard</a>
+                    <a class="navbar-brand nav-linkN" style="text-transform: capitalize" href="adminHomepage.php">Administrator: Dashboard</a>
 
-            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="collapse navbar-collapse" id="navbarResponsive">
-                <ul class="navbar-nav ml-auto">
-                    <li class="nav-item">
-                        <a class="nav-link nav-linkN" href="adminCourse.php"><i class="fa fa-cog" aria-hidden="true"></i> Subject </a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link nav-linkN" href="adminClasses.php"> <i class="fa fa-book" aria-hidden="true"></i> Classes </a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link nav-linkN" href="adminSubjectRegistrationRequests.php"> <i class="fa fa-check-square-o" aria-hidden="true"></i> Registration Requests </a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link nav-linkN" href="logout.php"> <i class="fa fa-sign-out" aria-hidden="true"></i> Logout </a>
-                    </li>
-                </ul>
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarResponsive">
+                    <ul class="navbar-nav ml-auto">
+                        <li class="nav-item">
+                            <a class="nav-link nav-linkN" href="adminCourse.php"><i class="fa fa-cog" aria-hidden="true"></i> Subject </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link nav-linkN" href="adminClasses.php"> <i class="fa fa-book" aria-hidden="true"></i> Classes </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link nav-linkN" href="adminSubjectRegistrationRequests.php"> <i class="fa fa-check-square-o" aria-hidden="true"></i> Registration Requests </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link nav-linkN" href="logout.php"> <i class="fa fa-sign-out" aria-hidden="true"></i> Logout </a>
+                        </li>
+                    </ul>
+                </div>
             </div>
-        </div>
-    </nav>
+        </nav>
 
-                <div class="container cont1">
+        <div class="container cont1">
             <div class="row sm-flex-center top-space">
                 <div class="col-sm-12 col-md-12" style="padding: 1rem 1rem;">
                     <div class="panel panel-info">
@@ -95,141 +95,44 @@
                                         <textarea class="form-control" id="txtClassDescription" name="classDescription" placeholder="Class or Course Description" title="Enter Class or Course Description" cols="30" rows="3" style="width: 91.5%"></textarea>
                                     </div>
                                 </div>
-
-                        <!-- 
-                        <div class="form-group">
-                            <label for="txtYearLevel" class="control-label">Year Level</label>
-                            <div>
-                                <input type="text" class="form-control" id="txtYearLevel" name="yearLevel" value="" placeholder="Year Level" title="Enter Year Level">
                             </div>
-                        </div>
-                        <div class="form-group">
-                            <label for="txtSection" class="control-label">Section</label>
-                            <div>
-                                <input type="text" class="form-control" id="txtSection" name="section" value="" placeholder="Section" title="Enter Section">
+                            <div class="form-group col-sm-12" style="text-align: center;">
+                                <button class="btn btn-info">Save</button>
                             </div>
-                        </div>
-                        <div class="form-group">
-                            <label for="txtClassGrade" class="control-label">Class Grading System</label>
-                            <div>
-                                <input type="text" class="form-control" id="txtClassGrade" name="classGrade" value="" placeholder="Grading System" title="Enter Grading System">
-                            </div>
-                        </div>
-                        -->
-
-                    </div>
-                    <div class="form-group col-sm-12" style="text-align: center;">
-                        <button class="btn btn-info">Save</button>
-                    </div>
-                </form> 
+                        </form> 
                     </div>
                 </div>
-      
             </div>
-
-
-
-
-
         </div>
 
-        <!-- Modal for Add Question -->
-        <!-- <div class="modal fade" id="myModal" role="dialog">
-            <div class="modal-dialog"> -->
+        <?php include('footer.html'); ?>
 
-                <!-- Modal content-->
-                <!-- <div class="modal-content">
-                <form id="signupform" class="form-horizontal" action="addCourse.php" onsubmit="return validateForm();" method="post">
-                    <div class="modal-header">
-                        <h4 class="modal-title">Course Details</h4>
-                        <button type="button" class="close" data-dismiss="modal">×</button>
-                    </div>
-                    <div class="modal-body">
-                        <div class="form-group has-error has-feedback">
-                            <label for="txtClassCode" class="control-label">Code</label>
-                            <div>
-                                <input type="text" id="txtClassCode" class="form-control" name="classCode" value="" placeholder="Class or Course Code" title="Enter Class or Course Code">
-                            </div>
-                        </div>
+        <!-- Bootstrap core JavaScript -->
+        <script src="js/jquery.min.js"></script>
+        <script src="js/popper.min.js"></script>
+        <script src="js/bootbox.min.js"></script>
+        <script src="js/bootstrap.min.js"></script>
 
-                        <div class="form-group">
-                            <label for="txtClassName" class="control-label">Name</label>
-                            <div>
-                                <input type="text" class="form-control" id="txtClassName" name="className" value="" placeholder="Class or Course Name" title="Enter Class or Course Name">
-                            </div>
-                        </div>
+        <script>
+            function validateForm() {
+                var classCode = $("#txtClassCode").val();
+                var className = $("#txtClassName").val();
+                var classDescription = $("textarea#txtClassDescription").val();
+                
+                // console.log('[firstname]: ' + classCode);
+                // console.log('[lastname]: ' + className);
+                // console.log('[username]: ' + classDescription);
+                // console.log('[password]: ' + classGrade);
 
-                        <div class="form-group">
-                            <label for="txtClassDescription" class="control-label">Description</label>
-                            <div>
-                                <textarea class="form-control" id="txtClassDescription" name="classDescription" placeholder="Class or Course Description" title="Enter Class or Course Description" cols="30" rows="3" style="width: 91.5%"></textarea>
-                            </div>
-                        </div>
+                if(!classCode || 
+                    !className ||
+                    !classDescription ){
+                    bootbox.alert("Please fill all required fields");
+                    return false;
+                }
 
-                        
-                        <div class="form-group">
-                            <label for="txtYearLevel" class="control-label">Year Level</label>
-                            <div>
-                                <input type="text" class="form-control" id="txtYearLevel" name="yearLevel" value="" placeholder="Year Level" title="Enter Year Level">
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <label for="txtSection" class="control-label">Section</label>
-                            <div>
-                                <input type="text" class="form-control" id="txtSection" name="section" value="" placeholder="Section" title="Enter Section">
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <label for="txtClassGrade" class="control-label">Class Grading System</label>
-                            <div>
-                                <input type="text" class="form-control" id="txtClassGrade" name="classGrade" value="" placeholder="Grading System" title="Enter Grading System">
-                            </div>
-                        </div>
-                       
-
-                    </div>
-                    <div class="modal-footer">
-                        <button class="btn btn-info">Save</button>
-                        <button class="btn btn-default" data-dismiss="modal">Close</button>
-                    </div>
-                </form> 
-                </div>
-
-            </div>
-
-        </div> -->
-        <!-- End: Modal For Add Question -->
-
-    <?php include('footer.html'); ?>
-
-    <!-- Bootstrap core JavaScript -->
-    <script src="js/jquery.min.js"></script>
-    <script src="js/popper.min.js"></script>
-    <script src="js/bootbox.min.js"></script>
-    <script src="js/bootstrap.min.js"></script>
-
-    <script>
-        function validateForm() {
-            var classCode = $("#txtClassCode").val();
-            var className = $("#txtClassName").val();
-            var classDescription = $("textarea#txtClassDescription").val();
-            
-            // console.log('[firstname]: ' + classCode);
-            // console.log('[lastname]: ' + className);
-            // console.log('[username]: ' + classDescription);
-            // console.log('[password]: ' + classGrade);
-
-            if(!classCode || 
-                !className ||
-                !classDescription ){
-                bootbox.alert("Please fill all required fields");
-                return false;
+                return true;
             }
-
-            return true;
-        }
-    </script>
-    
-
-
-</body></html>
+        </script>
+    </body>
+</html>
