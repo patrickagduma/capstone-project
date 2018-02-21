@@ -10,9 +10,11 @@
 			if ($fromPage == 'courseRegistration') {
 				header('Location:teacherRegistration.php?status=denied');
 			} else if ($fromPage == 'courseDetails') {
-				header('Location:editListCourse.php?id=' . $_POST['courseId'] . '&status=denied');
+				header('Location:editListCourse.php?id=' . $_POST['subjectId'] . '&status=denied');
+			} else if ($fromPage == 'adminCourseDetails') {
+				header('Location:adminCourseDetails.php?id=' . $_POST['subjectId'] . '&status=denied');
 			} else {
-				header('Location:teacherHomepage.php?status=denied');
+				header('Location:adminHomepage.php?status=denied');
 			}
 		}
 		else{

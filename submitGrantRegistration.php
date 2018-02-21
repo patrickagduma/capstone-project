@@ -3,7 +3,7 @@
 
 	$fromPage = $_POST['fromPage'];
 
-	$sqlInsert = "insert into student_classes(student_id, course_id, is_active, last_modified_date) value('".$_POST['studentId']."', '".$_POST['courseId']."', 1, now())
+	$sqlInsert = "insert into student_classes(student_id, class_id, is_active, last_modified_date) value('".$_POST['studentId']."', '".$_POST['courseId']."', 1, now())
 	";
 
 	$insert = mysqli_query($con, $sqlInsert);
@@ -15,9 +15,11 @@
 		if ($fromPage == 'courseRegistration') {
 			header('Location:teacherRegistration.php?status=approved');
 		} else if ($fromPage == 'courseDetails') {
-			header('Location:editListCourse.php?id=' . $_POST['courseId'] . '&status=approved');
+			header('Location:editListCourse.php?id=' . $_POST['subjectId'] . '&status=approved');
+		} else if ($fromPage == 'adminCourseDetails') {
+			header('Location:adminCourseDetails.php?id=' . $_POST['subjectId'] . '&status=approved');
 		} else {
-			header('Location:teacherHomepage.php?status=approved');
+			header('Location:adminHomepage.php?status=approved');
 		}
 	}
 	else{

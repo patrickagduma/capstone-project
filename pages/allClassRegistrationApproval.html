@@ -19,8 +19,8 @@
                                 <td><?= $row['subject'] ?></td>
                                 <td><?= $row['code'] ?></td>
                                 <td><?= $row['student_name'] ?></td>
-                                <td><button type="button" onclick="grantRegistration(<?= $row['id'] ?>, <?= $row['student_id'] ?>, <?= $row['course_id'] ?>)">Accept</button></td>
-                                <td><button type="button" onclick="denyRegistration(<?= $row['id'] ?>)">Deny</button></td>
+                                <td><button type="button" onclick="grantRegistration(<?= $row['id'] ?>, <?= $row['student_id'] ?>, <?= $row['subject_id'] ?>, <?= $row['course_id'] ?>)">Accept</button></td>
+                                <td><button type="button" onclick="denyRegistration(<?= $row['id'] ?>, <?= $row['subject_id'] ?>)">Deny</button></td>
                             </tr>
                         <?php
                                 }

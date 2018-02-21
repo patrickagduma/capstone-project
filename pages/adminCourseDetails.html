@@ -104,13 +104,14 @@
         <form id="grantRegistrationForm" action="submitGrantRegistration.php" method="post">
             <input type="hidden" id="hdnGrantRegistrationId" name="registrationId" />
             <input type="hidden" id="hdnGrantStudentId" name="studentId" />
-            <input type="hidden" id="hdnGrantCourseId" name="courseId" value="<?=$id?>" />
-            <input type="hidden" id="hdnGrantFromPage" name="fromPage" value="courseDetails" />
+            <input type="hidden" id="hdnGrantSubjectId" name="subjectId" />
+            <input type="hidden" id="hdnGrantCourseId" name="courseId" />
+            <input type="hidden" id="hdnGrantFromPage" name="fromPage" value="adminCourseDetails" />
         </form>
         <form id="denyRegistrationForm" action="submitDenyRegistration.php" method="post">
             <input type="hidden" id="hdnDenyRegistrationId" name="registrationId" />
-            <input type="hidden" id="hdnGrantCourseId" name="courseId" value="<?=$id?>" />
-            <input type="hidden" id="hdnGrantFromPage" name="fromPage" value="courseDetails" />
+            <input type="hidden" id="hdnDenySubjectId" name="subjectId" />
+            <input type="hidden" id="hdnDenyFromPage" name="fromPage" value="adminCourseDetails" />
         </form>
 
             <div class="row top-space">
@@ -451,15 +452,18 @@
                 $("#myModalVideo").modal('show');
             }
 
-            function grantRegistration(id, studentId, courseId) {
+            function grantRegistration(id, studentId, subjectId, courseId) {
                 $('#hdnGrantRegistrationId').val(id);
                 $('#hdnGrantStudentId').val(studentId);
-                 $('#grantRegistrationForm').submit();
+                $('#hdnGrantSubjectId').val(subjectId);
+                $('#hdnGrantCourseId').val(courseId);
+                $('#grantRegistrationForm').submit();
             }
 
-            function denyRegistration(id) {
+            function denyRegistration(id, subjectId) {
                 $('#hdnDenyRegistrationId').val(id);
-                 $('#denyRegistrationForm').submit();
+                $('#hdnDenySubjectId').val(subjectId);
+                $('#denyRegistrationForm').submit();
             }
     </script>
 

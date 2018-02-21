@@ -104,12 +104,14 @@
     <form id="grantRegistrationForm" action="submitGrantRegistration.php" method="post">
             <input type="hidden" id="hdnGrantRegistrationId" name="registrationId" />
             <input type="hidden" id="hdnGrantStudentId" name="studentId" />
+            <input type="hidden" id="hdnGrantSubjectId" name="subjectId" />
             <input type="hidden" id="hdnGrantCourseId" name="courseId" />
-            <input type="hidden" id="hdnGrantFromPage" name="fromPage" value="home" />
+            <input type="hidden" id="hdnGrantFromPage" name="fromPage" value="adminHome" />
         </form>
         <form id="denyRegistrationForm" action="submitDenyRegistration.php" method="post">
             <input type="hidden" id="hdnDenyRegistrationId" name="registrationId" />
-            <input type="hidden" id="hdnGrantFromPage" name="fromPage" value="home" />
+            <input type="hidden" id="hdnDenySubjectId" name="subjectId" />
+            <input type="hidden" id="hdnGrantFromPage" name="fromPage" value="adminHome" />
         </form>
 
     <?php include('footer.html'); ?>
@@ -138,16 +140,18 @@
         }
     ?>
 
-    function grantRegistration(id, studentId, courseId) {
+    function grantRegistration(id, studentId, subjectId, courseId) {
         $('#hdnGrantRegistrationId').val(id);
         $('#hdnGrantStudentId').val(studentId);
+        $('#hdnGrantSubjectId').val(subjectId);
         $('#hdnGrantCourseId').val(courseId);
-            $('#grantRegistrationForm').submit();
+        $('#grantRegistrationForm').submit();
     }
 
-    function denyRegistration(id) {
+    function denyRegistration(id, subjectId) {
         $('#hdnDenyRegistrationId').val(id);
-            $('#denyRegistrationForm').submit();
+        $('#hdnDenySubjectId').val(subjectId);
+        $('#denyRegistrationForm').submit();
     }
 
 </script>
