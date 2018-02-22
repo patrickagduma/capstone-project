@@ -91,7 +91,6 @@
                             <div class="form-group">
                                 <label class="control-label"><b>Base Grade:<br> <?= $baseGrade ?></b><p class="details"></p></label>
                             </div>
-
                             <div class="form-group">
                                 <div>
                                     <button class="btn btn-info" data-toggle="modal" data-target="#myModal"><i class="fa fa-info-circle" aria-hidden="true"></i>&nbsp;Course Details</button>
@@ -141,7 +140,7 @@
                                     <td><?= $row['topic'] ?></td>
                                     <td><a href="<?= $row['video_link'] ?>" target="_blank"><?= $row['video_link'] ?></a></td>
                                     <td>
-                                    <button class="btn btn-info" onclick="editVideoPopup(<?= $row['course_id'] ?>, <?= $row['id'] ?>, '<?= $row['topic'] ?>', '<?= $row['video_link'] ?>')" data-target="#myModalVideo"><i class="fa fa-edit" aria-hidden="true"></i>&nbsp;Edit Video Details</button>
+                                    <button class="btn btn-info" onclick="editVideoPopup(<?= $row['subject_id'] ?>, <?= $row['id'] ?>, '<?= $row['topic'] ?>', '<?= $row['video_link'] ?>')" data-target="#myModalVideo"><i class="fa fa-edit" aria-hidden="true"></i>&nbsp;Edit Video Details</button>
                                     </td>
                                     <td>&nbsp;</td>
                                 </tr>

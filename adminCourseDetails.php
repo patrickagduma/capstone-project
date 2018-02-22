@@ -52,8 +52,7 @@
 			$description = $row['description'];
 		}
 
-		$sqlEditVideos = "select * from subject_videos 
-						  where subject_id =" . $_GET['id'];
+		$sqlEditVideos = "select * from subject_videos" ;
 		$resultEditVideos = mysqli_query($con, $sqlEditVideos);
 
 

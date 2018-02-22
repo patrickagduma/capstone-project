@@ -22,18 +22,18 @@
 
 
 	/* START: Courses */
-	$sqlCourses = "select * from classes where created_by = " . $_SESSION['id'];
+	$sqlCourses = "select * from subject where 1=1 ";
 	if (isset($courseId)) {
 		$sqlCourses .= " and id = " . $courseId;
 	}
-	$sqlCourses .= " order by class_name ";
+	$sqlCourses .= " order by name ";
 	$resultCourses = mysqli_query($con, $sqlCourses);
 	/* END: Courses */
 
 	/* START: Videos */
 	$sqlClassVideos = " SELECT  v.*  FROM `subject_videos` v ";
 	if (isset($courseId)) {
-		$sqlClassVideos .= " WHERE v.course_id =  " . $courseId;
+		$sqlClassVideos .= " WHERE v.subject_id =  " . $courseId;
 	}
 	$sqlClassVideos .= " order by topic ";
 

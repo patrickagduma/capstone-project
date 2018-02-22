@@ -4,7 +4,7 @@
 	session_start();
 
 	$courseId = $_GET['cid'];
-	$sqlCourses = "select * from subject order by class_name ";
+	$sqlCourses = "select * from subject order by name ";
 	$resultCourses = mysqli_query($con, $sqlCourses);
 
 	if($resultCourses){
