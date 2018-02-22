@@ -16,9 +16,7 @@
         <!-- Custom styles for this template -->
         <style>
             body {
-                /* background-image: url("inner.jpg"); */
-                background-size: 102% 102%;
-                background-repeat: no-repeat;
+
                 padding-top: 56px;
                 padding-top: 54px;
             }
@@ -46,24 +44,23 @@
             </button>
             <div class="collapse navbar-collapse" id="navbarResponsive">
                 <ul class="navbar-nav ml-auto">
-                            <li class="nav-item">
-                                <a class="nav-link nav-linkN" href="course.php"><i class="fa fa-cog" aria-hidden="true"></i> Classes</a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link nav-linkN" href="teacherRegistration.php"> <i class="fa fa-check-square-o" aria-hidden="true"></i> Registrations</a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link nav-linkN" href="Teacher_Topic.php"> <i class="fa fa-book" aria-hidden="true"></i> Topics </a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link nav-linkN" href="logout.php"> <i class="fa fa-sign-out" aria-hidden="true"></i> Logout </a>
-                            </li>
+                    <li class="nav-item">
+                        <a class="nav-link nav-linkN" href="course.php"><i class="fa fa-cog" aria-hidden="true"></i> Classes</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link nav-linkN" href="teacherRegistration.php"> <i class="fa fa-check-square-o" aria-hidden="true"></i> Registrations</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link nav-linkN" href="Teacher_Topic.php"> <i class="fa fa-book" aria-hidden="true"></i> Topics </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link nav-linkN" href="logout.php"> <i class="fa fa-sign-out" aria-hidden="true"></i> Logout </a>
+                    </li>
                 </ul>
             </div>
         </div>
     </nav>
-
-        <!-- Page Content -->
+     <!-- Page Content -->
 
             <div id="divMain" class="container cont1">
                 <div class="row">
@@ -76,12 +73,14 @@
         <form id="grantRegistrationForm" action="submitGrantRegistration.php" method="post">
             <input type="hidden" id="hdnGrantRegistrationId" name="registrationId" />
             <input type="hidden" id="hdnGrantStudentId" name="studentId" />
+            <input type="hidden" id="hdnGrantSubjectId" name="subjectId" />
             <input type="hidden" id="hdnGrantCourseId" name="courseId" />
-            <input type="hidden" id="hdnGrantFromPage" name="fromPage" value="courseRegistration" />
+            <input type="hidden" id="hdnGrantFromPage" name="fromPage" value="adminHome" />
         </form>
         <form id="denyRegistrationForm" action="submitDenyRegistration.php" method="post">
             <input type="hidden" id="hdnDenyRegistrationId" name="registrationId" />
-            <input type="hidden" id="hdnGrantFromPage" name="fromPage" value="courseRegistration" />
+            <input type="hidden" id="hdnDenySubjectId" name="subjectId" />
+            <input type="hidden" id="hdnGrantFromPage" name="fromPage" value="adminHome" />
         </form>
 
         <div class=" ">

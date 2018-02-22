@@ -155,47 +155,10 @@
                 </div>
             </div>
 
-            <hr>
-            <!-- <div class="row top-space">
-                <div class="col-sm-12" >
-                    <h4><i class="fa fa-file-text-o" aria-hidden="true"></i>&nbsp;Topics</h4>
-                    <table id="tblClassTopics" class="table table-hover" style="overflow: scroll; height: auto;" >
-                        <thead>
-                        <tr>
-                            <th>Topic</th>
-                            <th>Video</th>
-                            <th>&nbsp;</th>
-                        </tr>
-                        </thead>
-                        <tbody>
-                            <?php
-                                if (mysqli_num_rows($resultTopic) > 0) {
-                                    while($row = mysqli_fetch_array($resultTopic)){
-                            ?>
-                                <tr>
-                                    <td><?= $row['topic'] ?></td>
-                                    <td><a href="<?= $row['video_link'] ?>" target="_blank"><?= $row['video_topic'] ?></a></td>
-                                    <td>&nbsp;</td>
-                                </tr>
-                            <?php
-                                    }
-                                } else {
-                            ?>
-                                <tr>
-                                    <td colspan="3">No Data Available</td>
-                                </tr>
-                            <?php
-                                }
-                            ?>
-                        </tbody>
-                    </table>
-                    <a href="SubjectTopics.php?cid=<?= $id ?>" class="btn btn-default">Add Topic</a>
-                </div>
-            </div> -->
-            <hr>
+<hr>
 
             <div class="row top-space1">
-                <div class="col-sm-12" style="overflow: scroll; height: 300px;">
+                <div class="col-sm-12" style="overflow: scroll; height: 250px;">
                     <h4>Class List</h4>
                     <table id="tblClassList" class="table table1 table-hover">
                     
