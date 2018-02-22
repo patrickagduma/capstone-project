@@ -231,7 +231,7 @@
             $('#selVideoTopics').on('change', function(){
                 console.log("[selected-value]: " + this.value);
                 console.log("[selected-text]: " + $(this).text());
-                $('#hdnTopicName').val($( "#selClass option:selected" ).text());
+                $('#hdnTopicName').val($( "#selVideoTopics option:selected" ).text());
                 //https://www.w3schools.com/jquery/ajax_getjson.asp
                 $.getJSON("getTopicVideoLink.php?id=" + this.value).done(function(data){
                     $.each(data, function(i, obj){
