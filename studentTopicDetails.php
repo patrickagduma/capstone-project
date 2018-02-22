@@ -5,12 +5,12 @@
 	$topicId = $_GET['id'];
 	$studentId = $_SESSION['id'];
 	if (isset($topicId)) {
-			$sql = " SELECT t.*, cv.video_link, c.class_name
+			$sql = " SELECT t.*, sv.video_link, s.name
 					FROM `topic` t 
-					inner join subject_videos cv on 
-						cv.id = t.video_id
-		            inner join classes c on
-						c.id = t.course_id
+					inner join subject_videos sv on 
+						sv.id = t.video_id
+		            inner join subject s on
+						s.id = t.subject_id
 					where
 						t.id = " . $topicId;
 				$result = mysqli_query($con, $sql);

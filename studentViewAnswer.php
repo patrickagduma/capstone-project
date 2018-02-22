@@ -6,7 +6,7 @@
 
 	$topicId = $_GET['id'];
 
-	$sql  = " SELECT distinct ti.id, tia.student_id, ti.course_id, ti.topic_id, ti.question, ti.boolean_answer, ti.single_answer,
+	$sql  = " SELECT distinct ti.id, tia.student_id, ti.subject_id, ti.topic_id, ti.question, ti.boolean_answer, ti.single_answer,
 			  ti.multi_answer_1, ti.multi_answer_2, ti.multi_answer_3, ti.multi_answer_4, ti.multi_answer_5, ti.multi_answer_6, tia.banswer,
 			  tia.sanswer, tia.manswers from topic t
 			  left join topic_item ti on ti.topic_id = t.id

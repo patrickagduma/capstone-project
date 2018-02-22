@@ -105,17 +105,19 @@
             }
         ?>
 
-            function grantRegistration(id, studentId, courseId) {
-                $('#hdnGrantRegistrationId').val(id);
-                $('#hdnGrantStudentId').val(studentId);
-                $('#hdnGrantCourseId').val(courseId);
-                 $('#grantRegistrationForm').submit();
-            }
+    function grantRegistration(id, studentId, subjectId, courseId) {
+        $('#hdnGrantRegistrationId').val(id);
+        $('#hdnGrantStudentId').val(studentId);
+        $('#hdnGrantSubjectId').val(subjectId);
+        $('#hdnGrantCourseId').val(courseId);
+        $('#grantRegistrationForm').submit();
+    }
 
-            function denyRegistration(id) {
-                $('#hdnDenyRegistrationId').val(id);
-                 $('#denyRegistrationForm').submit();
-            }
+    function denyRegistration(id, subjectId) {
+        $('#hdnDenyRegistrationId').val(id);
+        $('#hdnDenySubjectId').val(subjectId);
+        $('#denyRegistrationForm').submit();
+    }
 
         </script>
     

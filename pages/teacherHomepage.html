@@ -105,12 +105,12 @@
             <input type="hidden" id="hdnGrantStudentId" name="studentId" />
             <input type="hidden" id="hdnGrantSubjectId" name="subjectId" />
             <input type="hidden" id="hdnGrantCourseId" name="courseId" />
-            <input type="hidden" id="hdnGrantFromPage" name="fromPage" value="adminHome" />
+            <input type="hidden" id="hdnGrantFromPage" name="fromPage" value="teacherHome" />
         </form>
         <form id="denyRegistrationForm" action="submitDenyRegistration.php" method="post">
             <input type="hidden" id="hdnDenyRegistrationId" name="registrationId" />
             <input type="hidden" id="hdnDenySubjectId" name="subjectId" />
-            <input type="hidden" id="hdnGrantFromPage" name="fromPage" value="adminHome" />
+            <input type="hidden" id="hdnGrantFromPage" name="fromPage" value="teacherHome" />
         </form>
 
     <?php include('footer.html'); ?>
@@ -119,10 +119,10 @@
 
 
     <!-- Bootstrap core JavaScript -->
-    <script src="js/teacherHomepage/jquery.min.js"></script>
-    <script src="js/teacherHomepage/popper.min.js"></script>
-    <script src="js/teacherHomepage/bootbox.min.js"></script>
-    <script src="js/teacherHomepage/bootstrap.min.js"></script>
+    <script src="js/jquery.min.js"></script>
+    <script src="js/popper.min.js"></script>
+    <script src="js/bootbox.min.js"></script>
+    <script src="js/bootstrap.min.js"></script>
 
 
 <script>
@@ -135,17 +135,19 @@
             }
         ?>
 
-            function grantRegistration(id, studentId, courseId) {
-                $('#hdnGrantRegistrationId').val(id);
-                $('#hdnGrantStudentId').val(studentId);
-                $('#hdnGrantCourseId').val(courseId);
-                 $('#grantRegistrationForm').submit();
-            }
+    function grantRegistration(id, studentId, subjectId, courseId) {
+        $('#hdnGrantRegistrationId').val(id);
+        $('#hdnGrantStudentId').val(studentId);
+        $('#hdnGrantSubjectId').val(subjectId);
+        $('#hdnGrantCourseId').val(courseId);
+        $('#grantRegistrationForm').submit();
+    }
 
-            function denyRegistration(id) {
-                $('#hdnDenyRegistrationId').val(id);
-                 $('#denyRegistrationForm').submit();
-            }
+    function denyRegistration(id, subjectId) {
+        $('#hdnDenyRegistrationId').val(id);
+        $('#hdnDenySubjectId').val(subjectId);
+        $('#denyRegistrationForm').submit();
+    }
 
 </script>
 

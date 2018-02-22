@@ -15,7 +15,7 @@
 	$description = '';
 	// $year_level = '';
 	// $section = '';
-	// $baseGrade = 50;
+	$baseGrade = 50;
 	$course_id = '';
 	$topic = '';
 	$video_link = '';
@@ -52,7 +52,8 @@
 			$description = $row['description'];
 		}
 
-		$sqlEditVideos = "select * from subject_videos" ;
+		$sqlEditVideos = "select * from subject_videos 
+						  where subject_id =" . $_GET['id'];
 		$resultEditVideos = mysqli_query($con, $sqlEditVideos);
 
 
