@@ -1,8 +1,9 @@
             <div>
-                <h4 style="text-align: center;">Student Registration to Class for Approval</h4>
+                <h4>Subject Registration Requests for Approval</h4>
                 <table id="tblEnrollmentForApproval" class="table table1 table-hover" style="background-color: #ffffff">
                     <thead>
                     <tr>
+                        <th>Subject</th>
                         <th>Class</th>
                         <th>Student</th>
                         <th>Accept</th>
@@ -15,10 +16,11 @@
                                 while($row = mysqli_fetch_array($resultRegistration)){
                         ?>
                             <tr>
-                                <td><?= $row['class_name'] ?></td>
+                                <td><?= $row['subject'] ?></td>
+                                <td><?= $row['code'] ?></td>
                                 <td><?= $row['student_name'] ?></td>
-                                <td><button class="btn" type="button" onclick="grantRegistration(<?= $row['id'] ?>, <?= $row['student_id'] ?>, <?= $row['course_id'] ?>)">Accept</button></td>
-                                <td><button class="btn" type="button" onclick="denyRegistration(<?= $row['id'] ?>)">Deny</button></td>
+                                <td><button type="button" class="btn" onclick="grantRegistration(<?= $row['id'] ?>, <?= $row['student_id'] ?>, <?= $row['subject_id'] ?>, <?= $row['course_id'] ?>)">Accept</button></td>
+                                <td><button type="button" class="btn" onclick="denyRegistration(<?= $row['id'] ?>, <?= $row['subject_id'] ?>)">Deny</button></td>
                             </tr>
                         <?php
                                 }

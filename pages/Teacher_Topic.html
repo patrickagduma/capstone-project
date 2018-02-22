@@ -73,8 +73,8 @@
                 <div class="row sm-flex-center top-space top-space1" style="border-right: none;">
                     <div class="col-sm-12">
                         <div class="panel panel-info">
-                            <h4 style="text-align: center;">Subject Topic</h4>
-                            <div class="panel-body" >
+                            <h4>Subject Topic</h4>
+                            <div class="panel-body" style="border-right: 1px solid #eee;">
                                 <div class="form-group has-error has-feedback">
                                     <label for="selClass" class="col-md-3 control-label">Subject</label>
                                     <div class="col-md-11">
@@ -91,7 +91,7 @@
                                                                 $selected = " selected";
                                                             }
                                                             
-                                                            echo "<option class=\"list-group-item\" value=\"" . $row['id'] . "\"" . $selected . ">" . $row['class_name'] . "(" . $row['course_code'] . ")" . "</option>";
+                                                            echo "<option class=\"list-group-item\" value=\"" . $row['id'] . "\"" . $selected . ">" . $row['name'] . "(" . $row['code'] . ")" . "</option>";
                                                         }
                                                     }
                                                 ?>
@@ -100,14 +100,7 @@
                                 </div>
 
                                 <div class="form-group">
-                                    <label for="txtTitle" class="col-md-3 control-label">Topic</label>
-                                    <div class="col-md-11">
-                                        <input type="text" class="form-control" id="txtTopic" name="topic" size="120" value="<?= $topicText ?>"><br>
-                                    </div>
-                                </div>
-
-                                <div class="form-group">
-                                    <label for="txtTitle" class="col-md-3 control-label">Video Topics</label>
+                                    <label for="txtTitle" class="col-md-3 control-label">Topics</label>
                                     <div class="col-md-11">
                                         <select id="selVideoTopics" name="videoLink" class="form-control">
                                             <!-- TODO: convert ni gikan dapat sa database -->
@@ -124,6 +117,15 @@
                                         </select>
                                     </div>
                                 </div>
+
+                                <div class="form-group">
+                                    <label for="txtTitle" class="col-md-3 control-label">Video Link</label>
+                                    <div class="col-md-11">
+                                        <input type="text" class="form-control" id="txtTopicVideo" name="topicVideo" size="120" value="<?= $topicText ?>"><br>
+                                    </div>
+                                </div>
+
+                                
 
                                 <div id="divVplayer" class="form-group" style="display: none;">
                                     <iframe src=""></iframe>
@@ -199,7 +201,7 @@
     
     <div class="footer-bottom">
         <div class="container">
-            <p class="centers" style="color: #fff;" > Copyright © Culturama 2018. All right reserved. </p>
+            <p class="centers" > Copyright © Culturama 2018. All right reserved. </p>
 
         </div>
     </div>
@@ -216,7 +218,7 @@
             $('#selClass').on('change', function(){
                 console.log("[selected-value]: " + this.value)
                 //https://www.w3schools.com/jquery/ajax_getjson.asp
-                $.getJSON("getClassVideos.php?c=" + this.value).done(function(data){
+                $.getJSON("getSubjectTopics.php?s=" + this.value).done(function(data){
                     $("#selVideoTopics").empty().append('<option value=\'-1\'>- Please select -</option>');
                     $.each(data, function(i, obj){
                         console.log("index: " + i + "\t object: " + obj);
@@ -224,25 +226,36 @@
                     });
                 });
             });
-            
+
+            $('#selVideoTopics').on('change', function(){
+                console.log("[selected-value]: " + this.value)
+                //https://www.w3schools.com/jquery/ajax_getjson.asp
+                $.getJSON("getTopicVideoLink.php?id=" + this.value).done(function(data){
+                    $.each(data, function(i, obj){
+                        console.log("index: " + i + "\t object: " + obj.video_link);
+                        $("#txtTopicVideo").val(obj.video_link);
+                    });
+                });
+            });
+     
         });
 
         function cancelTopicCreation(){
             if (choice = confirm("This is clear all topic data entered.")) {
-                window.location.href='cancelTopicCreation.php';
+                window.location.href='adminCancelTopicCreation.php';
             }
         }
 
         function saveTopic(){
             if (validateForm()) {
-                window.location.href='processTopicSave.php'; 
+                window.location.href='adminProcessTopicSave.php'; 
             }
         }
 
         function validateForm() {
             var selClass = $("#selClass").val();
             var selVideoTopics = $("#selVideoTopics").val();
-            var txtTopic = $("#txtTopic").val();
+            var txtTopicVideo = $("#txtTopicVideo").val();
             var txtTopicSummary = $("textarea#txtTopicSummary").val();
 
             // console.log("[selClass]: " + selClass);
@@ -252,7 +265,7 @@
 
             if(!selClass || 
                 !selVideoTopics || 
-                !txtTopic || 
+                !txtTopicVideo || 
                 !txtTopicSummary){
                 bootbox.alert("Please fill all required fields");
                 return false;

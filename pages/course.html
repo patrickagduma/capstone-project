@@ -73,8 +73,8 @@
                 <div class="col-sm-12 col-md-12" style="padding: 1rem 1rem;">
                     <div class="panel panel-info">
                         <h2 style="text-align: center;">Class Details</h2>
-                            <form id="signupform" class="form-horizontal" action="adminAddClasses.php" onsubmit="return validateForm();" method="post">
-                            <input type="hidden" id="hdnTeacher" name="teacherId" value="<?= $_SESSION["id"] ?>">
+                            <form id="signupform" class="form-horizontal" action="addCourse.php" onsubmit="return validateForm();" method="post">
+                            <input type="hidden" id="hdnTeacher" name="instructorId" value="<?= $_SESSION["id"] ?>">
                                 <div class="modal-body">
                                     <div class="form-group has-error has-feedback">
                                         <label for="selClass" class="col-md-3 control-label">Subject</label>
@@ -143,14 +143,12 @@
         function validateForm() {
             var selClass = $('#selClass').val();
             var classCode = $("#txtClassCode").val();
-            var classInstructor = $("#selInstructor").val();
             var yearLevel = $("#txtYearLevel").val();
             var section = $("#txtSection").val();
             var classGrade = $("#txtClassGrade").val();
 
             if(!selClass ||
                 !classCode || 
-                !classInstructor ||
                 !yearLevel ||
                 !section ||
                 !classGrade ){

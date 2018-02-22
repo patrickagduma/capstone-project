@@ -103,12 +103,14 @@
     <form id="grantRegistrationForm" action="submitGrantRegistration.php" method="post">
             <input type="hidden" id="hdnGrantRegistrationId" name="registrationId" />
             <input type="hidden" id="hdnGrantStudentId" name="studentId" />
+            <input type="hidden" id="hdnGrantSubjectId" name="subjectId" />
             <input type="hidden" id="hdnGrantCourseId" name="courseId" />
-            <input type="hidden" id="hdnGrantFromPage" name="fromPage" value="home" />
+            <input type="hidden" id="hdnGrantFromPage" name="fromPage" value="adminHome" />
         </form>
         <form id="denyRegistrationForm" action="submitDenyRegistration.php" method="post">
             <input type="hidden" id="hdnDenyRegistrationId" name="registrationId" />
-            <input type="hidden" id="hdnGrantFromPage" name="fromPage" value="home" />
+            <input type="hidden" id="hdnDenySubjectId" name="subjectId" />
+            <input type="hidden" id="hdnGrantFromPage" name="fromPage" value="adminHome" />
         </form>
 
     <?php include('footer.html'); ?>
