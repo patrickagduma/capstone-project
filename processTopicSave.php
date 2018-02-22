@@ -2,7 +2,10 @@
     require_once('libs/connect.php');
     session_start();
 
-    $topicDetails = $_SESSION['topic'];
+    $topicDetails = null;
+    if (isset($_SESSION['topic'])) {
+        $topicDetails = $_SESSION['topic'];
+    }
     
     $sqlTopic = "insert into topic(subject_id, video_id, topic, summary, permalink) 
     value('".$topicDetails['courseId']."', '".$topicDetails['videoLink']."', '".$topicDetails['topicVideo']."', '".$topicDetails['summary']."', '".$topicDetails['permalink']."')";

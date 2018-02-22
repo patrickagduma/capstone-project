@@ -3,7 +3,7 @@
 	
 	session_start();
 
-	$topic = $_POST['topic'];
+	$topic = $_POST['topicName'];
 	$permalink = $topic;
 	$permalink = str_replace(' ', '_', $permalink);
 	$permalink = preg_replace('/[^A-Za-z0-9_]/', '', $permalink);
