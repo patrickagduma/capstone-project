@@ -105,7 +105,7 @@
                                     <div class="col-md-11">
                                         <select id="selVideoTopics" name="videoLink" class="form-control">
                                             <!-- TODO: convert ni gikan dapat sa database -->
-                                            <option value="">Select a video</option>
+                                            <option value="">Select a topic or lesson</option>
                                             <?php
                                                 if (mysqli_num_rows($resultClassVideo) > 0) {
                                                     while($row = mysqli_fetch_array($resultClassVideo)){
@@ -122,7 +122,7 @@
                                 <div class="form-group">
                                     <label for="txtTitle" class="col-md-3 control-label">Video Link</label>
                                     <div class="col-md-11">
-                                        <input type="text" class="form-control" id="txtTopicVideo" name="topicVideo" size="120" value="<?= $topicText ?>"><br>
+                                        <input type="text" class="form-control" id="txtTopicVideo" name="topicVideo" size="120" value="<?= $topicVideoLink ?>"><br>
                                     </div>
                                 </div>
 

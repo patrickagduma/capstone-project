@@ -5,6 +5,7 @@
 	$courseId = null;
 	$topicText = "";
 	$topicSummary = "";
+	$topicVideoLink = "";
 	
 	if (isset($_GET['cid'])) {
 		$courseId = $_GET['cid'];
@@ -17,6 +18,7 @@
 			$courseId = $topicDetails['courseId'];
 			$topicText = $topicDetails['topic'];
 			$topicSummary = $topicDetails['summary'];
+			$topicVideoLink = $topicDetails['videoUrl'];
 		}
 	}
 

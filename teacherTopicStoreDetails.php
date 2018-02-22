@@ -9,6 +9,8 @@
 	$permalink = preg_replace('/[^A-Za-z0-9_]/', '', $permalink);
 	$permalink = strtolower($permalink);
 
+	echo "[topic]: " . $topic . "<br>";
+	echo "[permalink]: " . $permalink . "<br>";
 
 	$unsaveTopic = $_SESSION['topic'];
 	if (!isset($unsaveTopic)) {
@@ -18,6 +20,7 @@
 	$unsaveTopic['courseId'] = $_POST['courseId'];
 	$unsaveTopic['topic'] = $topic;
 	$unsaveTopic['videoLink'] = $_POST['videoLink'];
+	$unsaveTopic['videoUrl'] = $_POST['topicVideo'];
 	$unsaveTopic['summary'] = $_POST['summary'];
 	$unsaveTopic['permalink'] = $permalink;
 
