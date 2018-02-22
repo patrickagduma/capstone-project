@@ -5,7 +5,7 @@
 
 	$student_id = $_POST['studentId'];
 	$course_id = $_POST['courseId'];
-	$sql = "insert into student_classes(student_id, course_id, is_active, last_modified_date) value('" .$student_id."', '" .$course_id. "', 1, now())
+	$sql = "insert into student_classes(student_id, class_id, is_active, last_modified_date) value('" .$student_id."', '" .$course_id. "', 1, now())
 	";
 
 	// echo "[sql]: " . $sql;
