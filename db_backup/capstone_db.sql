@@ -33,7 +33,7 @@ CREATE TABLE `classes` (
   `last_modified_date` date DEFAULT NULL,
   `base_grade` int(11) NOT NULL DEFAULT '50',
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=30 DEFAULT CHARSET=latin1;
+) ENGINE=MyISAM AUTO_INCREMENT=3 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -42,7 +42,7 @@ CREATE TABLE `classes` (
 
 LOCK TABLES `classes` WRITE;
 /*!40000 ALTER TABLE `classes` DISABLE KEYS */;
-INSERT INTO `classes` VALUES (11,9,'KF-101',1,'4','Talakitok',22,'2018-02-22',40),(12,9,'Drunken Fist',20,'5','Pasang-awa',22,'2018-02-22',50),(13,9,'Lubricant 2',18,'3','Hampas-lupa',22,'2018-02-22',60),(14,5,'DUM1-101',18,'1','AAA',22,'2018-02-22',50),(15,5,'DUM1-102',1,'1','AAB',22,'2018-02-22',40),(16,5,'DUM-103',20,'1','AAC',22,'2018-02-22',55),(17,6,'DUM2-201',18,'2','BAA',22,'2018-02-22',40),(18,6,'DUM2-202',1,'2','BAB',22,'2018-02-22',40),(19,6,'DUM2-203',20,'2','BAC',22,'2018-02-22',50),(20,7,'DUM3-301',1,'3','CAA',22,'2018-02-22',50),(21,7,'DUM3-302',20,'3','CAB',22,'2018-02-22',60),(22,7,'DUM3-303',18,'3','CAC',22,'2018-02-22',70),(23,8,'DUM4-401',20,'4','DAA',22,'2018-02-22',30),(24,8,'DUM4-402',18,'4','DAB',22,'2018-02-22',40),(25,8,'DUM4-403',1,'4','DAC',22,'2018-02-22',60),(26,4,'apple101',1,'4','apple',1,'2018-02-22',50),(27,5,'dummy101',1,'5','dummy',1,'2018-02-22',40),(28,9,'kung123',1,'2','kung',1,'2018-02-22',50),(29,10,'orange101',23,'5','5',22,'2018-02-22',50);
+INSERT INTO `classes` VALUES (1,1,'AAA',1,'3','Apple',22,'2018-02-22',50),(2,2,'AAB',1,'2','banana',1,'2018-02-22',50);
 /*!40000 ALTER TABLE `classes` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -60,7 +60,7 @@ CREATE TABLE `student_class_enrollment` (
   `status` varchar(10) DEFAULT NULL,
   `last_modified_date` date NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=21 DEFAULT CHARSET=latin1;
+) ENGINE=MyISAM AUTO_INCREMENT=9 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -69,7 +69,7 @@ CREATE TABLE `student_class_enrollment` (
 
 LOCK TABLES `student_class_enrollment` WRITE;
 /*!40000 ALTER TABLE `student_class_enrollment` DISABLE KEYS */;
-INSERT INTO `student_class_enrollment` VALUES (13,2,11,'approved','2018-02-22'),(14,2,17,'approved','2018-02-22'),(15,2,15,'approved','2018-02-22'),(16,2,24,'denied','2018-02-22'),(17,3,27,'denied','2018-02-22'),(18,19,13,'approved','2018-02-22'),(19,2,26,'approved','2018-02-22'),(20,24,29,'approved','2018-02-22');
+INSERT INTO `student_class_enrollment` VALUES (4,3,1,'approved','2018-02-22'),(3,3,2,'approved','2018-02-22'),(5,2,2,'approved','2018-02-22'),(6,2,1,'approved','2018-02-22'),(7,19,2,'approved','2018-02-22'),(8,19,1,'approved','2018-02-22');
 /*!40000 ALTER TABLE `student_class_enrollment` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -87,7 +87,7 @@ CREATE TABLE `student_classes` (
   `is_active` int(1) NOT NULL,
   `last_modified_date` date NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=17 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -96,7 +96,7 @@ CREATE TABLE `student_classes` (
 
 LOCK TABLES `student_classes` WRITE;
 /*!40000 ALTER TABLE `student_classes` DISABLE KEYS */;
-INSERT INTO `student_classes` VALUES (11,2,11,1,'2018-02-22'),(12,2,17,1,'2018-02-22'),(13,2,15,1,'2018-02-22'),(14,19,13,1,'2018-02-22'),(15,2,4,1,'2018-02-22'),(16,24,10,1,'2018-02-22');
+INSERT INTO `student_classes` VALUES (3,3,2,1,'2018-02-22'),(4,3,1,1,'2018-02-22'),(5,2,1,1,'2018-02-22'),(6,19,1,1,'2018-02-22'),(7,2,2,1,'2018-02-22'),(8,19,2,1,'2018-02-22');
 /*!40000 ALTER TABLE `student_classes` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -114,7 +114,7 @@ CREATE TABLE `subject` (
   `description` text,
   `created_by` int(11) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -123,7 +123,7 @@ CREATE TABLE `subject` (
 
 LOCK TABLES `subject` WRITE;
 /*!40000 ALTER TABLE `subject` DISABLE KEYS */;
-INSERT INTO `subject` VALUES (4,'Fil1','Filipino 1','Sample Description for Filipino 1',22),(5,'dum1','dummy subject 1','dummy',22),(6,'dum2','dummy subject 2','dummy',22),(7,'dum3','dummy subject 3','dummy',22),(8,'dum4','dummy subject 4','dummy',22),(9,'MA1KF','Kung Fu','Introduction to Martial Arts with Kung Fu',22),(10,'theo101','theology','sample theology',22);
+INSERT INTO `subject` VALUES (1,'ENG101','English','sample description english',22),(2,'FIL101','Filipino','sample description filipino',22),(3,'MATH101','Mathematics','sample description mathematics',22);
 /*!40000 ALTER TABLE `subject` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -142,7 +142,7 @@ CREATE TABLE `subject_videos` (
   `last_modified_date` date NOT NULL,
   `created_by` int(11) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=20 DEFAULT CHARSET=latin1;
+) ENGINE=MyISAM AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -151,7 +151,7 @@ CREATE TABLE `subject_videos` (
 
 LOCK TABLES `subject_videos` WRITE;
 /*!40000 ALTER TABLE `subject_videos` DISABLE KEYS */;
-INSERT INTO `subject_videos` VALUES (16,2,'sample topic','https://www.youtube.com/watch?v=F21S9Wpi0y8','2018-02-18',1),(3,6,'lesson 3','https://www.youtube.com/embed/CEu7h86MYoA','2018-02-07',1),(10,8,'Lesson4','https://www.youtube.com/embed/kSwBJXNwJYM','2018-02-13',18),(11,1,'sample','https://www.youtube.com/watch?v=ALSX2Yb3ito235','2018-02-15',1),(15,1,'Updated video sample','https://www.youtube.com/embed/LlXl0sFy8LA','2018-02-17',1),(17,9,'Lesson 1','https://www.youtube.com/embed/8fggElhyTyk','2018-02-19',20),(18,4,'Lesson 5','https://www.youtube.com/embed/rW1hZjJwPRc','2018-02-21',22),(19,29,'theo Lesson 1','https://www.youtube.com/embed/5Hif1aWsruY','2018-02-22',23);
+INSERT INTO `subject_videos` VALUES (1,1,'English: Lesson 1','https://www.youtube.com/embed/dU4dmIeDIes','2018-02-22',1);
 /*!40000 ALTER TABLE `subject_videos` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -170,7 +170,7 @@ CREATE TABLE `topic` (
   `summary` text,
   `permalink` text,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -179,7 +179,7 @@ CREATE TABLE `topic` (
 
 LOCK TABLES `topic` WRITE;
 /*!40000 ALTER TABLE `topic` DISABLE KEYS */;
-INSERT INTO `topic` VALUES (4,9,'',17,'sample','');
+INSERT INTO `topic` VALUES (1,1,'',1,'sample summary English','');
 /*!40000 ALTER TABLE `topic` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -217,7 +217,7 @@ CREATE TABLE `topic_item` (
   `multi_answer_5` varchar(250) DEFAULT NULL,
   `multi_answer_6` varchar(250) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=12 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -226,7 +226,7 @@ CREATE TABLE `topic_item` (
 
 LOCK TABLES `topic_item` WRITE;
 /*!40000 ALTER TABLE `topic_item` DISABLE KEYS */;
-INSERT INTO `topic_item` VALUES (9,4,9,'q1','q1',1,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL),(10,4,9,'q2','q2',1,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL),(11,4,9,'q3','q3',NULL,'a1','a2','a3',NULL,NULL,NULL,'a1',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL);
+INSERT INTO `topic_item` VALUES (1,1,1,'q1','q1',1,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL),(2,1,1,'q2','q2',NULL,'a1','a2','a3',NULL,NULL,NULL,'a1',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL),(3,1,1,'q3','q3',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'a1','a2','a3','a4',NULL,NULL,'a1','a2',NULL,NULL,NULL,NULL);
 /*!40000 ALTER TABLE `topic_item` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -245,7 +245,7 @@ CREATE TABLE `topic_item_answer` (
   `sanswer` varchar(250) DEFAULT NULL,
   `manswers` text,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -254,6 +254,7 @@ CREATE TABLE `topic_item_answer` (
 
 LOCK TABLES `topic_item_answer` WRITE;
 /*!40000 ALTER TABLE `topic_item_answer` DISABLE KEYS */;
+INSERT INTO `topic_item_answer` VALUES (1,3,1,1,NULL,NULL),(2,3,2,NULL,'a1',NULL),(3,3,3,NULL,NULL,'a1, a2');
 /*!40000 ALTER TABLE `topic_item_answer` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -297,4 +298,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2018-02-22 15:33:54
+-- Dump completed on 2018-02-23  0:03:16
