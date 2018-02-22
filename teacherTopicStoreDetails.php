@@ -9,8 +9,6 @@
 	$permalink = preg_replace('/[^A-Za-z0-9_]/', '', $permalink);
 	$permalink = strtolower($permalink);
 
-	echo "[topic]: " . $topic . "<br>";
-	echo "[permalink]: " . $permalink . "<br>";
 
 	$unsaveTopic = $_SESSION['topic'];
 	if (!isset($unsaveTopic)) {

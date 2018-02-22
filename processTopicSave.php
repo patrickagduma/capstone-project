@@ -8,7 +8,7 @@
     }
     
     $sqlTopic = "insert into topic(subject_id, video_id, topic, summary, permalink) 
-    value('".$topicDetails['courseId']."', '".$topicDetails['videoLink']."', '".$topicDetails['topicVideo']."', '".$topicDetails['summary']."', '".$topicDetails['permalink']."')";
+    value('".$topicDetails['courseId']."', '".$topicDetails['videoLink']."', '".$topicDetails['topic']."', '".$topicDetails['summary']."', '".$topicDetails['permalink']."')";
 
     //echo "[SQL]: " . $sqlTopic . "<br />";
 
