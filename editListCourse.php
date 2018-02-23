@@ -86,7 +86,7 @@
 	}
 
 
-	$sqlCourseStudents  = " select student_id from student_classes sc where sc.student_id = ";
+	$sqlCourseStudents  = " select student_id from student_classes sc where sc.class_id = ";
 	$sqlCourseStudents .= $id;
 	$sqlCourseStudents .= " and sc.is_active = true ";
 	$rsCourseStudents = mysqli_query($con, $sqlCourseStudents);

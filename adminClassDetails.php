@@ -22,33 +22,43 @@
 	$video_link = '';
 	if(isset($_GET['id'])){
 
-		$sql = "select
-			sce.id, 
-			sce.student_id, 
+		$sql = "select 
+			sc.id,
+			sc.student_id,
 			concat(u.firstname, ' ', u.lastname) as student_name,
 			s.id as subject_id,
 			s.name as subject,
-			sce.course_id, 
-			c.code, 
-			sce.last_modified_date
-		from student_class_enrollment sce
-		inner join users u on u.id = sce.student_id
-		inner join classes c on c.id = sce.course_id
+			sc.class_id,
+			c.code as class_code,
+			c.year_level,
+			c.section,
+			c.instructor_id,
+			concat(t.firstname, ' ', t.lastname) as instructor,
+			sc.last_modified_date,
+			sc.is_active
+		from student_classes sc
+		inner join users u on u.id = sc.student_id and u.user_type = 'S'
+		inner join classes c on c.id = sc.class_id
 		inner join subject s on s.id = c.subject_id
-		where c.created_by = ". $_SESSION['id'] .
-			" and sce.status is null and s.id = " . $_GET['id'] . 
-		" order by sce.last_modified_date desc";
+		inner join users t on t.id = c.instructor_id and t.user_type = 'T'
+		where sc.class_id = " . $_GET['id'] . " and sc.is_active = true
+		order by sc.last_modified_date desc";
 
 		$resultRegistration  = mysqli_query($con, $sql);
 
 
-		$sql = "select c.*, s.name, concat(u.firstname, ' ', u.lastname) as teacher_name from classes c
-				inner join subject s on s.id = c.subject_id
-				inner join users u on u.id = c.instructor_id
-				where c.id = ".$_GET['id'];
+		$sql = "select 
+			c.*,
+			s.name,
+			concat(u.firstname, ' ', u.lastname) as teacher_name 
+		from classes c
+		inner join subject s on s.id = c.subject_id
+		inner join users u on u.id = c.instructor_id
+		where c.id =" . $_GET['id'];
 		$result = mysqli_query($con, $sql);
 		if(mysqli_num_rows($result) > 0){
 			$row = mysqli_fetch_assoc($result);
+			$subject_id = $row['subject_id'];
 			$id = $row['id'];
 			$name = $row['name'];
 			$code = $row['code'];
@@ -88,7 +98,7 @@
 	}
 
 
-	$sqlCourseStudents  = " select student_id from student_classes sc where sc.student_id = ";
+	$sqlCourseStudents  = " select student_id from student_classes sc where sc.class_id = ";
 	$sqlCourseStudents .= $id;
 	$sqlCourseStudents .= " and sc.is_active = true ";
 	$rsCourseStudents = mysqli_query($con, $sqlCourseStudents);
@@ -103,11 +113,11 @@
 
 			$sqlTopics  = " select distinct t.id from topic t inner join topic_item ti on ti.topic_id = t.id ";
 			$sqlTopics .= " where ti.subject_id = ";
-			$sqlTopics .= $id;
+			$sqlTopics .= $subject_id;
 			$rsTopics = mysqli_query($con, $sqlTopics);
 			$courseTopicCount = mysqli_num_rows($rsTopics);
 
-			//echo "[students-count]: " . $courseTopicCount . "<br />";
+			//echo "[course-topic-count]: " . $courseTopicCount . "<br />";
 
 			$topic_quizzes = array();
 			if ($courseTopicCount > 0) {
