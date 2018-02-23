@@ -64,8 +64,8 @@
 
             <h1 class="mt-5"><i class="fa fa-search" aria-hidden="true"></i>&nbsp;Search Student(s)</h1>
 
-            <form id="formStudentSearch" action="teacherSearchStudentFunction.php" method="post">
-                <input type="hidden" id="hndCourse" name="course" value="<?=$courseId?>">
+            <form id="formStudentSearch" action="teacherSearchStudentFunction.php?cid=<?= $courseId ?>" method="post">
+                <!-- <input type="hidden" id="hndCourse" name="course" value="<?=$courseId?>"> -->
                 <div class="input-group">
                     <input type="text" id="txtSearchKey" name="searchKey" class="form-control" placeholder="Search student name" title="Enter key to search">
                     <div class="input-group-btn">
