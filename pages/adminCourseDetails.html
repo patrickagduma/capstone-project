@@ -70,7 +70,7 @@
 
         <div class="container cont1">
             <div class="row sm-flex-center top-space">
-                <div class="col-sm-4 column-separator">
+                <div class="col-sm-3">
                     <div class="panel panel-info">
                         <h4>Subject Details</h4>
                         <div class="panel-body">
@@ -89,6 +89,7 @@
                             <div class="form-group">
                                 <div>
                                     <button class="btn btn-info" data-toggle="modal" data-target="#myModal"><i class="fa fa-info-circle" aria-hidden="true"></i>&nbsp;Course Details</button>
+                                    <hr>
                                     <button class="btn btn-info" onclick="window.location='adminAddVideo.php?cid=<?=$id?>'"><i class="fa fa-youtube" aria-hidden="true"></i>&nbsp;Add Video</button>
                                 </div>
                             </div>
@@ -96,15 +97,16 @@
                         </div>
                     </div>
                 </div>
-                <div class="col-sm-7" >
+                <div class="col-md-9" >
                     <h4><i class="fa fa-file-text-o" aria-hidden="true"></i>&nbsp;Video</h4>
-                    <table id="tblClassTopics" class="table table-hover" style="overflow: scroll; height: auto;" >
+                    <div style="overflow: scroll; width: auto; height: 350px;">
+                    <table id="tblClassTopics" class="table table-hover">
                         <thead>
                         <tr>
                             <th>Topic</th>
                             <th>Video Link</th>
                             <th>Edit</th>
-                            <th>&nbsp;</th>
+
                         </tr>
                         </thead>
                         <tbody>
@@ -118,7 +120,7 @@
                                     <td>
                                     <button class="btn btn-info" onclick="editVideoPopup(<?= $row['subject_id'] ?>, <?= $row['id'] ?>, '<?= $row['topic'] ?>', '<?= $row['video_link'] ?>')" data-target="#myModalVideo"><i class="fa fa-edit" aria-hidden="true"></i>&nbsp;Edit Video Details</button>
                                     </td>
-                                    <td>&nbsp;</td>
+
                                 </tr>
 
                                 <?php
@@ -132,6 +134,7 @@
                                 </tr> -->
                         </tbody>
                     </table>
+                    </div>
                     <!-- <a href="Teacher_Topic.php?cid=<?= $id ?>" class="btn btn-default">Add Topic</a> -->
                 </div>
                 <!-- <div class="col-sm-8 pull-right">
