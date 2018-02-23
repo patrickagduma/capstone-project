@@ -54,7 +54,7 @@
 		$_SESSION['topic'] = $unsaveTopic;
 
 		if ($_POST['saveType'] == 'saveAddQuestion') {
-			header('Location:Teacher_AddQuestion_singleanswerVQ.php');
+			header('Location:Teacher_AddQuestion_singleanswerVQ.php?status=added');
 		} else if ($_POST['saveType'] == 'saveViewQuestions') {
 			header('Location:Teacher_viewQuestions.php');
 		} else {

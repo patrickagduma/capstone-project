@@ -63,10 +63,12 @@
     </tr>
   </thead>
       <?php
+
         $displayItemNo = 0;
         $rawScore = 0;
         if (mysqli_num_rows($result) > 0) {
             while($row = mysqli_fetch_array($result)){
+            $submit_time = $row['submit_time'];
             $displayItemNo++;
             $booleanType = isset($row['boolean_answer']);
             $singleType = isset($row['single_answer']);
@@ -177,12 +179,12 @@
       <td><?= $remarks ?></td>
     </tr>
   </tbody>
+  
   <?php
         }
     }
     ?>
 </table>
-    
     <div style="text-align: center;">
         <p>
             <b>Score Points:</b> <span><?= $rawScore ?></span>
@@ -190,7 +192,11 @@
         <p>
             <b>Percentage:</b> <span><?= round((($rawScore/$displayItemNo) * 50) + 50, 2) ?>%</span>
         </p> 
+        <p>
+            <b>Time Submitted:</b> <span><?= $submit_time ?></span>
+        </p>
     </div>
+    
     <div class="row top-space">
                         <div class="form-group col-md-12"  style="text-align: center;">
                             <div class=" button">

@@ -164,12 +164,11 @@
                         </div>
                     </div>
 
-                     <div class="form-group col-sm-4">
-                        <!-- Button -->
+                     <!-- <div class="form-group col-sm-4">
                         <div class="">
                             <button type="button" class="btn btn-primary btn-lg" onclick="viewQuestions()">View Questions</button>
                         </div>
-                    </div>
+                    </div> -->
                 </div>
                 </div>
             </div>
@@ -312,6 +311,13 @@
     <script src="js/bootstrap.min.js"></script>
 
     <script>
+
+    <?php
+            if ($status == 'added') {
+                echo "alert('Question Successfully Added');";
+            }
+        ?>
+
         function handleFormSubmission(saveType) {
             $('#hdnSaveType').val(saveType);
             $('#addQuestionSingleForm').submit();

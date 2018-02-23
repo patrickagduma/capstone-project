@@ -48,8 +48,8 @@
 				$combinedMultiAnswers = $combinedMultiAnswers != "" ? "'" . $combinedMultiAnswers . "'" : "null";
 				
 
-				$sql = "insert into topic_item_answer (student_id, topic_item_id, banswer, sanswer, manswers)
-						value (" . $studentId . ", " . $topicItemId . ", " . $booleanAnswer . ", " . $sAnswer . ", " . $combinedMultiAnswers . ")";
+				$sql = "insert into topic_item_answer (student_id, topic_item_id, banswer, sanswer, manswers, submit_time)
+						value (" . $studentId . ", " . $topicItemId . ", " . $booleanAnswer . ", " . $sAnswer . ", " . $combinedMultiAnswers . ", now())";
 				//echo $topicItemId . ". [SQL]: " . $sql;
 				$executeComplete = mysqli_query($con, $sql);
 			}

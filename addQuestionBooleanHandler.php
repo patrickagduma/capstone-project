@@ -3,6 +3,7 @@
 	
 	session_start();
 	
+	
 	if (isset($_POST['problem']) && $_POST['problem'] != "" && 
 		isset($_POST['saveType']) && isset($_POST['booleanAnswer']) && 
 		$_POST['booleanAnswer'] != "") {
@@ -24,7 +25,8 @@
 		$_SESSION['topic'] = $unsaveTopic;
 
 		if ($_POST['saveType'] == 'saveAddQuestion') {
-			header('Location:Teacher_AddQuestion_truefalseVQ.php');
+			header('Location:Teacher_AddQuestion_truefalseVQ.php?status=added');
+            
 		} else if ($_POST['saveType'] == 'saveViewQuestions') {
 			header('Location:Teacher_viewQuestions.php');
 		} else {
@@ -33,5 +35,11 @@
 	} else {
 			header('Location:Teacher_AddQuestion_truefalseVQ.php?status=insufficient_data');
 	}
+
+	         
+        //     if ($status == 'success_add_question') {
+        //          echo "alert('Question Successfully Added');";
+        // }
+
 
 ?>

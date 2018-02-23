@@ -17,15 +17,17 @@
 		} else if ($fromPage == 'teacherHome') {
 		header('Location:teacherHomepage.php?id=' . $_POST['subjectId'] . '&status=approved');
 		} else if ($fromPage == 'teacherClasses') {
-		header('Location:editListCourse.php?id=' . $_POST['subjectId'] . '&status=approved');
+		header('Location:editListCourse.php?id=' . $_POST['courseId'] . '&status=approved');
 		} else if ($fromPage == 'adminDetails') {
-		header('Location:adminClassDetails.php?id=' . $_POST['subjectId'] . '&status=approved');
+		header('Location:adminClassDetails.php?id=' . $_POST['courseId'] . '&status=approved');
 		} else if ($fromPage == 'courseDetails') {
-			header('Location:editListCourse.php?id=' . $_POST['subjectId'] . '&status=approved');
+			header('Location:editListCourse.php?id=' . $_GET['id'] . '&status=approved');
 		} else if ($fromPage == 'adminCourseDetails') {
 			header('Location:adminCourseDetails.php?id=' . $_POST['subjectId'] . '&status=approved');
-		} else {
+		} else if ($fromPage == 'adminHome'){
 			header('Location:adminHomepage.php?status=approved');
+		} else {
+			header('Location:adminSubjectRegistrationRequests.php?status=approved');
 		}
 	}
 	else{
