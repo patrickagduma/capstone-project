@@ -105,7 +105,7 @@
                     </div>
                 </div>
                 <div class="col-sm-8 pull-right">
-                    <?php include('classRegistrationForApproval.html'); ?>
+                    <?php include('classListRegistration.html'); ?>
                 </div>
             </div>
 
@@ -114,12 +114,12 @@
             <input type="hidden" id="hdnGrantStudentId" name="studentId" />
             <input type="hidden" id="hdnGrantSubjectId" name="subjectId" />
             <input type="hidden" id="hdnGrantCourseId" name="courseId" />
-            <input type="hidden" id="hdnGrantFromPage" name="fromPage" value="teacherClasses" />
+            <input type="hidden" id="hdnGrantFromPage" name="fromPage" value="adminDetails" />
         </form>
         <form id="denyRegistrationForm" action="submitDenyRegistration.php" method="post">
             <input type="hidden" id="hdnDenyRegistrationId" name="registrationId" />
             <input type="hidden" id="hdnDenySubjectId" name="subjectId" />
-            <input type="hidden" id="hdnGrantFromPage" name="fromPage" value="teacherClasses" />
+            <input type="hidden" id="hdnGrantFromPage" name="fromPage" value="adminDetails" />
         </form>
 
 
@@ -239,14 +239,14 @@
                         <div class="form-group has-error has-feedback">
                             <label for="txtClassCode" class="control-label">Subject</label>
                             <div>
-                                <input type="text" id="txtClassCode" class="form-control" name="classCode" value="<?=$name?>" placeholder="Class or Course Code" title="Enter Class or Course Code">
+                                <input type="text" id="txtClassCode" class="form-control" name="className" value="<?=$name?>" placeholder="Class or Course Code" title="Enter Class or Course Code">
                             </div>
                         </div>
 
                         <div class="form-group">
                             <label for="txtClassName" class="control-label">Code</label>
                             <div>
-                                <input type="text" class="form-control" id="txtClassName" name="className" value="<?=$code?>" placeholder="Class or Course Name" title="Enter Class or Course Name">
+                                <input type="text" class="form-control" id="txtClassName" name="classCode" value="<?=$code?>" placeholder="Class or Course Name" title="Enter Class or Course Name">
                             </div>
                         </div>
                         <div class="form-group">

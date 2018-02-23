@@ -222,7 +222,7 @@
 		}
 
 	}
-
+	include("classListRegistration.php");
 	include 'pages/adminClassDetails.html';
 	exit(0);
 ?>

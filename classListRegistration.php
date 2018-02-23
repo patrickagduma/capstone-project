@@ -1,14 +1,15 @@
 <?php
 	require_once('libs/connect.php');
 
-	session_start();
+
 
 	$status = null;
 	if (isset($_GET['status'])) {
 		$status = $_GET['status'];
 	}
 
-	$sql = "select 
+
+	$sqlClassList = "select 
 				sce.id, 
 				sce.student_id, 
 				concat(u.firstname, ' ', u.lastname) as student_name,
@@ -21,8 +22,8 @@
 			inner join users u on u.id = sce.student_id
 			inner join classes c on c.id = sce.course_id
 			inner join subject s on s.id = c.subject_id
-			where sce.status is null and c.instructor_id = ". $_SESSION['id']."
+			where sce.status is null and c.id = ". $id ."
 			order by sce.last_modified_date desc";
-	$resultRegistration = mysqli_query($con, $sql);
+	$resultRegistrationClassList = mysqli_query($con, $sqlClassList);
 
 ?>

@@ -33,7 +33,7 @@ CREATE TABLE `classes` (
   `last_modified_date` date DEFAULT NULL,
   `base_grade` int(11) NOT NULL DEFAULT '50',
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=6 DEFAULT CHARSET=latin1;
+) ENGINE=MyISAM AUTO_INCREMENT=7 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -42,7 +42,7 @@ CREATE TABLE `classes` (
 
 LOCK TABLES `classes` WRITE;
 /*!40000 ALTER TABLE `classes` DISABLE KEYS */;
-INSERT INTO `classes` VALUES (1,1,'AAA',1,'3','Apple',22,'2018-02-22',40),(2,2,'AAB',1,'2','Banana',1,'2018-02-22',50),(3,3,'AAC',1,'4','Cherries',1,'2018-02-23',50),(4,2,'BBB',23,'3','Axe',23,'2018-02-23',50),(5,1,'BBA',23,'4','Box',22,'2018-02-23',50);
+INSERT INTO `classes` VALUES (1,1,'AAA',1,'5','Apple',22,'2018-02-22',40),(2,2,'AAB',1,'2','Banana',1,'2018-02-22',50),(3,3,'AAC',1,'4','Cherries',1,'2018-02-23',50),(4,2,'BBB',23,'1','Axe',23,'2018-02-23',50),(5,1,'BBA',23,'3','Box',22,'2018-02-23',50),(6,3,'BBC',23,'2','Cart',23,'2018-02-23',50);
 /*!40000 ALTER TABLE `classes` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -60,7 +60,7 @@ CREATE TABLE `student_class_enrollment` (
   `status` varchar(10) DEFAULT NULL,
   `last_modified_date` date NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=20 DEFAULT CHARSET=latin1;
+) ENGINE=MyISAM AUTO_INCREMENT=27 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -69,7 +69,7 @@ CREATE TABLE `student_class_enrollment` (
 
 LOCK TABLES `student_class_enrollment` WRITE;
 /*!40000 ALTER TABLE `student_class_enrollment` DISABLE KEYS */;
-INSERT INTO `student_class_enrollment` VALUES (4,3,1,'approved','2018-02-22'),(3,3,2,'approved','2018-02-22'),(5,2,2,'approved','2018-02-22'),(6,2,1,'approved','2018-02-22'),(7,19,2,'approved','2018-02-22'),(8,19,1,'approved','2018-02-22'),(15,19,3,NULL,'2018-02-23'),(16,3,3,NULL,'2018-02-23'),(17,2,3,NULL,'2018-02-23'),(18,24,3,NULL,'2018-02-23'),(19,24,1,NULL,'2018-02-23');
+INSERT INTO `student_class_enrollment` VALUES (4,3,1,'approved','2018-02-22'),(3,3,2,'approved','2018-02-22'),(5,2,2,'approved','2018-02-22'),(6,2,1,'approved','2018-02-22'),(7,19,2,'approved','2018-02-22'),(8,19,1,'approved','2018-02-22'),(15,19,3,NULL,'2018-02-23'),(16,3,3,NULL,'2018-02-23'),(17,2,3,NULL,'2018-02-23'),(18,24,3,NULL,'2018-02-23'),(19,24,1,'approved','2018-02-23'),(20,3,4,'approved','2018-02-23'),(21,3,5,'approved','2018-02-23'),(22,2,4,'approved','2018-02-23'),(23,2,5,'approved','2018-02-23'),(24,19,4,'approved','2018-02-23'),(25,19,5,'approved','2018-02-23'),(26,3,6,'approved','2018-02-23');
 /*!40000 ALTER TABLE `student_class_enrollment` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -87,7 +87,7 @@ CREATE TABLE `student_classes` (
   `is_active` int(1) NOT NULL,
   `last_modified_date` date NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=15 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=23 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -96,7 +96,7 @@ CREATE TABLE `student_classes` (
 
 LOCK TABLES `student_classes` WRITE;
 /*!40000 ALTER TABLE `student_classes` DISABLE KEYS */;
-INSERT INTO `student_classes` VALUES (3,3,2,1,'2018-02-22'),(4,3,1,1,'2018-02-22'),(5,2,1,1,'2018-02-22'),(6,19,1,1,'2018-02-22'),(7,2,2,1,'2018-02-22'),(8,19,2,1,'2018-02-22'),(9,4,1,1,'2018-02-23');
+INSERT INTO `student_classes` VALUES (3,3,2,1,'2018-02-22'),(4,3,1,1,'2018-02-22'),(5,2,1,1,'2018-02-22'),(6,19,1,1,'2018-02-22'),(7,2,2,1,'2018-02-22'),(8,19,2,1,'2018-02-22'),(9,4,1,1,'2018-02-23'),(15,3,6,1,'2018-02-23'),(16,19,5,1,'2018-02-23'),(17,2,5,1,'2018-02-23'),(18,19,4,1,'2018-02-23'),(19,3,5,1,'2018-02-23'),(20,24,1,1,'2018-02-23'),(21,2,4,1,'2018-02-23'),(22,3,4,1,'2018-02-23');
 /*!40000 ALTER TABLE `student_classes` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -123,7 +123,7 @@ CREATE TABLE `subject` (
 
 LOCK TABLES `subject` WRITE;
 /*!40000 ALTER TABLE `subject` DISABLE KEYS */;
-INSERT INTO `subject` VALUES (1,'ENG101','English','sample description english',22),(2,'FIL101','English','sample description filipino',22),(3,'MATH101','English','sample description mathematics',22);
+INSERT INTO `subject` VALUES (1,'ENG101','English','sample description english',22),(2,'FIL101','Filipino','sample description filipino',22),(3,'MATH101','Mathematics','sample description mathematics',22);
 /*!40000 ALTER TABLE `subject` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -245,7 +245,7 @@ CREATE TABLE `topic_item_answer` (
   `sanswer` varchar(250) DEFAULT NULL,
   `manswers` text,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -254,7 +254,7 @@ CREATE TABLE `topic_item_answer` (
 
 LOCK TABLES `topic_item_answer` WRITE;
 /*!40000 ALTER TABLE `topic_item_answer` DISABLE KEYS */;
-INSERT INTO `topic_item_answer` VALUES (1,3,1,1,NULL,NULL),(2,3,2,NULL,'a1',NULL),(3,3,3,NULL,NULL,'a1, a2'),(4,3,14,1,NULL,NULL);
+INSERT INTO `topic_item_answer` VALUES (1,3,1,1,NULL,NULL),(2,3,2,NULL,'a1',NULL),(3,3,3,NULL,NULL,'a1, a2'),(4,3,14,1,NULL,NULL),(5,3,4,0,NULL,NULL),(6,3,5,NULL,'a2',NULL),(7,3,6,NULL,NULL,'a3, a4'),(8,3,7,1,NULL,NULL),(9,3,8,NULL,'a2',NULL),(10,3,9,NULL,NULL,'a1, a2');
 /*!40000 ALTER TABLE `topic_item_answer` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -298,4 +298,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2018-02-23 12:00:14
+-- Dump completed on 2018-02-23 15:09:37

@@ -1,6 +1,7 @@
 <?php
 	require_once('libs/connect.php');
 	require_once('libs/commons.php');
+	
 
 	session_start();
 
@@ -104,7 +105,7 @@
 			$rsTopics = mysqli_query($con, $sqlTopics);
 			$courseTopicCount = mysqli_num_rows($rsTopics);
 
-			echo "[students-count]: " . $courseTopicCount . "<br />";
+			//echo "[students-count]: " . $courseTopicCount . "<br />";
 
 			$topic_quizzes = array();
 			if ($courseTopicCount > 0) {
@@ -219,7 +220,7 @@
 		}
 
 	}
-
+	include("classListRegistration.php");
 	include 'pages/editListCourse.html';
 	exit(0);
 ?>
