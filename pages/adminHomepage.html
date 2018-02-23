@@ -73,7 +73,7 @@
 <!-- Page Content -->
 <div id="divMainContainer" class="container cont1" style="font-family: Montserrat">
     <div class="row sm-flex-center">
-        <div class="col-sm-4 col-lg-4" style="text-transform: capitalize">
+        <div class="col-sm-5 col-lg-5" style="text-transform: capitalize">
             <h4>Subjects</h4>
             <div class="list">
                     <ul class="list-group">
@@ -95,7 +95,28 @@
                     </ul>
             </div>
         </div>
-        <div class="col-sm-8 col-md-8 col-lg-8 pull-right">
+        <div class="col-sm-5 col-lg-5" style="text-transform: capitalize">
+            <h4>Classes</h4>
+            <div class="list">
+                    <ul class="list-group">
+
+                        <?php
+                            if (mysqli_num_rows($resultClass) > 0) {
+                                while($row = mysqli_fetch_array($resultClass)){
+                        ?>
+                            <li class="list-group-item"><a href="adminClassDetails.php?id=<?= $row['id'] ?>"><?= $row['code'] ?>_<?= $row['year_level'] ?>_<?= $row['section'] ?></a></li>
+                        <?php
+                                }
+                            } else {
+                        ?>
+                            <li class="list-group-item">No Course</li>
+                        <?php
+                            }
+                        ?> 
+                    </ul>
+            </div>
+        </div>
+        <div class="col-sm-12 col-md-12 col-lg-12 pull-right">
             <?php include('allClassRegistrationApproval.html'); ?>
         </div>
     </div>

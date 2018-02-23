@@ -14,6 +14,7 @@
 	$code = '';
 	$subject_id = '';
 	$year_level = '';
+	$teacher_name = '';
 	$section = '';
 	$baseGrade = 50;
 	$course_id = '';
@@ -41,8 +42,9 @@
 		$resultRegistration  = mysqli_query($con, $sql);
 
 
-		$sql = "select c.*, s.name from classes c
+		$sql = "select c.*, s.name, concat(u.firstname, ' ', u.lastname) as teacher_name from classes c
 				inner join subject s on s.id = c.subject_id
+				inner join users u on u.id = c.instructor_id
 				where c.id = ".$_GET['id'];
 		$result = mysqli_query($con, $sql);
 		if(mysqli_num_rows($result) > 0){
@@ -51,6 +53,7 @@
 			$name = $row['name'];
 			$code = $row['code'];
 			$year_level = $row['year_level'];
+			$teacher_name = $row['teacher_name'];
 			$section = $row['section'];
 			$baseGrade = $row['base_grade'];
 		}
@@ -104,7 +107,7 @@
 			$rsTopics = mysqli_query($con, $sqlTopics);
 			$courseTopicCount = mysqli_num_rows($rsTopics);
 
-			echo "[students-count]: " . $courseTopicCount . "<br />";
+			//echo "[students-count]: " . $courseTopicCount . "<br />";
 
 			$topic_quizzes = array();
 			if ($courseTopicCount > 0) {
@@ -220,6 +223,6 @@
 
 	}
 
-	include 'pages/editListCourse.html';
+	include 'pages/adminClassDetails.html';
 	exit(0);
 ?>

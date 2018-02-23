@@ -96,26 +96,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="col-sm-8 pull-right">
-                    <?php include('allClassRegistrationApproval.html'); ?>
-                </div>
-            </div>
-
-        <form id="grantRegistrationForm" action="submitGrantRegistration.php" method="post">
-            <input type="hidden" id="hdnGrantRegistrationId" name="registrationId" />
-            <input type="hidden" id="hdnGrantStudentId" name="studentId" />
-            <input type="hidden" id="hdnGrantSubjectId" name="subjectId" />
-            <input type="hidden" id="hdnGrantCourseId" name="courseId" />
-            <input type="hidden" id="hdnGrantFromPage" name="fromPage" value="adminCourseDetails" />
-        </form>
-        <form id="denyRegistrationForm" action="submitDenyRegistration.php" method="post">
-            <input type="hidden" id="hdnDenyRegistrationId" name="registrationId" />
-            <input type="hidden" id="hdnDenySubjectId" name="subjectId" />
-            <input type="hidden" id="hdnDenyFromPage" name="fromPage" value="adminCourseDetails" />
-        </form>
-
-            <div class="row top-space">
-                <div class="col-sm-12" >
+                <div class="col-sm-7" >
                     <h4><i class="fa fa-file-text-o" aria-hidden="true"></i>&nbsp;Video</h4>
                     <table id="tblClassTopics" class="table table-hover" style="overflow: scroll; height: auto;" >
                         <thead>
@@ -153,94 +134,28 @@
                     </table>
                     <!-- <a href="Teacher_Topic.php?cid=<?= $id ?>" class="btn btn-default">Add Topic</a> -->
                 </div>
+                <!-- <div class="col-sm-8 pull-right">
+                    <?php include('allClassRegistrationApproval.html'); ?>
+                </div> -->
             </div>
+
+        <form id="grantRegistrationForm" action="submitGrantRegistration.php" method="post">
+            <input type="hidden" id="hdnGrantRegistrationId" name="registrationId" />
+            <input type="hidden" id="hdnGrantStudentId" name="studentId" />
+            <input type="hidden" id="hdnGrantSubjectId" name="subjectId" />
+            <input type="hidden" id="hdnGrantCourseId" name="courseId" />
+            <input type="hidden" id="hdnGrantFromPage" name="fromPage" value="adminCourseDetails" />
+        </form>
+        <form id="denyRegistrationForm" action="submitDenyRegistration.php" method="post">
+            <input type="hidden" id="hdnDenyRegistrationId" name="registrationId" />
+            <input type="hidden" id="hdnDenySubjectId" name="subjectId" />
+            <input type="hidden" id="hdnDenyFromPage" name="fromPage" value="adminCourseDetails" />
+        </form>
+
+
 
 <hr>
 
-            <div class="row top-space1">
-                <div class="col-sm-12" style="overflow: scroll; height: 250px;">
-                    <h4>Class List</h4>
-                    <table id="tblClassList" class="table table1 table-hover">
-                    
-                        <thead>
-                        <tr>
-                            <th>First Name</th>
-                            <th>Last Name</th>
-                            <th>Email Address</th>
-
-                            <?php
-                                for ($a = 1; $a <= $courseTopicCount; $a++) {
-                                    echo "<th>Quiz " . $a . "</th>";
-                                }
-                            ?>
-
-                            <th>Total Score</th>
-                            <th>Average(%)</th>
-                        </tr>
-                        </thead>
-                        <tbody>
-                            <?php
-                                if (mysqli_num_rows($resultStudentList) > 0) {
-                                    while($row = mysqli_fetch_array($resultStudentList)){
-                                        $studentId = $row['student_id'];
-                                        $firstName = $row['firstname'];
-                                        $lastName = $row['lastname'];
-                                        $email = $row['email'];
-                                        $displayName = $row['firstname'] . " (" . $studentId . ")";
-
-                                        $topicQuizzes = null;
-                                        if (isset($studentQuizzes)) {
-                                            foreach($studentQuizzes as $sq) {
-                                                if (isset($sq['topic_quizzes']) && $sq['student_id'] == $studentId) {
-                                                    $topicQuizzes = $sq['topic_quizzes'];
-                                                }
-                                            }
-                                        }
-                            ?>
-                                <tr>
-                                    <td><?= $firstName  ?></td>
-                                    <td><?= $lastName ?></td>
-                                    <td><?= $email ?></td>
-
-                                    <?php
-
-                                        $total_score = 0;
-                                        $total_items = 0;
-                                        $percentage = 0;
-                                        if (isset($topicQuizzes)) {
-                                            foreach ($topicQuizzes as $tq) {
-                                                $total_score += $tq['score'];
-                                                $total_items += $tq['items_count'];
-                                                echo "<td>" . $tq['score'] . "/" . $tq['items_count'] . "</td>";
-                                            }
-                                            $percentage = computePercentage($total_score, $total_items, $baseGrade, $total_score);
-                                        }
-                                    ?>
-
-                                    <td><?= $total_score ?>/<?= $total_items ?></td>
-                                    <td><?= round($percentage, 2) ?>%</td>
-                                </tr>
-                            <?php
-                                    }
-                                } else {
-                            ?>
-                                <tr>
-                                    <td colspan="5">No Data Available</td>
-                                </tr>
-                            <?php
-                                }
-                            ?>
-                        </tbody>
-                    </table>
-                </div>
-                         
-                <div class="col-sm-12">
-                    <div class="col-md-offset-6 col-md-6">
-                        <button id="btnClassList" class="btn btn-primary btn-info " onclick="window.location.href='adminSearchStudent.php?cid=<?=$id?>'"><i class="fa fa-search" aria-hidden="true"></i>&nbsp;Search &amp; Add Student to Class</button>
-                    </div>
-                </div>
-
-            </div>
      
 
         </div>

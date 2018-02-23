@@ -42,31 +42,31 @@
     <body class="bkg">
     <!-- Navigation -->
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top nav-header headfoot">
-        <div class="container">
+            <div class="container ">
 
-                <a class="navbar-brand nav-linkN" style="text-transform: capitalize" href="teacherHomepage.php">Welcome <?= $_SESSION["firstname"] . " " . $_SESSION["lastname"] ?></a>
+                    <a class="navbar-brand nav-linkN" style="text-transform: capitalize" href="adminHomepage.php">Administrator: Dashboard</a>
 
-            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="collapse navbar-collapse" id="navbarResponsive">
-                <ul class="navbar-nav ml-auto">
-                    <li class="nav-item">
-                        <a class="nav-link nav-linkN" href="course.php"><i class="fa fa-cog" aria-hidden="true"></i> Classes</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link nav-linkN" href="teacherRegistration.php"> <i class="fa fa-check-square-o" aria-hidden="true"></i> Registrations</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link nav-linkN" href="Teacher_Topic.php"> <i class="fa fa-book" aria-hidden="true"></i> Topics </a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link nav-linkN" href="logout.php"> <i class="fa fa-sign-out" aria-hidden="true"></i> Logout </a>
-                    </li>
-                </ul>
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarResponsive">
+                    <ul class="navbar-nav ml-auto">
+                        <li class="nav-item">
+                            <a class="nav-link nav-linkN" href="adminCourse.php"><i class="fa fa-cog" aria-hidden="true"></i> Subject </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link nav-linkN" href="adminClasses.php"> <i class="fa fa-book" aria-hidden="true"></i> Classes </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link nav-linkN" href="adminSubjectRegistrationRequests.php"> <i class="fa fa-check-square-o" aria-hidden="true"></i> Registration Requests </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link nav-linkN" href="logout.php"> <i class="fa fa-sign-out" aria-hidden="true"></i> Logout </a>
+                        </li>
+                    </ul>
+                </div>
             </div>
-        </div>
-    </nav>
+        </nav>
 
         <div class="container cont1">
             <div class="row sm-flex-center top-space">
@@ -85,6 +85,9 @@
                                 <label class="control-label"><b>Year Level:<br> <?=$year_level?></b><span class="details"></span></label>
                             </div>
                             <div class="form-group">
+                                <label class="control-label"><b>Instructor:<br> <?=$teacher_name?></b><span class="details"></span></label>
+                            </div>
+                            <div class="form-group">
                                 <label class="control-label"><b>Section:<br> <?=$section?></b><span class="details"></span></label>
                             </div>
 
@@ -94,7 +97,7 @@
                             <div class="form-group">
                                 <div>
                                     <button class="btn btn-info" data-toggle="modal" data-target="#myModal"><i class="fa fa-info-circle" aria-hidden="true"></i>&nbsp;Course Details</button>
-                                    <button class="btn btn-info" onclick="window.location='addVideo.php?cid=<?=$id?>'"><i class="fa fa-youtube" aria-hidden="true"></i>&nbsp;Add Video</button>
+                                    <!-- <button class="btn btn-info" onclick="window.location='addVideo.php?cid=<?=$id?>'"><i class="fa fa-youtube" aria-hidden="true"></i>&nbsp;Add Video</button> -->
                                 </div>
                             </div>
 
@@ -119,89 +122,14 @@
             <input type="hidden" id="hdnGrantFromPage" name="fromPage" value="teacherClasses" />
         </form>
 
-            <div class="row top-space">
-                <div class="col-sm-12" >
-                    <h4><i class="fa fa-file-text-o" aria-hidden="true"></i>&nbsp;Video</h4>
-                    <table id="tblClassTopics" class="table table-hover" style="overflow: scroll; height: auto;" >
-                        <thead>
-                        <tr>
-                            <th>Topic</th>
-                            <th>Video Link</th>
-                            <th>Edit</th>
-                            <th>&nbsp;</th>
-                        </tr>
-                        </thead>
-                        <tbody>
-                            <?php
-                                if (mysqli_num_rows($resultEditVideos) > 0) {
-                                    while($row = mysqli_fetch_array($resultEditVideos)){
-                            ?>
-                                <tr>
-                                    <td><?= $row['topic'] ?></td>
-                                    <td><a href="<?= $row['video_link'] ?>" target="_blank"><?= $row['video_link'] ?></a></td>
-                                    <td>
-                                    <button class="btn btn-info" onclick="editVideoPopup(<?= $row['subject_id'] ?>, <?= $row['id'] ?>, '<?= $row['topic'] ?>', '<?= $row['video_link'] ?>')" data-target="#myModalVideo"><i class="fa fa-edit" aria-hidden="true"></i>&nbsp;Edit Video Details</button>
-                                    </td>
-                                    <td>&nbsp;</td>
-                                </tr>
 
-                                <?php
-                                    }
-                                    }
-                                ?>
-                                
-                            
-                                <!-- <tr>
-                                    <td colspan="3">No Data Available</td>
-                                </tr> -->
-                        </tbody>
-                    </table>
-                    <!-- <a href="Teacher_Topic.php?cid=<?= $id ?>" class="btn btn-default">Add Topic</a> -->
-                </div>
-            </div>
 
             <hr>
-            <div class="row top-space">
-                <div class="col-sm-12" >
-                    <h4><i class="fa fa-file-text-o" aria-hidden="true"></i>&nbsp;Topics</h4>
-                    <table id="tblClassTopics" class="table table-hover" style="overflow: scroll; height: auto;" >
-                        <thead>
-                        <tr>
-                            <th>Topic</th>
-                            <th>Video</th>
-                            <th>&nbsp;</th>
-                        </tr>
-                        </thead>
-                        <tbody>
-                            <?php
-                                if (mysqli_num_rows($resultTopic) > 0) {
-                                    while($row = mysqli_fetch_array($resultTopic)){
-                            ?>
-                                <tr>
-                                    <td><?= $row['topic'] ?></td>
-                                    <td><a href="<?= $row['video_link'] ?>" target="_blank"><?= $row['video_topic'] ?></a></td>
-                                    <td>&nbsp;</td>
-                                </tr>
-                            <?php
-                                    }
-                                } else {
-                            ?>
-                                <tr>
-                                    <td colspan="3">No Data Available</td>
-                                </tr>
-                            <?php
-                                }
-                            ?>
-                        </tbody>
-                    </table>
-                    <a href="Teacher_Topic.php?cid=<?= $id ?>" class="btn btn-default">Add Topic</a>
-                </div>
-            </div>
-            <hr>
+            
 
 <?php
-                echo "[topic-count]: " . count($courseTopicCount). "<br />";
-                echo "[students-count]: " . count($studentQuizzes) . "<br />";
+                //echo "[topic-count]: " . count($courseTopicCount). "<br />";
+                //echo "[students-count]: " . count($studentQuizzes) . "<br />";
                 
             ?>
 
@@ -299,7 +227,7 @@
 
                 <!-- Modal content-->
                 <div class="modal-content">
-                 <form id="signupform" class="form-horizontal" action="editCourse.php" method="post">
+                 <form id="signupform" class="form-horizontal" action="adminEditClassDetails.php" method="post">
                     <div class="modal-header" style="text-align: center;">
                         <h4 class="modal-title" >Course Details</h4>
                         <button type="button" class="close" data-dismiss="modal">×</button>
@@ -325,6 +253,12 @@
                             <label for="txtYearLevel" class="control-label">Year Level</label>
                             <div>
                                 <input type="text" class="form-control" id="txtYearLevel" name="yearLevel" value="<?=$year_level?>" placeholder="Year Level" title="Enter Year Level">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="txtInstructor" class="control-label">Instructor</label>
+                            <div>
+                                <input type="text" class="form-control" id="txtInstructor" name="instructor" value="<?=$teacher_name?>" placeholder="Instructor" title="Enter Instructor">
                             </div>
                         </div>
 

@@ -16,8 +16,8 @@
 			header('Location:teacherRegistration.php?status=approved');
 		} else if ($fromPage == 'teacherHome') {
 		header('Location:teacherHomepage.php?id=' . $_POST['subjectId'] . '&status=approved');
-		} else if ($fromPage == 'courseDetails') {
-		header('Location:teacherHomepage.php?id=' . $_POST['subjectId'] . '&status=approved');
+		} else if ($fromPage == 'teacherClasses') {
+		header('Location:editListCourse.php?id=' . $_POST['subjectId'] . '&status=approved');
 		} else if ($fromPage == 'courseDetails') {
 			header('Location:editListCourse.php?id=' . $_POST['subjectId'] . '&status=approved');
 		} else if ($fromPage == 'adminCourseDetails') {
