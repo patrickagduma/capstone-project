@@ -73,10 +73,10 @@
 <!-- Page Content -->
 <div id="divMainContainer" class="container cont1" style="font-family: Montserrat">
     <div class="row sm-flex-center">
-        <div class="col-sm-5 col-lg-5" style="text-transform: capitalize">
-            <h4>Subjects</h4>
+        <div class="col-sm-6 col-lg-6" style="text-transform: capitalize">
+            <h4 style="text-align: center;">Subjects</h4>
             <div class="list">
-                    <ul class="list-group">
+                    <ul class="list-group" style="overflow: scroll;width:auto; height: 250px;">
 
                         <?php
                             if (mysqli_num_rows($resultCourses) > 0) {
@@ -95,10 +95,10 @@
                     </ul>
             </div>
         </div>
-        <div class="col-sm-5 col-lg-5" style="text-transform: capitalize">
-            <h4>Classes</h4>
+        <div class="col-sm-6 col-lg-6" style="text-transform: capitalize;">
+            <h4 style="text-align: center;">Classes</h4>
             <div class="list">
-                    <ul class="list-group">
+                    <ul class="list-group" style="overflow: scroll;width:auto; height: 250px;">
 
                         <?php
                             if (mysqli_num_rows($resultClass) > 0) {
@@ -116,10 +116,15 @@
                     </ul>
             </div>
         </div>
-        <div class="col-sm-12 col-md-12 col-lg-12 pull-right">
+        
+    </div>
+</div>
+
+<div class="container cont1">
+    <div class="col-sm-12 col-md-12 col-lg-12" style="padding: 1rem;">
             <?php include('allClassRegistrationApproval.html'); ?>
         </div>
-    </div>
+    
 </div>
     
     <form id="grantRegistrationForm" action="submitGrantRegistration.php" method="post">
