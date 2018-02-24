@@ -75,24 +75,24 @@
             while($row = mysqli_fetch_array($resultQuiz)){
                 $submitTime = $row['submit_time'];
                 $displayItemNo++;
-                $booleanType = isset($row['boolean_answer']);
-                $singleType = isset($row['single_answer']);
-                $multiType = !isset($row['boolean_answer']) && !isset($row['single_answer']);
+                $booleanType = isset($row['correct_boolean']);
+                $singleType = isset($row['correct_sanswer']);
+                $multiType = !isset($row['correct_boolean']) && !isset($row['correct_sanswer']);
 
                 $isCorrectAnswer = false;
                 $remarks = "n/a";
                 if ($booleanType) {
-                    $isCorrectAnswer = $row['banswer'] == $row['boolean_answer'];
+                    $isCorrectAnswer = $row['banswer'] == $row['correct_boolean'];
                     if (!$isCorrectAnswer) {
-                        $remarks = "X (Wrong) - Correct Answer: " . $row['boolean_answer'];
+                        $remarks = "X (Wrong) - Correct Answer: " . $row['correct_boolean'];
                     } else {
                         $remarks = "Correct";
                         $rawScore++;
                     }
                 } else if ($singleType) {
-                    $isCorrectAnswer = $row['sanswer'] == $row['single_answer'];
+                    $isCorrectAnswer = $row['sanswer'] == $row['correct_sanswer'];
                     if (!$isCorrectAnswer) {
-                        $remarks = "X (Wrong) - Correct Answer: " . $row['single_answer'];
+                        $remarks = "X (Wrong) - Correct Answer: " . $row['correct_sanswer'];
                     } else {
                         $remarks = "Correct";
                         $rawScore++;
