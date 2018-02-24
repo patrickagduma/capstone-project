@@ -121,7 +121,7 @@
 
             <div class="row top-space">
                 <div class="col-sm-12" >
-                    <h4><i class="fa fa-file-text-o" aria-hidden="true"></i>&nbsp;Video</h4>
+                    <h4 style="text-align: center;"><i class="fa fa-file-text-o" aria-hidden="true"></i>&nbsp;Video</h4>
                     <table id="tblClassTopics" class="table table-hover" style="overflow: scroll; height: auto;" >
                         <thead>
                         <tr>
@@ -163,7 +163,7 @@
             <hr>
             <div class="row top-space">
                 <div class="col-sm-12" >
-                    <h4><i class="fa fa-file-text-o" aria-hidden="true"></i>&nbsp;Topics</h4>
+                    <h4 style="text-align: center;"><i class="fa fa-file-text-o" aria-hidden="true"></i>&nbsp;Topics</h4>
                     <table id="tblClassTopics" class="table table-hover" style="overflow: scroll; height: auto;" >
                         <thead>
                         <tr>
@@ -194,7 +194,9 @@
                             ?>
                         </tbody>
                     </table>
+                    <div class="col-sm-12" style="text-align: center;padding: 0.8rem;">
                     <a href="Teacher_Topic.php?cid=<?= $id ?>" class="btn btn-default">Add Topic</a>
+                    </div>
                 </div>
             </div>
             <hr>
@@ -207,7 +209,7 @@
 
             <div class="row top-space1">
                 <div class="col-sm-12" style="overflow: scroll; height: 300px;">
-                    <h4>Class List</h4>
+                    <h4 style="text-align: center;">Class List</h4>
                     <table id="tblClassList" class="table table1 table-hover">
                     
                         <thead>
@@ -282,8 +284,8 @@
                     </table>
                 </div>
                          
-                <div class="col-sm-12">
-                    <div class="col-md-offset-6 col-md-6">
+                <div class="col-sm-12" style="text-align: center;">
+                    <div class="">
                         <button id="btnClassList" class="btn btn-primary btn-info " onclick="window.location.href='teacherSearchStudent.php?cid=<?=$id?>'"><i class="fa fa-search" aria-hidden="true"></i>&nbsp;Search &amp; Add Student to Class</button>
                     </div>
                 </div>
