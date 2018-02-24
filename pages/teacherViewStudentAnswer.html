@@ -1,0 +1,271 @@
+<!DOCTYPE html>
+<!-- saved from url=(0031)http://localhost:4567/postTopic -->
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+        <title>Capstone: Create a new Quiz</title>
+
+        <link href="css/studentViewAnswers/bootstrap.min.css" rel="stylesheet">
+        <link rel="stylesheet" href="css/studentViewAnswers/font-awesome.min.css">
+        <link rel="stylesheet" href="css/studentViewAnswers/topics.css">
+            <link rel="stylesheet" href="css/studentViewAnswers/font-awesome.css">
+            <link rel="stylesheet" href="css/studentViewAnswers/new.css">
+
+            <style>
+
+           
+
+            </style>
+
+    </head>
+    <body class="bkg">
+    <!-- Navigation -->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top nav-header headfoot">
+        <div class="container">
+
+                <a class="navbar-brand" style="text-transform: capitalize" href="studentHomepage.php">Welcome <?= $_SESSION["firstname"] . " " . $_SESSION["lastname"] ?></a>
+
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarResponsive">
+                <ul class="navbar-nav ml-auto">
+                            <li class="nav-item">
+                                <a class="nav-link nav-linkN" href="studentSearchClasses.php"> <i class="fa fa-search" aria-hidden="true"></i> Course Search </a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link nav-linkN" href="logout.php"> <i class="fa fa-sign-out" aria-hidden="true"></i> Logout </a>
+                            </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+        <div class="container cont1">
+            <div class="col-sm-12 ">
+                <div class="col-sm-12" style="text-align: center;">
+                <h3>View Answers</h3>
+                </div>
+                    <div class="table-responsive">
+
+
+
+                        <table class="table table-hover">
+  <thead>
+    <tr>
+      <th scope="col">#</th>
+      <th scope="col">Question</th>
+      <th scope="col">Your Answer</th>
+      <th scope="col">Remarks</th>
+    </tr>
+  </thead>
+      <?php
+
+        $displayItemNo = 0;
+        $rawScore = 0;
+        if (mysqli_num_rows($result) > 0) {
+            while($row = mysqli_fetch_array($result)){
+            $submit_time = $row['submit_time'];
+            $displayItemNo++;
+            $booleanType = isset($row['boolean_answer']);
+            $singleType = isset($row['single_answer']);
+            $multiType = !isset($row['boolean_answer']) && !isset($row['single_answer']);
+
+            $isCorrectAnswer = false;
+            $remarks = "n/a";
+            if ($booleanType) {
+                $isCorrectAnswer = $row['banswer'] == $row['boolean_answer'];
+                if (!$isCorrectAnswer) {
+                    $remarks = "X (Wrong) - Correct Answer: " . $row['boolean_answer'];
+                } else {
+                    $remarks = "Correct";
+                    $rawScore++;
+                }
+            } else if ($singleType) {
+                $isCorrectAnswer = $row['sanswer'] == $row['single_answer'];
+                if (!$isCorrectAnswer) {
+                    $remarks = "X (Wrong) - Correct Answer: " . $row['single_answer'];
+                } else {
+                    $remarks = "Correct";
+                    $rawScore++;
+                }
+            } else if ($multiType) {
+                $correctAnswersCount = 0;
+                $correctMultiAnswers = "";
+                $corrects = array();
+                $firstAnswer = true;
+                if (isset($row['multi_answer_1'])) {
+                    $corrects[0] = $row['multi_answer_1'];
+                    $correctMultiAnswers .= $row['multi_answer_1'];
+                    $firstAnswer = false;
+                    $correctAnswersCount++;
+                }
+                if (isset($row['multi_answer_2'])) {
+                    $corrects[1] = $row['multi_answer_2'];
+                    if (!$firstAnswer) {
+                        $correctMultiAnswers .= ", ";
+                    }
+                    $correctMultiAnswers .= $row['multi_answer_2'];
+                    $firstAnswer = false;
+                    $correctAnswersCount++;
+                }
+                if (isset($row['multi_answer_3'])) {
+                    $corrects[2] = $row['multi_answer_3'];
+                    if (!$firstAnswer) {
+                        $correctMultiAnswers .= ", ";
+                    }
+                    $correctMultiAnswers .= $row['multi_answer_3'];
+                    $firstAnswer = false;
+                    $correctAnswersCount++;
+                }
+                if (isset($row['multi_answer_4'])) {
+                    $corrects[3] = $row['multi_answer_4'];
+                    if (!$firstAnswer) {
+                        $correctMultiAnswers .= ", ";
+                    }
+                    $correctMultiAnswers .= $row['multi_answer_4'];
+                    $firstAnswer = false;
+                    $correctAnswersCount++;
+                }
+                if (isset($row['multi_answer_5'])) {
+                    $corrects[4] = $row['multi_answer_5'];
+                    if (!$firstAnswer) {
+                        $correctMultiAnswers .= ", ";
+                    }
+                    $correctMultiAnswers .= $row['multi_answer_5'];
+                    $firstAnswer = false;
+                    $correctAnswersCount++;
+                }
+                if (isset($row['multi_answer_6'])) {
+                    $corrects[5] = $row['multi_answer_6'];
+                    if (!$firstAnswer) {
+                        $correctMultiAnswers .= ", ";
+                    }
+                    $correctMultiAnswers .= $row['multi_answer_6'];
+                    $firstAnswer = false;
+                    $correctAnswersCount++;
+                }
+
+                //split string by ", " from "28, 48" to {"28", "48"}
+                $mans = explode(', ', $row['manswers']);
+                $yourAnswersCount = count($mans);
+
+                //Checking 1: number of answers both sides kung equal ba
+                $isCorrectAnswer = $correctAnswersCount == $yourAnswersCount;
+                if ($isCorrectAnswer) {
+                    foreach($mans as $m) {
+                        if (!arrayItemExists($corrects, $m)) {
+                            $isCorrectAnswer = false;
+                        }
+                    }
+                }
+
+                if ($isCorrectAnswer) {
+                    $remarks = "Correct";
+                    $rawScore++;
+                } else {
+                    $remarks = "X (Wrong) - Correct Answer: " . $correctMultiAnswers;
+                }
+            }
+    ?>
+  <tbody>
+    <tr>
+      <th scope="row"><?= $displayItemNo ?></th>
+      <td><?= $row['question'] ?></td>
+      <td><?= $row['banswer'] ?><?= $row['sanswer'] ?><?= $row['manswers'] ?></td>
+      <td><?= $remarks ?></td>
+    </tr>
+  </tbody>
+  
+  <?php
+        }
+    }
+    ?>
+</table>
+    <div style="text-align: center;">
+        <p>
+            <b>Score Points:</b> <span><?= $rawScore ?></span>
+        </p>
+        <p>
+            <b>Percentage:</b> <span><?= round((($rawScore/$displayItemNo) * 50) + 50, 2) ?>%</span>
+        </p> 
+        <p>
+            <b>Time Submitted:</b> <span><?= $submit_time ?></span>
+        </p>
+    </div>
+    
+    <div class="row top-space">
+                        <div class="form-group col-md-12"  style="text-align: center;">
+                            <div class=" button">
+                                <button type="" class="btn btn-primary btn-lg" onclick="window.location.href='studentHomepage.php'">Home</button>
+                            </div>
+                            
+                        </div>
+                    </div>
+                </div>  
+                
+            </div>   
+        </div>
+
+<div class="footer" id="footer">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-4  col-md-2 col-sm-4 col-xs-6">
+                    <h3> Developers </h3>
+                    <ul>
+                        <li> <a href="#"> Alfonso Louie Alfonso </a> </li>
+                        <li> <a href="#"> John Patrick Agduma </a> </li>
+                        <li> <a href="#"> Jon Kirk Donio </a> </li>
+                        <li> <a href="#"> Niko Jay Mateo </a> </li>
+                    </ul>
+                </div>
+                <div class="col-lg-4  col-md-2 col-sm-4 col-xs-6">
+                    <h3> Company </h3>
+                    <ul>
+                        <li> <a href="#"> About Us </a> </li>
+                        <li> <a href="#"> Contact Us </a> </li>
+                        <li> <a href="#"> FAQs </a> </li>
+                        <li> <a href="#"> Policy </a> </li>
+                    </ul>
+                </div>
+                        <div class="col-lg-4  col-md-3 col-sm-6 col-xs-12 ">
+                    <h3> Social media </h3>
+              
+                    <ul class="social">
+                        <li> <a href="#"> <i class=" fa fa-facebook">   </i> </a> </li>
+                        <li> <a href="#"> <i class="fa fa-twitter">   </i> </a> </li>
+                        <li> <a href="#"> <i class="fa fa-google-plus">   </i> </a> </li>
+                        <li> <a href="#"> <i class="fa fa-pinterest">   </i> </a> </li>
+                        <li> <a href="#"> <i class="fa fa-youtube">   </i> </a> </li>
+                    </ul>
+                </div>
+ 
+        
+            </div>
+            <!--/.row--> 
+        </div>
+        <!--/.container--> 
+    </div>
+    <!--/.footer-->
+    
+    <div class="footer-bottom">
+        <div class="container">
+            <p class="centers" > Copyright © Culturama 2018. All right reserved. </p>
+
+        </div>
+    </div>
+        <!-- End: Modal For Add Question -->
+
+    <!-- Bootstrap core JavaScript -->
+    <script src="js/jquery.min.js"></script>
+    <script src="js/popper.min.js"></script>
+    <script src="js/bootbox.min.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+
+    
+
+
+</body></html>

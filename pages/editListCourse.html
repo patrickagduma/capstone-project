@@ -237,9 +237,11 @@
                                         $displayName = $row['firstname'] . " (" . $studentId . ")";
 
                                         $topicQuizzes = null;
+                                        $sid = 0;
                                         if (isset($studentQuizzes)) {
                                             foreach($studentQuizzes as $sq) {
                                                 if (isset($sq['topic_quizzes']) && $sq['student_id'] == $studentId) {
+                                                    $sid = $sq['student_id'];
                                                     $topicQuizzes = $sq['topic_quizzes'];
                                                 }
                                             }
@@ -252,20 +254,27 @@
 
                                     <?php
 
+                                        $quiz_id = 0;
                                         $total_score = 0;
                                         $total_items = 0;
                                         $percentage = 0;
                                         if (isset($topicQuizzes)) {
                                             foreach ($topicQuizzes as $tq) {
+                                                $quiz_id = $tq['quiz_id'];
                                                 $total_score += $tq['score'];
                                                 $total_items += $tq['items_count'];
-                                                echo "<td>" . $tq['score'] . "/" . $tq['items_count'] . "</td>";
+                                                if ($quiz_id > 0) {
+                                                    echo "<td><a href='javascript:void(0)' style=\"cursor:pointer;\" onclick=\"window.location.href='viewStudentQuizInformation.php?cid=" . $id .  "&sid=" . $studentId .  "&qid=" . $quiz_id . "'\" target='_blank'>" . $tq['score'] . "/" . $tq['items_count'] . "</span></td>";
+                                                } else {
+                                                    echo "<td>" . $tq['score'] . "/" . $tq['items_count'] . "</td>";
+                                                }
+                                                
                                             }
-                                            $percentage = computePercentage($total_score, $total_items, $baseGrade, $total_score);
+                                            $percentage = computePercentage($total_score, $total_items, $baseGrade);
                                         }
                                     ?>
 
-                                    <td><?= $total_score ?>/<?= $total_items ?></td>
+                                    <td><?= $total_score ?>/<?= $total_items ?></a></td>
                                     <td><?= round($percentage, 2) ?>%</td>
                                 </tr>
                             <?php

@@ -119,11 +119,13 @@
 					$itemsCount = mysqli_num_rows($rsItems);
 
 					$score = 0;
+					$quizId = 0;
 					if ($itemsCount > 0) {
 						while($cAns = mysqli_fetch_array($rsItems)){
 							$topicItemId = $cAns['id'];
 
 							$sqlStudentAnswer = "select distinct
+								tia.id,
 								ti.subject_id,
 								tia.student_id,
 								ti.topic_id,
@@ -146,6 +148,7 @@
 
 							if (mysqli_num_rows($resultStudentListAnswer) > 0){
 								while($answer = mysqli_fetch_array($resultStudentListAnswer)){ //Student Answers
+									$quizId = isset($answer['id']);
 		                            $booleanType = isset($answer['correct_boolean']);
 		                            $singleType = isset($answer['correct_sanswer']);
 		                            $multiType = !isset($answer['correct_boolean']) && !isset($answer['correct_sanswer']);
@@ -208,6 +211,7 @@
 							}
 						}
 					}
+					$topic_quizzes[$topicIndex]['quiz_id'] = $quizId;
 					$topic_quizzes[$topicIndex]['score'] = $score;
 					$topic_quizzes[$topicIndex]['items_count'] = $itemsCount;
 					$topicIndex++;
