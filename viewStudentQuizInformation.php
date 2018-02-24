@@ -6,7 +6,7 @@
 
     $courseId = $_GET['cid'];
     $studentId = $_GET['sid'];
-    $quizId = $_GET['qid'];
+    $topicId = $_GET['tid'];
 
     //Student name
     $studentName = 'N/A';
@@ -40,7 +40,7 @@
             tia.submit_time
         from topic_item_answer tia
         inner join topic_item ti on ti.id = tia.topic_item_id
-        where ti.topic_id = " . $quizId . " and tia.student_id = " . $studentId;
+        where ti.topic_id = " . $topicId . " and tia.student_id = " . $studentId;
 	
 	$resultQuiz = mysqli_query($con, $sqlQuiz);
 

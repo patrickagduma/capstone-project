@@ -22,7 +22,7 @@
 			inner join users u on u.id = sce.student_id
 			inner join classes c on c.id = sce.course_id
 			inner join subject s on s.id = c.subject_id
-			where sce.status is null and c.id = ". $id ."
+			where sce.status is null and c.id = ". $_GET['id'] ."
 			order by sce.last_modified_date desc";
 	$resultRegistrationClassList = mysqli_query($con, $sqlClassList);
 

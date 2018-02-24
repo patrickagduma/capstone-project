@@ -10,7 +10,7 @@
 		$status = $_GET['status'];
 	}
 
-	$id = '';
+	$courseId = '';
 	$name = '';
 	$code = '';
 	$subject_id = '';
@@ -22,7 +22,7 @@
 	$video_link = '';
 	if(isset($_GET['id'])){
 
-		$sql = "select
+		$sqlSCE = "select
 			sce.id, 
 			sce.student_id, 
 			concat(u.firstname, ' ', u.lastname) as student_name,
@@ -39,16 +39,17 @@
 			" and sce.status is null and s.id = " . $_GET['id'] . 
 		" order by sce.last_modified_date desc";
 
-		$resultRegistration  = mysqli_query($con, $sql);
+		$resultRegistration  = mysqli_query($con, $sqlSCE);
 
 
-		$sql = "select c.*, s.name from classes c
+		$sqlClass = "select c.*, s.name from classes c
 				inner join subject s on s.id = c.subject_id
 				where c.id = ".$_GET['id'];
-		$result = mysqli_query($con, $sql);
+		$result = mysqli_query($con, $sqlClass);
 		if(mysqli_num_rows($result) > 0){
 			$row = mysqli_fetch_assoc($result);
-			$id = $row['id'];
+			$courseId = $row['id'];
+			$subject_id = $row['subject_id'];
 			$name = $row['name'];
 			$code = $row['code'];
 			$year_level = $row['year_level'];
@@ -57,7 +58,7 @@
 		}
 
 		$sqlEditVideos = "select * from subject_videos 
-						  where subject_id =" . $_GET['id'];
+						  where subject_id =" . $subject_id;
 		$resultEditVideos = mysqli_query($con, $sqlEditVideos);
 
 
@@ -87,7 +88,7 @@
 
 
 	$sqlCourseStudents  = " select student_id from student_classes sc where sc.class_id = ";
-	$sqlCourseStudents .= $id;
+	$sqlCourseStudents .= $courseId;
 	$sqlCourseStudents .= " and sc.is_active = true ";
 	$rsCourseStudents = mysqli_query($con, $sqlCourseStudents);
 
@@ -101,7 +102,7 @@
 
 			$sqlTopics  = " select distinct t.id from topic t inner join topic_item ti on ti.topic_id = t.id ";
 			$sqlTopics .= " where ti.subject_id = ";
-			$sqlTopics .= $id;
+			$sqlTopics .= $subject_id;
 			$rsTopics = mysqli_query($con, $sqlTopics);
 			$courseTopicCount = mysqli_num_rows($rsTopics);
 
@@ -114,12 +115,13 @@
 				while($topic = mysqli_fetch_array($rsTopics)){ // Course Topics
 					$topicId = $topic['id'];
 
-					$sqlItems = "select ti.* from topic_item ti where ti.subject_id =" . $id . " and ti.topic_id = " . $topicId;
+					$sqlItems = "select ti.* from topic_item ti where ti.subject_id =" . $subject_id . " and ti.topic_id = " . $topicId;
 					$rsItems = mysqli_query($con, $sqlItems);
 					$itemsCount = mysqli_num_rows($rsItems);
 
 					$score = 0;
 					$quizId = 0;
+					$tId = 0;
 					if ($itemsCount > 0) {
 						while($cAns = mysqli_fetch_array($rsItems)){
 							$topicItemId = $cAns['id'];
@@ -143,12 +145,13 @@
 								ti.multi_answer_6
 							from topic_item_answer tia
 							inner join topic_item ti on ti.id = tia.topic_item_id
-							where ti.subject_id = " . $id . " and tia.student_id = " . $studentId . " and tia.topic_item_id = " . $topicItemId;
+							where ti.subject_id = " . $subject_id . " and tia.student_id = " . $studentId . " and tia.topic_item_id = " . $topicItemId;
 							$resultStudentListAnswer  = mysqli_query($con, $sqlStudentAnswer);
 
 							if (mysqli_num_rows($resultStudentListAnswer) > 0){
 								while($answer = mysqli_fetch_array($resultStudentListAnswer)){ //Student Answers
 									$quizId = isset($answer['id']);
+									$tId = isset($answer['topic_id']);
 		                            $booleanType = isset($answer['correct_boolean']);
 		                            $singleType = isset($answer['correct_sanswer']);
 		                            $multiType = !isset($answer['correct_boolean']) && !isset($answer['correct_sanswer']);
@@ -212,6 +215,7 @@
 						}
 					}
 					$topic_quizzes[$topicIndex]['quiz_id'] = $quizId;
+					$topic_quizzes[$topicIndex]['topic_id'] = $topicId;
 					$topic_quizzes[$topicIndex]['score'] = $score;
 					$topic_quizzes[$topicIndex]['items_count'] = $itemsCount;
 					$topicIndex++;

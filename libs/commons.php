@@ -11,11 +11,11 @@
 	}
 
 	function computePercentage($score, $items, $baseGrade) {
-		if (isset($score) && isset($items) && isset($baseGrade) && $baseGrade <= 100 && $score > 0) {
+		if (isset($score) && isset($items) && isset($baseGrade) && $baseGrade <= 100 && $items > 0 && $score > 0) {
 			$times = 100 - $baseGrade;
 			$plus = $baseGrade;
 			return ((($score/$items) * $times) + $plus);
-		} else if (isset($score) && isset($items) && isset($baseGrade) && $baseGrade <= 100) {
+		} else if (isset($score) && isset($items) && isset($baseGrade) && $baseGrade <= 100 && $items > 0) {
 			$times = 100 - $baseGrade;
 			$plus = $baseGrade;
 			return ((($score/$items) * $times) + $plus);
