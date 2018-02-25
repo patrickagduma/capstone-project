@@ -3,6 +3,8 @@
 	
 	session_start();
 
+	
+	$courseId = 0;
 	$topic = $_POST['topicName'];
 	$permalink = $topic;
 	$permalink = str_replace(' ', '_', $permalink);
@@ -15,7 +17,9 @@
 		$unsaveTopic = array();
 	}
 
-	$unsaveTopic['courseId'] = $_POST['courseId'];
+	$courseId = $_POST['courseId'];
+	$unsaveTopic['courseId'] = $courseId;
+	$unsaveTopic['subjectId'] = $_POST['subjectId'];
 	$unsaveTopic['topic'] = $topic;
 	$unsaveTopic['videoLink'] = $_POST['videoLink'];
 	$unsaveTopic['videoUrl'] = $_POST['topicVideo'];
@@ -29,5 +33,5 @@
 
 	$_SESSION['topic'] = $unsaveTopic;
 
-	header('Location:Teacher_AddQuestion_truefalseVQ.php');
+	header('Location:Teacher_AddQuestion_truefalseVQ.php?cid=' . $courseId);
 ?>

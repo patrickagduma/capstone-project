@@ -4,10 +4,11 @@
 	session_start();
 
 	$Id = $_SESSION['id'];
+	$subjectId = $_POST['subjectId'];
 	$courseId = $_POST['courseId'];
 	
 		$sql = "insert into subject_videos(subject_id, topic, video_link, created_by, last_modified_date) 
-			VALUE('".$courseId."', '".$_POST['subject']."', '".$_POST['videolink']."',  '" .$Id."', now())
+			VALUE('".$subjectId."', '".$_POST['subject']."', '".$_POST['videolink']."',  '" .$Id."', now())
 		";
 		
 		//echo "SQL[]" .$sql;

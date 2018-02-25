@@ -49,9 +49,9 @@
                             <li class="nav-item">
                                 <a class="nav-link nav-linkN" href="teacherRegistration.php"> <i class="fa fa-check-square-o" aria-hidden="true"></i> Registrations</a>
                             </li>
-                            <li class="nav-item">
+                            <!-- <li class="nav-item">
                                 <a class="nav-link nav-linkN" href="Teacher_Topic.php"> <i class="fa fa-book" aria-hidden="true"></i> Topics </a>
-                            </li>
+                            </li> -->
                             <li class="nav-item">
                                 <a class="nav-link nav-linkN" href="logout.php"> <i class="fa fa-sign-out" aria-hidden="true"></i> Logout </a>
                             </li>
@@ -78,27 +78,29 @@
                 <div class="form-group col-sm-4">
                     <!-- Button -->
                     <div class="">
-                        <button type="button" class="btn btn-primary btn-lg btn-2" onclick="window.location.href='Teacher_AddQuestion_truefalseVQ.php'">True or False</button>
+                        <button type="button" class="btn btn-primary btn-lg btn-2" onclick="window.location.href='Teacher_AddQuestion_truefalseVQ.php?cid=<?= $courseId ?>'">True or False</button>
                     </div>
                 </div>
 
                  <div class="form-group col-sm-4">
                     <!-- Button -->
                     <div class="">
-                        <button type="button" class="btn btn-secondary btn-lg btn-2" onclick="window.location.href='Teacher_AddQuestion_singleanswerVQ.php'">Single Answer</button>
+                        <button type="button" class="btn btn-secondary btn-lg btn-2" onclick="window.location.href='Teacher_AddQuestion_singleanswerVQ.php?cid=<?= $courseId ?>'">Single Answer</button>
                     </div>
                 </div>
 
                 <div class="form-group col-sm-4">
                     <!-- Button -->
                     <div class="">
-                        <button type="button" class="btn btn-secondary btn-lg btn-2" onclick="window.location.href='Teacher_AddQuestion_multipleansVQ.php'">Multiple Answer</button>
+                        <button type="button" class="btn btn-secondary btn-lg btn-2" onclick="window.location.href='Teacher_AddQuestion_multipleansVQ.php?cid=<?= $courseId ?>'">Multiple Answer</button>
                     </div>
                 </div>
             </div>
         </div>
 
         <form id="addQuestionSingleForm" action="addQuestionSingleHandler.php" onsubmit="return validateForm();" method="post">
+                <input type="hidden" id="hdnCourseId" name="courseId" value="<?= $courseId ?>" />
+                <input type="hidden" id="hdnSaveType" name="saveType" value="saveAddQuestion" />
             <div class="container cont1">  
                 <div class="form-group col-sm-12">
                         <label for="exampleTextarea">Problem:</label>
@@ -243,7 +245,7 @@
 
 </table>
 <div class="col-md-12" style="text-align: center;" >
-<button class="btn-1 btn-lg btn" onclick="window.location.href='Teacher_Topic.php'">Back to Topic</button>
+<button class="btn-1 btn-lg btn" onclick="window.location.href='Teacher_Topic.php?cid=<?= $courseId ?>'">Back to Topic</button>
 </div>
                 
             </div>

@@ -154,7 +154,8 @@
                 !lastname || 
                 !username || 
                 !password || 
-                !verifyPassword){
+                !verifyPassword ||
+                !usertype){
                 bootbox.alert("Please fill all required fields");
                 return false;
             } else if (password != verifyPassword) {

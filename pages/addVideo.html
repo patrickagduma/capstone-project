@@ -43,9 +43,9 @@
                     <li class="nav-item">
                         <a class="nav-link nav-linkN" href="teacherRegistration.php"> <i class="fa fa-check-square-o" aria-hidden="true"></i> Registrations</a>
                     </li>
-                    <li class="nav-item">
+                    <!-- <li class="nav-item">
                         <a class="nav-link nav-linkN" href="Teacher_Topic.php"> <i class="fa fa-book" aria-hidden="true"></i> Topics </a>
-                    </li>
+                    </li> -->
                     <li class="nav-item">
                         <a class="nav-link nav-linkN" href="logout.php"> <i class="fa fa-sign-out" aria-hidden="true"></i> Logout </a>
                     </li>
@@ -62,34 +62,19 @@
             <hr>
             <div class="panel-body">
                 <div class="form-group has-error has-feedback">
-                    <label for="selClass" class="col-md-3 control-label">Class</label>
+                    <label for="selClass" class="col-md-3 control-label">Subject</label>
                     <div class="col-md-11">
-                        <?php
-                            if (isset($courseId)) {
-                        ?>
-                            <input type="hidden" name="sel_class" value="<?= $courseId ?>">
-                            <select id="selClass" class="form-control" >
-                        <?php
-                            } else {
-                        ?>
-                            <select name="sel_class" id="selClass" class="form-control">
-                        <?php
-                            }
-                        ?>
-                                <option class="list-group-item" value="">Select a subject</option>
-                                <?php
-                                    if (mysqli_num_rows($resultCourses) > 0) {
-                                        while($row = mysqli_fetch_array($resultCourses)){
-                                            $optionHtml = "<option class='list-group-item' value='" . $row['code'] . "'";
-                                            if ($row['id'] == $courseId) {
-                                                $optionHtml .= " selected";
-                                            }
-                                            $optionHtml .= ">" . $row['name'] . "</option>";
-                                            echo $optionHtml;
-                                        }
-                                    } 
-                                ?>
-                            </select>
+                        <select id="selClass" name="subjectId" class="form-control">
+                            <option class="list-group-item" value="">Select a subject</option>
+                            <?php
+                                if (mysqli_num_rows($resultCourses) > 0) {
+                                    while($row = mysqli_fetch_array($resultCourses)){
+                                        $optionHtml = "<option class='list-group-item' value='" . $row['id'] . "'>" . $row['name'] . "</option>";
+                                        echo $optionHtml;
+                                    }
+                                } 
+                            ?>
+                        </select>
                     </div>
                 </div>
             
@@ -119,7 +104,7 @@
     <div class="row top-space">
         <div class="form-group">
             <div class="col-md-offset-3 col-md-11">
-                <button type="" class="btn btn-primary btn-md" ><i class="fa fa-youtube" aria-hidden="true"></i>&nbsp;&nbsp;Add Video</button>
+                <button type="" class="btn btn-primary btn-md><i class="fa fa-youtube" aria-hidden="true"></i>&nbsp;&nbsp;Add Video</button>
             </div>
         </div>
     </div>

@@ -2,21 +2,23 @@
     require_once('libs/connect.php');
     session_start();
 
+    $courseId = $_GET['cid'];
+
     $topicDetails = null;
     if (isset($_SESSION['topic'])) {
         $topicDetails = $_SESSION['topic'];
     }
     
-    $sqlTopic = "insert into topic(subject_id, video_id, topic, summary, permalink) 
-    value('".$topicDetails['courseId']."', '".$topicDetails['videoLink']."', '".$topicDetails['topic']."', '".$topicDetails['summary']."', '".$topicDetails['permalink']."')";
+    $sqlTopic = "insert into topic(course_id, subject_id, video_id, topic, summary, permalink) 
+    value('" . $topicDetails['courseId'] . "', '".$topicDetails['subjectId']."', '".$topicDetails['videoLink']."', '".$topicDetails['topic']."', '".$topicDetails['summary']."', '".$topicDetails['permalink']."')";
 
-    //echo "[SQL]: " . $sqlTopic . "<br />";
+    echo "[SQL]: " . $sqlTopic . "<br />";
 
 /* */
     if(mysqli_query($con, $sqlTopic)){
         $topicId = mysqli_insert_id($con);
+        $subjectId = $topicDetails['subjectId'];
         $courseId = $topicDetails['courseId'];
-
         $questionsAndAnswers = $topicDetails['QAs'];
         foreach ($questionsAndAnswers as $qaItem) {
             $problem = isset($qaItem['problem']) ? "'" . $qaItem['problem'] . "'" : 'null';
@@ -53,7 +55,7 @@
             $multiAnswer6 = isset($qaItem['multiAnswer6']) && $qaItem['multiAnswer6'] != "" ? "'" . $qaItem['multiAnswer6'] . "'" : 'null';
 
             $sqlQAItem  = "insert into topic_item(topic_id, subject_id, question, permalink, boolean_answer, single_choice_1, single_choice_2, single_choice_3, single_choice_4, single_choice_5, single_choice_6, single_answer, multi_choice_1, multi_choice_2, multi_choice_3, multi_choice_4, multi_choice_5, multi_choice_6, multi_answer_1, multi_answer_2, multi_answer_3, multi_answer_4, multi_answer_5, multi_answer_6) value (";
-            $sqlQAItem .= $topicId . ", " . $courseId . ", " . $problem . ", " . $permalink . ", ";
+            $sqlQAItem .= $topicId . ", " . $subjectId . ", " . $problem . ", " . $permalink . ", ";
             $sqlQAItem .= $booleanAnswer . ", ";
             $sqlQAItem .= $singleChoice1 . ", " . $singleChoice2 . ", " . $singleChoice3 . ", " . $singleChoice4 . ", " . $singleChoice5 . ", " . $singleChoice6 . ", " . $singleAnswer1 . ", ";
             $sqlQAItem .= $multiChoice1 . ", " . $multiChoice2 . ", " . $multiChoice3 . ", " . $multiChoice4 . ", " . $multiChoice5 . ", " . $multiChoice6 . ", ";

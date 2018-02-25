@@ -3,7 +3,9 @@
 	
 	session_start();
 
-		$status = null;
+	$courseId = $_GET['cid'];
+
+	$status = null;
     if (isset($_GET['status'])) {
     	$status = $_GET['status'];
     }

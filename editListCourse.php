@@ -17,7 +17,7 @@
 	$year_level = '';
 	$section = '';
 	$baseGrade = 50;
-	$course_id = '';
+	//$course_id = '';
 	$topic = '';
 	$video_link = '';
 	if(isset($_GET['id'])){
@@ -36,7 +36,7 @@
 		inner join classes c on c.id = sce.course_id
 		inner join subject s on s.id = c.subject_id
 		where c.created_by = ". $_SESSION['id'] .
-			" and sce.status is null and s.id = " . $_GET['id'] . 
+			" and sce.status is null and c.id = " . $_GET['id'] . 
 		" order by sce.last_modified_date desc";
 
 		$resultRegistration  = mysqli_query($con, $sqlSCE);
@@ -61,9 +61,6 @@
 						  where subject_id =" . $subject_id;
 		$resultEditVideos = mysqli_query($con, $sqlEditVideos);
 
-
-		
-
 		$sqlStudentList = "select
 			sc.id,
 			sc.student_id,
@@ -81,7 +78,7 @@
 
 		$sqlTopic  = " SELECT  t.*, v.topic as video_topic, v.video_link  FROM topic t ";
 		$sqlTopic .= " LEFT JOIN subject_videos v on v.id = t.video_id ";
-		$sqlTopic .= " WHERE t.subject_id = " . $_GET['id'];
+		$sqlTopic .= " WHERE t.course_id = " . $_GET['id'];
 
 		$resultTopic = mysqli_query($con, $sqlTopic);
 	}

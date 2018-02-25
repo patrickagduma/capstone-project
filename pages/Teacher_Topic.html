@@ -58,9 +58,9 @@
                             <li class="nav-item">
                                 <a class="nav-link nav-linkN" href="teacherRegistration.php"> <i class="fa fa-check-square-o" aria-hidden="true"></i> Registrations</a>
                             </li>
-                            <li class="nav-item">
+                            <!-- <li class="nav-item">
                                 <a class="nav-link nav-linkN" href="Teacher_Topic.php"> <i class="fa fa-book" aria-hidden="true"></i> Topics </a>
-                            </li>
+                            </li> -->
                             <li class="nav-item">
                                 <a class="nav-link nav-linkN" href="logout.php"> <i class="fa fa-sign-out" aria-hidden="true"></i> Logout </a>
                             </li>
@@ -70,6 +70,7 @@
     </nav>
         <div class="container cont1" style="border-right: none;">
             <form id="formTeacherTopic" action="teacherTopicStoreDetails.php" onsubmit="return validateForm();" method="post">
+                <input type="hidden" id="hdnCourseId" name="courseId" value="<?= $courseId ?>" />
                 <div class="row sm-flex-center top-space top-space1" style="border-right: none;">
                     <div class="col-sm-12">
                         <div class="panel panel-info">
@@ -78,22 +79,19 @@
                                 <div class="form-group has-error has-feedback">
                                     <label for="selClass" class="col-md-3 control-label">Subject</label>
                                     <div class="col-md-11">
-                                        <select id="selClass" name="courseId" class="form-control">
+                                        <select id="selClass" name="subjectId" class="form-control">
                                             <!-- TODO: convert ni gikan dapat sa database -->
                                             <option class="list-group-item" value="">Select a Subject</option>
                                                 <?php
                                                     if (mysqli_num_rows($resultCourses) > 0) {
                                                         while($row = mysqli_fetch_array($resultCourses)){
                                                             $selected = "";
-                                                            if (isset($topicDetails) && 
-                                                                isset($topicDetails['courseId']) && 
-                                                                $row['id'] == $topicDetails['courseId']) {
+                                                            if (isset($subjectId) && $row['id'] == $subjectId) {
                                                                 $selected = " selected";
                                                             }
-                                                            
                                                             echo "<option class=\"list-group-item\" value=\"" . $row['id'] . "\"" . $selected . ">" . $row['name'] . "(" . $row['code'] . ")" . "</option>";
                                                         }
-                                                    }
+                                                    } 
                                                 ?>
                                         </select>
                                     </div>
