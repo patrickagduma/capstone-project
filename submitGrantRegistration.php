@@ -12,7 +12,7 @@
 	$delete = mysqli_query($con, $sql);
 
 	if($insert && $delete){
-		if ($fromPage == 'courseRegistration') {
+		if ($fromPage == 'teacherRegistration') {
 			header('Location:teacherRegistration.php?status=approved');
 		} else if ($fromPage == 'teacherHome') {
 		header('Location:teacherHomepage.php?id=' . $_POST['subjectId'] . '&status=approved');

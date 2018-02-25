@@ -2,7 +2,7 @@
     require_once('libs/connect.php');
     session_start();
 
-	$courseId = null;
+	$courseId = 0;
 	$subjectId = null;
 	$topicText = "";
 	$topicSummary = "";
