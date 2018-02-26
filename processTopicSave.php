@@ -12,7 +12,7 @@
     $sqlTopic = "insert into topic(course_id, subject_id, video_id, topic, summary, permalink) 
     value('" . $topicDetails['courseId'] . "', '".$topicDetails['subjectId']."', '".$topicDetails['videoLink']."', '".$topicDetails['topic']."', '".$topicDetails['summary']."', '".$topicDetails['permalink']."')";
 
-    echo "[SQL]: " . $sqlTopic . "<br />";
+    //echo "[SQL]: " . $sqlTopic . "<br />";
 
 /* */
     if(mysqli_query($con, $sqlTopic)){
