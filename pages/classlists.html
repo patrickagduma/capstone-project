@@ -57,9 +57,9 @@
                     <li class="nav-item">
                         <a class="nav-link nav-linkN" href="teacherRegistration.php"> <i class="fa fa-check-square-o" aria-hidden="true"></i> Registrations</a>
                     </li>
-                    <li class="nav-item">
+                    <!-- <li class="nav-item">
                         <a class="nav-link nav-linkN" href="Teacher_Topic.php"> <i class="fa fa-book" aria-hidden="true"></i> Topics </a>
-                    </li>
+                    </li> -->
                     <li class="nav-item">
                         <a class="nav-link nav-linkN" href="logout.php"> <i class="fa fa-sign-out" aria-hidden="true"></i> Logout </a>
                     </li>
@@ -67,37 +67,84 @@
             </div>
         </div>
     </nav>
-
-                   <div class="container cont1">
-                        <div class="col-sm-12">
-                    <h4 style="text-align: center;">Class List</h4>
+                <!-- <input type="hidden" id="hndCourseId" name="courseId" value="<?=$courseId?>">   -->
+        <div class="container cont1">
+            <div class="col-sm-12 " style="overflow: ">
+                <h4 style="text-align: center;">Class List</h4>
                     <table id="tblClassList" class="table table1 table-hover">
+                    
                         <thead>
-                            <tr>
+                        <tr>
                             <th>First Name</th>
                             <th>Last Name</th>
                             <th>Email Address</th>
 
-                       
+                            <?php
+                                for ($a = 1; $a <= $courseTopicCount; $a++) {
+                                    echo "<th>Quiz " . $a . "</th>";
+                                }
+                            ?>
+
                             <th>Total Score</th>
                             <th>Average(%)</th>
                         </tr>
                         </thead>
                         <tbody>
-                            <tr>
-                                <td>JEJE</td>
-                                <td>MON</td>
-                                <td>jejemon@yahoo.com</td>
-                                <td>10</td>
-                                <td>1</td>
+                            <?php
+                                if (mysqli_num_rows($resultStudentList) > 0) {
+                                    while($row = mysqli_fetch_array($resultStudentList)){
+                                        $studentId = $row['student_id'];
+                                        $firstName = $row['firstname'];
+                                        $lastName = $row['lastname'];
+                                        $email = $row['email'];
+                                        $displayName = $row['firstname'] . " (" . $studentId . ")";
 
-                            </tr>
+                                        $topicQuizzes = null;
+                                        if (isset($studentQuizzes)) {
+                                            foreach($studentQuizzes as $sq) {
+                                                if (isset($sq['topic_quizzes']) && $sq['student_id'] == $studentId) {
+                                                    $topicQuizzes = $sq['topic_quizzes'];
+                                                }
+                                            }
+                                        }
+                            ?>
+                                <tr>
+                                    <td><?= $firstName  ?></td>
+                                    <td><?= $lastName ?></td>
+                                    <td><?= $email ?></td>
+
+                                    <?php
+
+                                        $total_score = 0;
+                                        $total_items = 0;
+                                        $percentage = 0;
+                                        if (isset($topicQuizzes)) {
+                                            foreach ($topicQuizzes as $tq) {
+                                                $total_score += $tq['score'];
+                                                $total_items += $tq['items_count'];
+                                                echo "<td>" . $tq['score'] . "/" . $tq['items_count'] . "</td>";
+                                            }
+                                            $percentage = computePercentage($total_score, $total_items, $baseGrade);
+                                        }
+                                    ?>
+
+                                    <td><?= $total_score ?>/<?= $total_items ?></td>
+                                    <td><?= round($percentage, 2) ?>%</td>
+                                </tr>
+                            <?php
+                                    }
+                                } else {
+                            ?>
+                                <tr>
+                                    <td colspan="5">No Data Available</td>
+                                </tr>
+                            <?php
+                                }
+                            ?>
                         </tbody>
-
-
                     </table>
-                    </div>
-                    </div>
+                </div>
+            </div>
 
         <div class="footer" id="footer">
         <div class="container">

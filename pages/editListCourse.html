@@ -57,9 +57,9 @@
                     <li class="nav-item">
                         <a class="nav-link nav-linkN" href="teacherRegistration.php"> <i class="fa fa-check-square-o" aria-hidden="true"></i> Registrations</a>
                     </li>
-                    <li class="nav-item">
+                    <!-- <li class="nav-item">
                         <a class="nav-link nav-linkN" href="Teacher_Topic.php"> <i class="fa fa-book" aria-hidden="true"></i> Topics </a>
-                    </li>
+                    </li> -->
                     <li class="nav-item">
                         <a class="nav-link nav-linkN" href="logout.php"> <i class="fa fa-sign-out" aria-hidden="true"></i> Logout </a>
                     </li>
@@ -208,106 +208,102 @@
             ?>
 
             <div class="row top-space1">
-                <div class="col-sm-12" style="overflow: scroll; height: 300px;">
-                    <h4 style="text-align: center;">Class List</h4>
-                    <table id="tblClassList" class="table table1 table-hover">
-                    
-                        <thead>
-                        <tr>
-                            <th>First Name</th>
-                            <th>Last Name</th>
-                            <th>Email Address</th>
+                    <div class="col-sm-12" style="overflow: scroll; height: 300px;">
+                        <h4 style="text-align: center;">Class List</h4>
+                        <table id="tblClassList" class="table table1 table-hover">
+                        
+                            <thead>
+                            <tr>
+                                <th>First Name</th>
+                                <th>Last Name</th>
+                                <th>Email Address</th>
 
-                            <?php
-                                for ($a = 1; $a <= $courseTopicCount; $a++) {
-                                    echo "<th>Quiz " . $a . "</th>";
-                                }
-                            ?>
-
-                            <th>Total Score</th>
-                            <th>Average(%)</th>
-                        </tr>
-                        </thead>
-                        <tbody>
-                            <?php
-                                if (mysqli_num_rows($resultStudentList) > 0) {
-                                    while($row = mysqli_fetch_array($resultStudentList)){
-                                        $studentId = $row['student_id'];
-                                        $firstName = $row['firstname'];
-                                        $lastName = $row['lastname'];
-                                        $email = $row['email'];
-                                        $displayName = $row['firstname'] . " (" . $studentId . ")";
-
-                                        $topicQuizzes = null;
-                                        $sid = 0;
-                                        //$tId = 0;
-                                        if (isset($studentQuizzes)) {
-                                            foreach($studentQuizzes as $sq) {
-                                                if (isset($sq['topic_quizzes']) && $sq['student_id'] == $studentId) {
-                                                    $sid = $sq['student_id'];
-                                                    //$tId = $sq['student_id'];
-                                                    $topicQuizzes = $sq['topic_quizzes'];
-                                                }
-                                            }
-                                        }
-                            ?>
-                                <tr>
-                                    <td><?= $firstName  ?></td>
-                                    <td><?= $lastName ?></td>
-                                    <td><?= $email ?></td>
-
-                                    <?php
-
-                                        $topic_id = 0;
-                                        $quiz_id = 0;
-                                        $total_score = 0;
-                                        $total_items = 0;
-                                        $percentage = 0;
-                                        if (isset($topicQuizzes)) {
-                                            foreach ($topicQuizzes as $tq) {
-                                                //echo "[topic-id]: " . $topic_id . "<br>";
-                                                $quiz_id  = $tq['quiz_id'];
-                                                $topic_id  = $tq['topic_id'];
-                                                $total_score += $tq['score'];
-                                                $total_items += $tq['items_count'];
-                                                if ($quiz_id > 0) {
-                                                    echo "<td><a href='viewStudentQuizInformation.php?cid=" . $courseId .  "&sid=" . $studentId .  "&tid=" . $topic_id . "' style=\"cursor:pointer;\" target='_blank'>" . $tq['score'] . "/" . $tq['items_count'] . "</span></td>";
-                                                } else {
-                                                    echo "<td>" . $tq['score'] . "/" . $tq['items_count'] . "</td>";
-                                                }
-                                                
-                                            }
-                                            $percentage = computePercentage($total_score, $total_items, $baseGrade);
-                                        }
-                                    ?>
-
-                                    <td><?= $total_score ?>/<?= $total_items ?></a></td>
-                                    <td><?= round($percentage, 2) ?>%</td>
-                                </tr>
-                            <?php
+                                <?php
+                                    for ($a = 1; $a <= $courseTopicCount; $a++) {
+                                        echo "<th>Quiz " . $a . "</th>";
                                     }
-                                } else {
-                            ?>
-                                <tr>
-                                    <td colspan="5">No Data Available</td>
-                                </tr>
-                            <?php
-                                }
-                            ?>
-                        </tbody>
-                    </table>
-                </div>
-                         
-                <div class="col-sm-12" style="text-align: center;">
-                    <div class="">
-                        <button id="btnClassList" class="btn btn-primary btn-info " onclick="window.location.href='teacherSearchStudent.php?cid=<?=$courseId?>'"><i class="fa fa-search" aria-hidden="true"></i>&nbsp;Search &amp; Add Student to Class</button>
-                        <button id="btnClassList" class="btn btn-primary btn-info " onclick="window.location.href='classlists.php'"><i class="fa fa-print" aria-hidden="true"></i> Print</button>
+                                ?>
+
+                                <th>Total Score</th>
+                                <th>Average(%)</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                                <?php
+                                    if (mysqli_num_rows($resultStudentList) > 0) {
+                                        while($row = mysqli_fetch_array($resultStudentList)){
+                                            $studentId = $row['student_id'];
+                                            $firstName = $row['firstname'];
+                                            $lastName = $row['lastname'];
+                                            $email = $row['email'];
+                                            $displayName = $row['firstname'] . " (" . $studentId . ")";
+
+                                            $topicQuizzes = null;
+                                            $sid = 0;
+                                            //$tId = 0;
+                                            if (isset($studentQuizzes)) {
+                                                foreach($studentQuizzes as $sq) {
+                                                    if (isset($sq['topic_quizzes']) && $sq['student_id'] == $studentId) {
+                                                        $sid = $sq['student_id'];
+                                                        //$tId = $sq['student_id'];
+                                                        $topicQuizzes = $sq['topic_quizzes'];
+                                                    }
+                                                }
+                                            }
+                                ?>
+                                    <tr>
+                                        <td><?= $firstName  ?></td>
+                                        <td><?= $lastName ?></td>
+                                        <td><?= $email ?></td>
+
+                                        <?php
+
+                                            $topic_id = 0;
+                                            $quiz_id = 0;
+                                            $total_score = 0;
+                                            $total_items = 0;
+                                            $percentage = 0;
+                                            if (isset($topicQuizzes)) {
+                                                foreach ($topicQuizzes as $tq) {
+                                                    //echo "[topic-id]: " . $topic_id . "<br>";
+                                                    $quiz_id  = $tq['quiz_id'];
+                                                    $topic_id  = $tq['topic_id'];
+                                                    $total_score += $tq['score'];
+                                                    $total_items += $tq['items_count'];
+                                                    if ($quiz_id > 0) {
+                                                        echo "<td><a href='viewStudentQuizInformation.php?cid=" . $courseId .  "&sid=" . $studentId .  "&tid=" . $topic_id . "' style=\"cursor:pointer;\" target='_blank'>" . $tq['score'] . "/" . $tq['items_count'] . "</span></td>";
+                                                    } else {
+                                                        echo "<td>" . $tq['score'] . "/" . $tq['items_count'] . "</td>";
+                                                    }
+                                                    
+                                                }
+                                                $percentage = computePercentage($total_score, $total_items, $baseGrade);
+                                            }
+                                        ?>
+
+                                        <td><?= $total_score ?>/<?= $total_items ?></a></td>
+                                        <td><?= round($percentage, 2) ?>%</td>
+                                    </tr>
+                                <?php
+                                        }
+                                    } else {
+                                ?>
+                                    <tr>
+                                        <td colspan="5">No Data Available</td>
+                                    </tr>
+                                <?php
+                                    }
+                                ?>
+                            </tbody>
+                        </table>
                     </div>
-                </div>
-
-        </div>
-     
-
+                         
+                    <div class="col-sm-12" style="text-align: center;">
+                        <div class="">
+                            <button id="btnClassList" class="btn btn-primary btn-info " onclick="window.location.href='teacherSearchStudent.php?cid=<?=$courseId?>'"><i class="fa fa-search" aria-hidden="true"></i>&nbsp;Search &amp; Add Student to Class</button>
+                            <button id="btnClassList" class="btn btn-primary btn-info " onclick="window.location.href='classlists.php?id=<?=$courseId?>'"><i class="fa fa-print" aria-hidden="true"></i> Print</button>
+                        </div>
+                    </div>
         </div>
 
         <!-- Modal for Add Question -->
@@ -324,7 +320,7 @@
                     
                     <div class="modal-body">
                    
-                        <input type="hidden" name="txtID" value="<?=$id?>">
+                        <input type="hidden" name="txtID" value="<?=$courseId?>">
                         <div class="form-group has-error has-feedback">
                             <label for="txtClassCode" class="control-label">Subject</label>
                             <div>
