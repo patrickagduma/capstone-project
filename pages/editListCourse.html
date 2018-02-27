@@ -122,6 +122,7 @@
             <div class="row top-space">
                 <div class="col-sm-12" >
                     <h4 style="text-align: center;"><i class="fa fa-file-text-o" aria-hidden="true"></i>&nbsp;Video</h4>
+                    <div style="overflow: scroll; height:250px; width: auto;">
                     <table id="tblClassTopics" class="table table-hover" style="overflow: scroll; height: auto;" >
                         <thead>
                         <tr>
@@ -156,6 +157,7 @@
                                 </tr> -->
                         </tbody>
                     </table>
+                </div>
                     <!-- <a href="Teacher_Topic.php?cid=<?= $id ?>" class="btn btn-default">Add Topic</a> -->
                 </div>
             </div>
@@ -164,7 +166,8 @@
             <div class="row top-space">
                 <div class="col-sm-12" >
                     <h4 style="text-align: center;"><i class="fa fa-file-text-o" aria-hidden="true"></i>&nbsp;Topics</h4>
-                    <table id="tblClassTopics" class="table table-hover" style="overflow: scroll; height: auto;" >
+                    <div  style="overflow: scroll; height:250px; width: auto;">
+                    <table id="tblClassTopics" class="table table-hover">
                         <thead>
                         <tr>
                             <th>Topic</th>
@@ -194,6 +197,7 @@
                             ?>
                         </tbody>
                     </table>
+                    </div>
                     <div class="col-sm-12" style="text-align: center;padding: 0.8rem;">
                     <a href="Teacher_Topic.php?cid=<?= $courseId ?>" class="btn btn-default">Add Topic</a>
                     </div>
