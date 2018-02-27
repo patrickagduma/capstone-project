@@ -10,20 +10,13 @@
     /*background-image: url("images/login.jpg");*/
     background-color: #FFF;
 }
-.btn-login{
-        background-color: #fba433;
-    color:#fff;
-    border-color: #fba433;
-    margin-left: 110px !important;
+.btn-login1{
     padding: 10px 91px 10px 91px !important;
+    
 }
-.btn-login:hover{
-     background-color: #df9b42;
-    color:#fff;
-    border-color: #df9b42;
-
+.bt1{
+    text-align: center;
 }
-
 .nav-header{
     background-color: #3a4147 !important;
     font-family: montserrat !important;

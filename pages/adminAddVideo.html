@@ -12,6 +12,8 @@
     <link rel="stylesheet" href="css/addVideo/font-awesome.min.css">
     <link rel="stylesheet" href="css/addVideo/new.css">
     <style>
+
+
     
         .right-inner-addon {
             position: relative;
@@ -53,10 +55,12 @@
             </div>
         </div>
     </nav>
+
+<div>
 <form id="addVideoForm" class="form-horizontal" role="form" action="adminAddProcessVideo.php" onsubmit="return validateForm();" method="post">
 <input type="hidden" id="hndCourseId" name="courseId" value="<?=$courseId?>">
 <div class="container cont1">
-    <div class="row">
+    <div class="" style="padding: 0.1rem;">
         <div class="panel panel-info" style="margin-top: 100px;">
             <h4 style="text-align: center;"><i class="fa fa-youtube" aria-hidden="true"></i>&nbsp;Video</h4>
             <hr>
@@ -105,11 +109,11 @@
                 </div>
 
                 <div class="form-group right-inner-addon">
-                    <div class="">
+                    <div class="col-sm-12">
                         <i class="fa fa-eye" aria-hidden="true"></i>
                         <input type="search" class="form-control" id="txtVideoUrl" name="videolink" placeholder="https://www.youtube.com/embed/uXOiR4UAVGk" title="Enter valid youtube video link and press ENTER key to refresh the video." value="">
-                        <p style="font-style: italic; font-size: 14px;" >Please follow this format link: https://www.youtube.com/embed/uXOiR4UAVGk</p>
-                    </div>
+                        <p style="font-style: italic; font-size: 10px;" >Follow this format link: https://www.youtube.com/embed/uXOiR4UAVGk</p>
+
                 </div>
                 
             </div>
@@ -125,6 +129,10 @@
     </div>
 </div>
 </form>
+
+</div>
+
+
 <div class="footer" id="footer">
         <div class="container">
             <div class="row">
