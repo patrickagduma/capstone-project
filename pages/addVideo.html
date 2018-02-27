@@ -13,9 +13,15 @@
     <link rel="stylesheet" href="css/addVideo/new.css">
     <style>
 
+    @media (min-width: 996px) {
+            body {
+                padding-top: 56px;
+            }
+        }
+
        @media (min-width: 400px) {
             body {
-                padding-top: 75px !important;
+                padding-top: 3rem !important;
             }
         }
     
@@ -61,7 +67,7 @@
     </nav>
 <form id="addVideoForm" class="form-horizontal" role="form" action="processAddVideo.php" onsubmit="return validateForm();" method="post">
 <input type="hidden" id="hndCourseId" name="courseId" value="<?=$courseId?>">
-<div class="container cont1">
+<div class="container cont1" style="margin-top: 5% !important;">
     <div class="row">
         <div class="panel panel-info" style="margin-top: 100px;">
             <h4 style="text-align: center;"><i class="fa fa-youtube" aria-hidden="true"></i>&nbsp;Video</h4>
@@ -69,7 +75,7 @@
             <div class="panel-body">
                 <div class="form-group has-error has-feedback">
                     <label for="selClass" class="col-md-3 control-label">Subject</label>
-                    <div class="col-md-11">
+                    <div class="">
                         <select id="selClass" name="subjectId" class="form-control">
                             <option class="list-group-item" value="">Select a subject</option>
                             <?php
